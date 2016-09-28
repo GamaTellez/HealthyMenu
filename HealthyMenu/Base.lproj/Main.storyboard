@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oWG-te-O8r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeView" customModule="HealthyMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7ke-yE-JYU">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UBs-I7-pvb" id="Had-no-uhu"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ktf-Tu-BRK"/>
+                                </connections>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="m4g-cA-l0C">
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="YyA-Vv-fxJ"/>
+                                </connections>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xv9-C4-3NJ">
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="mapListSegmentTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="5LI-Qj-jEd"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7ke-yE-JYU" firstAttribute="trailing" secondItem="m4g-cA-l0C" secondAttribute="trailing" id="2QZ-4W-ESJ"/>
+                            <constraint firstItem="xv9-C4-3NJ" firstAttribute="centerX" secondItem="7ke-yE-JYU" secondAttribute="centerX" id="2o1-YT-Smk"/>
+                            <constraint firstItem="m4g-cA-l0C" firstAttribute="top" secondItem="7ke-yE-JYU" secondAttribute="top" id="7Bh-eT-cuK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7ke-yE-JYU" secondAttribute="bottom" constant="136" id="7xe-pY-CTj"/>
+                            <constraint firstItem="m4g-cA-l0C" firstAttribute="leading" secondItem="7ke-yE-JYU" secondAttribute="leading" id="GV8-NR-a2H"/>
+                            <constraint firstAttribute="trailing" secondItem="m4g-cA-l0C" secondAttribute="trailing" id="TdC-FF-gah"/>
+                            <constraint firstItem="m4g-cA-l0C" firstAttribute="top" secondItem="xv9-C4-3NJ" secondAttribute="bottom" constant="23" id="YNK-or-omU"/>
+                            <constraint firstItem="m4g-cA-l0C" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="bao-J9-H5V"/>
+                            <constraint firstItem="xv9-C4-3NJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="i6R-XX-tqC"/>
+                            <constraint firstItem="7ke-yE-JYU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nn1-C8-8W2"/>
+                            <constraint firstItem="xv9-C4-3NJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xZJ-5d-sBg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dmy-Sf-4jZ"/>
+                    <connections>
+                        <outlet property="mapListController" destination="xv9-C4-3NJ" id="h5J-4A-NZW"/>
+                        <outlet property="restaurantsMap" destination="m4g-cA-l0C" id="QU5-ah-ucb"/>
+                        <outlet property="restaurantsTable" destination="7ke-yE-JYU" id="kuX-1Q-hTm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="UBs-I7-pvb" customClass="RestaurantsTableDataSource" customModule="HealthyMenu" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="1150.7246376811595" y="385.59782608695656"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WgE-rD-5We">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oWG-te-O8r" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xKb-hz-wKf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="CWE-Ai-CQm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a00-t0-Dxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="387"/>
+        </scene>
+    </scenes>
+</document>
