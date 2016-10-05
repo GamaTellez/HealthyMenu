@@ -102,8 +102,6 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
         if status == CLAuthorizationStatus.authorizedWhenInUse {
             self.defaults.set(false, forKey: self.kFisrtInstall)
             self.locationManager.startUpdatingLocation()
-            //self.restaurantsMap.setRegion(MKCoordinateRegionMakeWithDistance(self.restaurantsMap.userLocation.coordinate, 2000, 2000), animated: true)
-            //self.findRestaurantsNearuser()
         }
     }
     
@@ -130,10 +128,9 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
                     return
                 }
                 for itemRestaurant in restaurantsFound {
-                    print(itemRestaurant.name)
-                    print(itemRestaurant.placemark.title)
                     let newAnnotation = MKPointAnnotation()
                     newAnnotation.coordinate = itemRestaurant.placemark.coordinate
+                    newAnnotation.title = itemRestaurant.placemark.title
                         self.restaurantsMap.addAnnotation(newAnnotation)
                 }
         }
@@ -148,7 +145,16 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
                 self.navigationController?.present(errorAlert, animated: true, completion: nil)
         }
     }
-    
+
+    /************************************************
+    * Map delegate functions
+    ************************************************/
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if annotation is MKUserLocation {
+//            return nil
+//        }
+//        return RestaurantAnnotationView()
+//    }
 }
 
 

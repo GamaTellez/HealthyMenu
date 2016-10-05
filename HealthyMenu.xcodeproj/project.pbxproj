@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		876E35641DA4A9D2001CD4B2 /* RestaurantAnn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E35631DA4A9D2001CD4B2 /* RestaurantAnn.swift */; };
 		8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE581D81D82000A7DD7E /* AppDelegate.swift */; };
 		8772CE5E1D81D82000A7DD7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8772CE5C1D81D82000A7DD7E /* Main.storyboard */; };
 		8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE5F1D81D82000A7DD7E /* HealthyMenu.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		876E35631DA4A9D2001CD4B2 /* RestaurantAnn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestaurantAnn.swift; path = ../RestaurantAnn.swift; sourceTree = "<group>"; };
 		8772CE551D81D82000A7DD7E /* HealthyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8772CE581D81D82000A7DD7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8772CE5D1D81D82000A7DD7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				8772CE581D81D82000A7DD7E /* AppDelegate.swift */,
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
+				876E35631DA4A9D2001CD4B2 /* RestaurantAnn.swift */,
 				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
 				8772CE8D1D81DF3F00A7DD7E /* RestaurantsTableDataSource.swift */,
 				8772CE621D81D82000A7DD7E /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				876E35641DA4A9D2001CD4B2 /* RestaurantAnn.swift in Sources */,
 				8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */,
 				8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */,
 				8772CE8E1D81DF3F00A7DD7E /* RestaurantsTableDataSource.swift in Sources */,
