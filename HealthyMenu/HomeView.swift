@@ -9,13 +9,13 @@
 import UIKit
 import MapKit
 
-class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class HomeView: UIViewController, UICollectionViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    @IBOutlet var restaurantsMap: MKMapView!
-    @IBOutlet var restaurantsTable: UITableView!
-    @IBOutlet var mapListController: UISegmentedControl!
-    var restaurantsTableDS = RestaurantsTableDataSource()
+    @IBOutlet var restaurantsCollectionView: UICollectionView!
+    var restaurantsCollectionDS = RestaurantsDataSource()
+    private var restaurauntsFound:[Restaurant]?
     var locationManager = CLLocationManager()
+    var userLocation:CLLocation?
     let kFisrtInstall = "firstInstall"
     lazy var restaurantsRequest = MKLocalSearchRequest()
     lazy var defaults = UserDefaults.standard
@@ -55,37 +55,16 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
     // basic set up of view               //
     ////////////////////////////////////////
     func initialSetUp() {
-        //segmented Controller
-        self.mapListController.selectedSegmentIndex = 0
-        self.mapListController.setTitle("Map", forSegmentAt: 0)
-        self.mapListController.setTitle("List", forSegmentAt: 1)
         //tableView
-        self.restaurantsTable.delegate = self
-        self.restaurantsTable.dataSource = self.restaurantsTableDS
+        self.restaurantsCollectionView.delegate = self
+        self.restaurantsCollectionView.dataSource = self.restaurantsCollectionDS
         //location manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        //map
-        self.restaurantsMap.showsUserLocation = true
-        self.restaurantsMap.delegate = self
         //search request
         self.restaurantsRequest.naturalLanguageQuery = "Restaurants"
     }
-    
-    
-    //////////////////////////////////////
-    //  Segmented Controller            //
-    //////////////////////////////////////
-    @IBAction func mapListSegmentTapped(_ sender: UISegmentedControl) {
-        if (sender.selectedSegmentIndex == 0) {
-            self.restaurantsMap.isHidden = false
-            self.restaurantsTable.isHidden = true
-        }
-        if (sender.selectedSegmentIndex == 1) {
-            self.restaurantsMap.isHidden = true
-            self.restaurantsTable.isHidden = false
-        }
-    }
+
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.denied {
@@ -102,13 +81,13 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
         if status == CLAuthorizationStatus.authorizedWhenInUse {
             self.defaults.set(false, forKey: self.kFisrtInstall)
             self.locationManager.startUpdatingLocation()
+            self.locationManager.startMonitoringSignificantLocationChanges()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.restaurantsMap.setRegion(MKCoordinateRegionMakeWithDistance((manager.location?.coordinate)!, 2000,2000), animated: true)
-        self.restaurantsRequest.region = MKCoordinateRegionMakeWithDistance((manager.location?.coordinate)!, 2000,2000)
-        self.findRestaurantsNearuser()
+            self.userLocation = locations.last
+            self.findRestaurantsNearuser()
     }
     
     func findRestaurantsNearuser() {
@@ -127,14 +106,17 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
                         self.errorGettingRestaurantsNearBy(with: "Oops", message: "Something went wrong while trying to to find restaurants near you", style: .alert)
                     return
                 }
-                for itemRestaurant in restaurantsFound {
-                    let newAnnotation = MKPointAnnotation()
-                    newAnnotation.coordinate = itemRestaurant.placemark.coordinate
-                    newAnnotation.title = itemRestaurant.placemark.title
-                        self.restaurantsMap.addAnnotation(newAnnotation)
+                for restaurantItem in restaurantsFound {
+                    let newRestaurant = Restaurant(name: restaurantItem.name, address: restaurantItem.placemark.thoroughfare, location: restaurantItem.placemark.location, userLocation: self.userLocation)
+                    self.restaurauntsFound?.append(newRestaurant)
+                }
+               self.restaurantsCollectionDS.updateRestaurantsDataSource(restaurantsFound: self.restaurauntsFound)
+                DispatchQueue.main.async {
+                    self.restaurantsCollectionView.reloadData()
                 }
         }
     }
+    
     ////////////////////////////////////////////////
     // alert controller of view controller        //
     ////////////////////////////////////////////////
@@ -145,16 +127,6 @@ class HomeView: UIViewController, UITableViewDelegate, MKMapViewDelegate, CLLoca
                 self.navigationController?.present(errorAlert, animated: true, completion: nil)
         }
     }
-
-    /************************************************
-    * Map delegate functions
-    ************************************************/
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        if annotation is MKUserLocation {
-//            return nil
-//        }
-//        return RestaurantAnnotationView()
-//    }
 }
 
 

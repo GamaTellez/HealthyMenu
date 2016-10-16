@@ -19,54 +19,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7ke-yE-JYU">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uwp-OG-3vQ">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Ot-xe-vNO">
+                                    <size key="itemSize" width="176" height="154"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="restaurantCollectionCell" id="PlC-u9-w35" customClass="RestaurantCollectionCell" customModule="HealthyMenu" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="176" height="154"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="176" height="154"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="35N-cu-evk"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RestaurantName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5u-dO-Ooq">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3z-b7-EAN">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="A5u-dO-Ooq" firstAttribute="trailing" secondItem="T3z-b7-EAN" secondAttribute="trailing" id="8LO-k6-y63"/>
+                                            <constraint firstItem="35N-cu-evk" firstAttribute="top" secondItem="A5u-dO-Ooq" secondAttribute="bottom" constant="3" id="9kf-mr-8Xs"/>
+                                            <constraint firstItem="A5u-dO-Ooq" firstAttribute="top" secondItem="PlC-u9-w35" secondAttribute="topMargin" id="Erz-bU-5O4"/>
+                                            <constraint firstItem="35N-cu-evk" firstAttribute="centerY" secondItem="PlC-u9-w35" secondAttribute="centerY" id="Q9l-jj-G3O"/>
+                                            <constraint firstItem="T3z-b7-EAN" firstAttribute="bottom" secondItem="PlC-u9-w35" secondAttribute="bottomMargin" id="VBt-fc-AZL"/>
+                                            <constraint firstItem="A5u-dO-Ooq" firstAttribute="centerX" secondItem="35N-cu-evk" secondAttribute="centerX" id="XML-cW-nxz"/>
+                                            <constraint firstItem="35N-cu-evk" firstAttribute="leading" secondItem="PlC-u9-w35" secondAttribute="leadingMargin" constant="35" id="Xc3-Lg-ztu"/>
+                                            <constraint firstItem="A5u-dO-Ooq" firstAttribute="leading" secondItem="T3z-b7-EAN" secondAttribute="leading" id="bI6-qP-8Za"/>
+                                            <constraint firstItem="A5u-dO-Ooq" firstAttribute="leading" secondItem="PlC-u9-w35" secondAttribute="leadingMargin" id="ipU-hF-gfC"/>
+                                            <constraint firstItem="A5u-dO-Ooq" firstAttribute="trailing" secondItem="PlC-u9-w35" secondAttribute="trailingMargin" id="rdA-BS-jpw"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="distanceLabel" destination="T3z-b7-EAN" id="oAn-1O-doj"/>
+                                            <outlet property="restaurantLogo" destination="35N-cu-evk" id="toQ-UF-CAZ"/>
+                                            <outlet property="restaurantNameLabel" destination="A5u-dO-Ooq" id="6rc-06-GgM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="UBs-I7-pvb" id="Had-no-uhu"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ktf-Tu-BRK"/>
+                                    <outlet property="dataSource" destination="UBs-I7-pvb" id="V9l-SR-RbP"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="5iQ-nb-Wqv"/>
                                 </connections>
-                            </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="m4g-cA-l0C">
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="YyA-Vv-fxJ"/>
-                                </connections>
-                            </mapView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xv9-C4-3NJ">
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                                <connections>
-                                    <action selector="mapListSegmentTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="5LI-Qj-jEd"/>
-                                </connections>
-                            </segmentedControl>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7ke-yE-JYU" firstAttribute="trailing" secondItem="m4g-cA-l0C" secondAttribute="trailing" id="2QZ-4W-ESJ"/>
-                            <constraint firstItem="xv9-C4-3NJ" firstAttribute="centerX" secondItem="7ke-yE-JYU" secondAttribute="centerX" id="2o1-YT-Smk"/>
-                            <constraint firstItem="m4g-cA-l0C" firstAttribute="top" secondItem="7ke-yE-JYU" secondAttribute="top" id="7Bh-eT-cuK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7ke-yE-JYU" secondAttribute="bottom" constant="136" id="7xe-pY-CTj"/>
-                            <constraint firstItem="m4g-cA-l0C" firstAttribute="leading" secondItem="7ke-yE-JYU" secondAttribute="leading" id="GV8-NR-a2H"/>
-                            <constraint firstAttribute="trailing" secondItem="m4g-cA-l0C" secondAttribute="trailing" id="TdC-FF-gah"/>
-                            <constraint firstItem="m4g-cA-l0C" firstAttribute="top" secondItem="xv9-C4-3NJ" secondAttribute="bottom" constant="23" id="YNK-or-omU"/>
-                            <constraint firstItem="m4g-cA-l0C" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="bao-J9-H5V"/>
-                            <constraint firstItem="xv9-C4-3NJ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="i6R-XX-tqC"/>
-                            <constraint firstItem="7ke-yE-JYU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nn1-C8-8W2"/>
-                            <constraint firstItem="xv9-C4-3NJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xZJ-5d-sBg"/>
+                            <constraint firstItem="Uwp-OG-3vQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="14z-Fv-w6B"/>
+                            <constraint firstItem="Uwp-OG-3vQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="A9L-kn-gPY"/>
+                            <constraint firstItem="Uwp-OG-3vQ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Vos-PH-2o0"/>
+                            <constraint firstAttribute="trailing" secondItem="Uwp-OG-3vQ" secondAttribute="trailing" id="cIh-QW-ERf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dmy-Sf-4jZ"/>
                     <connections>
-                        <outlet property="mapListController" destination="xv9-C4-3NJ" id="h5J-4A-NZW"/>
-                        <outlet property="restaurantsMap" destination="m4g-cA-l0C" id="QU5-ah-ucb"/>
-                        <outlet property="restaurantsTable" destination="7ke-yE-JYU" id="kuX-1Q-hTm"/>
+                        <outlet property="restaurantsCollectionView" destination="Uwp-OG-3vQ" id="Vja-fY-0hE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="UBs-I7-pvb" customClass="RestaurantsTableDataSource" customModule="HealthyMenu" customModuleProvider="target"/>
+                <customObject id="UBs-I7-pvb" customClass="RestaurantsDataSource" customModule="HealthyMenu" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1150.7246376811595" y="385.59782608695656"/>
+            <point key="canvasLocation" x="1149.2753623188407" y="384.78260869565219"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WgE-rD-5We">
@@ -84,7 +107,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a00-t0-Dxa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="340" y="387"/>
+            <point key="canvasLocation" x="-80" y="349"/>
         </scene>
     </scenes>
 </document>
