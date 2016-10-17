@@ -10,9 +10,7 @@ import Foundation
 import MapKit
 
 extension MKLocalSearch {
-    func findRestaurantsNearUser(_ completion:(_ restaurants:AnyObject)-> Void) {
-        
-    }
+
 }
 
 

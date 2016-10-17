@@ -14,13 +14,15 @@ class Restaurant {
     private(set) var name:String?
     private(set) var address:String?
     private(set) var location:CLLocation?
-    private(set) var distanceFromUser:Int?
+    private(set) var distanceFromUser:Double?
     private(set) var userLocation:CLLocation?
     
     init(name:String?, address:String?, location:CLLocation?, userLocation:CLLocation?) {
         self.setName(name: name)
         self.setAddress(address: address)
         self.setLocation(location: location)
+        self.setUserLocation(userLocation: userLocation)
+        self.setDistanceToUser()
     }
     
     internal func setName(name:String?) {
@@ -46,8 +48,19 @@ class Restaurant {
         }
         self.location = location
     }
-        
-    private func calculateDistanceToUser(userLocation:CLLocation?) -> Int {
-        return 0
+    
+    internal func setUserLocation(userLocation:CLLocation?) {
+        guard userLocation != nil else {
+            self.userLocation = nil
+            return
+        }
+        self.userLocation = userLocation
+    }
+    
+    private func setDistanceToUser() {
+        guard let distanceToUser = self.location?.distance(from: self.userLocation!) else {
+            return
+        }
+        self.distanceFromUser = distanceToUser * 0.000621371192
     }
 }

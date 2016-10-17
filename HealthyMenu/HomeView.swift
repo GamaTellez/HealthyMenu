@@ -9,11 +9,12 @@
 import UIKit
 import MapKit
 
-class HomeView: UIViewController, UICollectionViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate {
 
-    @IBOutlet var restaurantsCollectionView: UICollectionView!
+    
+    @IBOutlet var restaurantsTableView: UITableView!
     var restaurantsCollectionDS = RestaurantsDataSource()
-    private var restaurauntsFound:[Restaurant]?
+    private var restaurauntsFound:[Restaurant]? = []
     var locationManager = CLLocationManager()
     var userLocation:CLLocation?
     let kFisrtInstall = "firstInstall"
@@ -48,21 +49,21 @@ class HomeView: UIViewController, UICollectionViewDelegate, MKMapViewDelegate, C
             print("location services are disabled")
         }
     }
-
-    
     
     ////////////////////////////////////////
     // basic set up of view               //
     ////////////////////////////////////////
     func initialSetUp() {
         //tableView
-        self.restaurantsCollectionView.delegate = self
-        self.restaurantsCollectionView.dataSource = self.restaurantsCollectionDS
+        self.restaurantsTableView.delegate = self
+        self.restaurantsTableView.dataSource = self.restaurantsCollectionDS
         //location manager
         self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.distanceFilter = 100
         //search request
-        self.restaurantsRequest.naturalLanguageQuery = "Restaurants"
+        self.restaurantsRequest.naturalLanguageQuery = "Fast Food"
+        
     }
 
     
@@ -77,16 +78,16 @@ class HomeView: UIViewController, UICollectionViewDelegate, MKMapViewDelegate, C
             }))
             self.present(deniedAlert, animated:true, completion: nil)
         }
-        
         if status == CLAuthorizationStatus.authorizedWhenInUse {
             self.defaults.set(false, forKey: self.kFisrtInstall)
             self.locationManager.startUpdatingLocation()
-            self.locationManager.startMonitoringSignificantLocationChanges()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             self.userLocation = locations.last
+            let span = MKCoordinateSpan(latitudeDelta: (self.userLocation?.coordinate.latitude)!, longitudeDelta: (self.userLocation?.coordinate.longitude)!)
+            self.restaurantsRequest.region = MKCoordinateRegion(center: (self.userLocation?.coordinate)!, span: span)
             self.findRestaurantsNearuser()
     }
     
@@ -110,9 +111,9 @@ class HomeView: UIViewController, UICollectionViewDelegate, MKMapViewDelegate, C
                     let newRestaurant = Restaurant(name: restaurantItem.name, address: restaurantItem.placemark.thoroughfare, location: restaurantItem.placemark.location, userLocation: self.userLocation)
                     self.restaurauntsFound?.append(newRestaurant)
                 }
-               self.restaurantsCollectionDS.updateRestaurantsDataSource(restaurantsFound: self.restaurauntsFound)
-                DispatchQueue.main.async {
-                    self.restaurantsCollectionView.reloadData()
+                self.restaurantsCollectionDS.updateRestaurantsDataSource(restaurantsFound: self.restaurauntsFound)
+                    DispatchQueue.main.async {
+                        self.restaurantsTableView.reloadData()
                 }
         }
     }
