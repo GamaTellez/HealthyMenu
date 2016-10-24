@@ -9,8 +9,30 @@
 import Foundation
 import MapKit
 
-extension MKLocalSearch {
-
+extension URLSession {
+    func findRestaurantMenu(restaurantName: String, completion:@escaping (_ menu:[String:Any]?)-> Void) {
+        let kNutrionixAppId = "f8baaf08"
+        let kNutrionixApplicationKey = "3de37b0ec22fc6ebf375c8911b6938ba"
+        let kNutrionixSearchEndPoint = "https://api.nutritionix.com/v1_1/search/" + restaurantName.replacingOccurrences(of: " ", with: "%") + "?results=0%3A20&cal_min=0&cal_max=50000&fields=item_name%2Cbrand_name%2Citem_id%2Cbrand_id&appId=" + kNutrionixAppId + "&appKey=" + kNutrionixApplicationKey
+        let session = URLSession.shared
+        guard let urlForRequest:URL = URL(string: kNutrionixSearchEndPoint) else {
+            completion(nil)
+            return
+        }
+        let menuTask = session.dataTask(with: urlForRequest) { (data:Data?, response:URLResponse?, error:Error?) in
+            guard error != nil else {
+                completion(nil)
+                return
+            }
+            do {
+                let menuJson = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+                completion(menuJson)
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        }
+        menuTask.resume()
+    }
 }
 
 

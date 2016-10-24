@@ -16,6 +16,7 @@ class Restaurant {
     private(set) var location:CLLocation?
     private(set) var distanceFromUser:Double?
     private(set) var userLocation:CLLocation?
+    private(set) var menu:[MenuItem]?
     
     init(name:String?, address:String?, location:CLLocation?, userLocation:CLLocation?) {
         self.setName(name: name)
@@ -63,4 +64,5 @@ class Restaurant {
         }
         self.distanceFromUser = distanceToUser * 0.000621371192
     }
+    
 }

@@ -13,14 +13,14 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
 
     
     @IBOutlet var restaurantsTableView: UITableView!
-    var restaurantsCollectionDS = RestaurantsDataSource()
-    private var restaurauntsFound:[Restaurant]? = []
+    var restaurantsTableDS = RestaurantsDataSource()
+    private var restaurauntsFound:[Restaurant] = []
     var locationManager = CLLocationManager()
     var userLocation:CLLocation?
     let kFisrtInstall = "firstInstall"
+    let kToRestaurantMeny = "toRestaurantMenu"
     lazy var restaurantsRequest = MKLocalSearchRequest()
     lazy var defaults = UserDefaults.standard
-    
     override func viewDidLoad() {
 //        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse) {
         self.checkingForLocationAccess()
@@ -56,7 +56,7 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
     func initialSetUp() {
         //tableView
         self.restaurantsTableView.delegate = self
-        self.restaurantsTableView.dataSource = self.restaurantsCollectionDS
+        self.restaurantsTableView.dataSource = self.restaurantsTableDS
         //location manager
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -66,6 +66,12 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
         
     }
 
+    ///////////////////////////////////////////
+    //location manager authorization request //
+    //present an alert controller depending  //
+    //with custom message depending on the   //
+    // user response to the request          //
+    ///////////////////////////////////////////
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.denied {
@@ -84,12 +90,23 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
         }
     }
     
+    ///////////////////////////////////////////////////////
+    // obtaining user location and setting up the region //
+    // for the local search request                      //
+    ///////////////////////////////////////////////////////
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             self.userLocation = locations.last
             let span = MKCoordinateSpan(latitudeDelta: (self.userLocation?.coordinate.latitude)!, longitudeDelta: (self.userLocation?.coordinate.longitude)!)
             self.restaurantsRequest.region = MKCoordinateRegion(center: (self.userLocation?.coordinate)!, span: span)
             self.findRestaurantsNearuser()
     }
+    
+    /***********************************************************
+     * localsearch for fast food restaurants, it presents a    *
+     * an alert controller if there was an error in the search *
+     * or no restaurants were found                            *
+     ***********************************************************/
     
     func findRestaurantsNearuser() {
             let restaurantsSearch = MKLocalSearch(request: self.restaurantsRequest)
@@ -107,11 +124,13 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
                         self.errorGettingRestaurantsNearBy(with: "Oops", message: "Something went wrong while trying to to find restaurants near you", style: .alert)
                     return
                 }
-                for restaurantItem in restaurantsFound {
-                    let newRestaurant = Restaurant(name: restaurantItem.name, address: restaurantItem.placemark.thoroughfare, location: restaurantItem.placemark.location, userLocation: self.userLocation)
-                    self.restaurauntsFound?.append(newRestaurant)
+                if (!self.restaurauntsFound.isEmpty) {
+                    self.restaurauntsFound.removeAll()
                 }
-                self.restaurantsCollectionDS.updateRestaurantsDataSource(restaurantsFound: self.restaurauntsFound)
+                for restaurantItem in restaurantsFound {
+                    self.restaurauntsFound.append(Restaurant(name: restaurantItem.name, address: restaurantItem.placemark.thoroughfare, location: restaurantItem.placemark.location, userLocation: self.userLocation))
+                }
+                self.restaurantsTableDS.updateRestaurantsDataSource(restaurantsFound: self.restaurauntsFound)
                     DispatchQueue.main.async {
                         self.restaurantsTableView.reloadData()
                 }
@@ -127,6 +146,33 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
         DispatchQueue.main.async {
                 self.navigationController?.present(errorAlert, animated: true, completion: nil)
         }
+    }
+    
+    /************************************************
+     *table view delegate methods                   *
+     ************************************************/
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    /*************************************************
+     * setting up for segue                           *
+    **************************************************/
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toRestaurantMenu" {
+            if let destinationVC = segue.destination as? RestaurantMenuVC {
+                guard let rowSelected = self.restaurantsTableView.indexPathForSelectedRow?.row else {
+                return
+            }
+                let restaurantSelected = self.restaurauntsFound[rowSelected]
+                destinationVC.restaurantSelected = restaurantSelected
+            }
+        }
+    
     }
 }
 

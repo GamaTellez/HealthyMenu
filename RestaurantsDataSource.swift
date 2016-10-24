@@ -32,5 +32,8 @@ class RestaurantsDataSource: NSObject, UITableViewDataSource {
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
     }
-        
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Near me"
+    }
 }

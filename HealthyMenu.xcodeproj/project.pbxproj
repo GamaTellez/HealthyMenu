@@ -18,6 +18,9 @@
 		8772CE7C1D81D82000A7DD7E /* HealthyMenuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE7B1D81D82000A7DD7E /* HealthyMenuUITests.swift */; };
 		8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE891D81D91C00A7DD7E /* HomeView.swift */; };
 		8772CE8C1D81DB0800A7DD7E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE8B1D81DB0800A7DD7E /* Extensions.swift */; };
+		878216C01DBE8AA2008EFA58 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878216BF1DBE8AA2008EFA58 /* MenuItem.swift */; };
+		87D4DB6E1DB5ADB700000FCE /* RestaurantMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4DB6D1DB5ADB700000FCE /* RestaurantMenuVC.swift */; };
+		87D4DB711DB5ADF200000FCE /* MenusDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D4DB701DB5ADF200000FCE /* MenusDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		8772CE7D1D81D82000A7DD7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8772CE891D81D91C00A7DD7E /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8772CE8B1D81DB0800A7DD7E /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		878216BF1DBE8AA2008EFA58 /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		87D4DB6D1DB5ADB700000FCE /* RestaurantMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantMenuVC.swift; sourceTree = "<group>"; };
+		87D4DB701DB5ADF200000FCE /* MenusDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenusDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +114,10 @@
 				8772CE581D81D82000A7DD7E /* AppDelegate.swift */,
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
+				878216BF1DBE8AA2008EFA58 /* MenuItem.swift */,
 				876D55FC1DB2C01B00AA5F2F /* Restaurant.swift */,
-				876D56001DB3312200AA5F2F /* RestaurantsDataSource.swift */,
-				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
+				87D4DB6F1DB5ADC400000FCE /* HomeView */,
+				87D4DB721DB5AE0500000FCE /* Menus View */,
 				8772CE621D81D82000A7DD7E /* Assets.xcassets */,
 				8772CE641D81D82000A7DD7E /* LaunchScreen.storyboard */,
 				8772CE671D81D82000A7DD7E /* Info.plist */,
@@ -135,6 +142,24 @@
 				8772CE7D1D81D82000A7DD7E /* Info.plist */,
 			);
 			path = HealthyMenuUITests;
+			sourceTree = "<group>";
+		};
+		87D4DB6F1DB5ADC400000FCE /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
+				876D56001DB3312200AA5F2F /* RestaurantsDataSource.swift */,
+			);
+			name = HomeView;
+			sourceTree = "<group>";
+		};
+		87D4DB721DB5AE0500000FCE /* Menus View */ = {
+			isa = PBXGroup;
+			children = (
+				87D4DB6D1DB5ADB700000FCE /* RestaurantMenuVC.swift */,
+				87D4DB701DB5ADF200000FCE /* MenusDataSource.swift */,
+			);
+			name = "Menus View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,7 +300,10 @@
 				8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */,
 				876D56011DB3312200AA5F2F /* RestaurantsDataSource.swift in Sources */,
 				8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */,
+				87D4DB711DB5ADF200000FCE /* MenusDataSource.swift in Sources */,
+				87D4DB6E1DB5ADB700000FCE /* RestaurantMenuVC.swift in Sources */,
 				876D55FD1DB2C01B00AA5F2F /* Restaurant.swift in Sources */,
+				878216C01DBE8AA2008EFA58 /* MenuItem.swift in Sources */,
 				8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */,
 				8772CE8C1D81DB0800A7DD7E /* Extensions.swift in Sources */,
 			);
