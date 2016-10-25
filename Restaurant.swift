@@ -28,7 +28,7 @@ class Restaurant {
     
     internal func setName(name:String?) {
         guard name != nil else {
-            self.name = "Not Available"
+            self.name = nil
             return
         }
         self.name = name
@@ -36,7 +36,7 @@ class Restaurant {
     
     internal func setAddress(address:String?) {
         guard address != nil else {
-            self.address = "Not Available"
+            self.address = nil
             return
         }
         self.address = address

@@ -17,6 +17,7 @@ class RestaurantMenuVC: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getMenuForRestaurant()
 
         // Do any additional setup after loading the view.
     }
@@ -33,12 +34,15 @@ class RestaurantMenuVC: UIViewController, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    private func getRestaurantsForRestaurant() {
+    private func getMenuForRestaurant() {
         guard let restaurantName = self.restaurantSelected?.name else {
             self.title = self.restaurantSelected?.name
             return
         }
         self.title = restaurantName
+        urlSession.findRestaurantMenu(restaurantName: restaurantName) { (menu) in
+            print(menu)
+        }
     }
     
     private func setUpViews() {
@@ -47,6 +51,7 @@ class RestaurantMenuVC: UIViewController, UITableViewDelegate {
             return
         }
         self.title = title
+        
     }
     
     /*
