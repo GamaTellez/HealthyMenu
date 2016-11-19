@@ -10,13 +10,17 @@ import UIKit
 
 class RestaurantMenuVC: UIViewController, UITableViewDelegate {
 
-    @IBOutlet var sortingSegmentedController: UISegmentedControl!
+   
+    @IBOutlet var filteringButton: UIBarButtonItem!
     @IBOutlet var menuTableView: UITableView!
     var restaurantSelected:Restaurant?
     var urlSession = URLSession.shared
+    var menuTableDataSource = MenusDataSource()
+    lazy var restaurantMenu:[MenuItem] = [MenuItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.initialSetup()
         self.getMenuForRestaurant()
 
         // Do any additional setup after loading the view.
@@ -30,10 +34,15 @@ class RestaurantMenuVC: UIViewController, UITableViewDelegate {
     /*****************************************************
     * tableView delegate methods                          *
     *******************************************************/
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (indexPath.row % 2 != 0) {
+            return 10
+        }
+        else {
+            return 76
+        }
     }
-    
+
     private func getMenuForRestaurant() {
         guard let restaurantName = self.restaurantSelected?.name else {
             self.title = self.restaurantSelected?.name
@@ -41,27 +50,44 @@ class RestaurantMenuVC: UIViewController, UITableViewDelegate {
         }
         self.title = restaurantName
         urlSession.findRestaurantMenu(restaurantName: restaurantName) { (menu) in
-            print(menu)
+            guard let menuFound = menu else {
+                print("not items found, present alert controller")
+                return
+                }
+            for dict in menuFound {
+                guard let infoDict = dict.value(forKey: "fields") as? NSDictionary else  {
+                    print("there was not a dictionary with info")
+                    return
+                }
+                self.restaurantMenu.append(MenuItem(infoDictionary: infoDict))
+            }
+                self.menuTableDataSource.updateDataSourceArray(with: self.restaurantMenu)
+                DispatchQueue.main.sync {
+                    self.menuTableView.reloadData()
+                }
         }
     }
-    
-    private func setUpViews() {
+    /*****************************************************
+     * setting up views
+     *******************************************************/
+    private func initialSetup() {
         guard let title = self.restaurantSelected?.name else {
             self.title = "Name not available"
             return
         }
         self.title = title
-        
+        self.menuTableView.dataSource = self.menuTableDataSource
+        self.filteringButton.image = UIImage(named:"filter")
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    /***********************************************************
+    * presents the sorting view where the user can chose the order
+    * that he wants the menu to be sorted
+    ***********************************************************/
+    @IBAction func filterButtonTapped(_ sender: Any) {
+        let sortingView = SortingOptionsView(frame: self.view.frame)
+        self.view.addSubview(sortingView)
+        sortingView.presentView()
     }
-    */
-
+    
 }

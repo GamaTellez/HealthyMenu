@@ -112,7 +112,7 @@ class HomeView: UIViewController, UITableViewDelegate, CLLocationManagerDelegate
             let restaurantsSearch = MKLocalSearch(request: self.restaurantsRequest)
             restaurantsSearch.start { (localSearchResponse, error) in
                 guard error == nil else {
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription as Any)
                     self.errorGettingRestaurantsNearBy(with: "Error", message: (error?.localizedDescription)! , style: .alert)
                     return
                 }

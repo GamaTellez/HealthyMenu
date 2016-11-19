@@ -10,18 +10,32 @@ import Foundation
 
 
 class MenuItem {
+    let caloriesKey = "nf_calories"
+    let proteinKey = "nf_protein"
+    let nameKey = "item_name"
+    
     private(set) var itemName:String?
+    private(set) var itemCalories:Int?
+    private(set) var itemProtein:Int?
     private(set) var restaurant:Restaurant?
+    private(set) var itemID:Int?
     
-    init(itemName:String?, restaurantName:String?) {
-        self.setName(name: itemName)
-    }
     
-    private func setName(name:String?) {
-        guard name != nil else {
-            self.itemName = "Not available"
+    init(infoDictionary:NSDictionary) {
+        guard let name = infoDictionary.value(forKey: "item_name") as? String else {
+            self.itemName = "Not found"
             return
         }
         self.itemName = name
+        guard let calories = infoDictionary.value(forKey: "nf_calories") as? Int else {
+            self.itemCalories = 0
+            return
+        }
+        self.itemCalories = calories
+        guard let protein = infoDictionary.value(forKey: "nf_protein") as? Int else {
+            self.itemProtein = 0
+            return
+        }
+        self.itemProtein = protein
     }
 }
