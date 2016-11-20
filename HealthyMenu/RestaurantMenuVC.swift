@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestaurantMenuVC: UIViewController, UITableViewDelegate {
+class RestaurantMenuVC: UIViewController, UITableViewDelegate, SortingViewDelegate {
 
    
     @IBOutlet var filteringButton: UIBarButtonItem!
@@ -86,8 +86,18 @@ class RestaurantMenuVC: UIViewController, UITableViewDelegate {
     ***********************************************************/
     @IBAction func filterButtonTapped(_ sender: Any) {
         let sortingView = SortingOptionsView(frame: self.view.frame)
+        sortingView.delegate = self
+        sortingView.menuItemsArray = self.restaurantMenu
         self.view.addSubview(sortingView)
+        self.filteringButton.isEnabled = false
+        self.menuTableView.isUserInteractionEnabled = false
         sortingView.presentView()
     }
     
+    /***********************************************************
+     * delegate method of the sorting view
+     ***********************************************************/
+    func sortedArray(sortedMenu: [MenuItem]) {
+        print(sortedMenu.count)
+    }
 }
