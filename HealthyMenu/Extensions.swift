@@ -10,10 +10,10 @@ import Foundation
 import MapKit
 
 extension URLSession {
-    func findRestaurantMenu(restaurantName: String, completion:@escaping (_ menu:[NSDictionary]?)-> Void) {
+    func performNutrionixSearch(textToSearch: String, completion:@escaping (_ results:[NSDictionary]?)-> Void) {
         let kNutrionixAppId = "f8baaf08"
         let kNutrionixApplicationKey = "3de37b0ec22fc6ebf375c8911b6938ba"
-        let kNutrionixSearchEndPoint = "https://api.nutritionix.com/v1_1/search/" + restaurantName.replacingOccurrences(of: " ", with: "%") + "?results=0%3A50&cal_min=100&cal_max=50000&fields=item_name%2Cnf_calories%2Cnf_protein&appId=" + kNutrionixAppId + "&appKey=" + kNutrionixApplicationKey
+        let kNutrionixSearchEndPoint = "https://api.nutritionix.com/v1_1/search/" + textToSearch.replacingOccurrences(of: " ", with: "%") + "?results=0%3A50&cal_min=100&cal_max=50000&fields=item_name%2Cbrand_name%2Cnf_calories%2Cnf_protein&appId=" + kNutrionixAppId + "&appKey=" + kNutrionixApplicationKey
         guard let urlForRequest:URL = URL(string: kNutrionixSearchEndPoint) else {
             completion(nil)
             return

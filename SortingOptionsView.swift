@@ -13,13 +13,13 @@ import UIKit
     * it takes an array of menuitems and sorted them accordingly
     *************************************************************/
     protocol SortingViewDelegate {
-        func sortedArray(sortedMenu:[MenuItem])
+        func sortedArray(sortedItems:[SearchResultItem])
     }
 
 class SortingOptionsView: UIView {
     
     var delegate: SortingViewDelegate?
-    internal var menuItemsArray:[MenuItem]?
+    internal var searchItemsArray:[SearchResultItem]?
     
     
     override init(frame: CGRect) {
@@ -48,12 +48,14 @@ class SortingOptionsView: UIView {
     
     internal func sortingByProteinButtonTapped() {
         self.dismissView()
-        self.delegate?.sortedArray(sortedMenu: self.menuItemsArray!)
+        self.searchItemsArray?.sort(by: {$0.itemProtein! > $1.itemProtein!})
+        self.delegate?.sortedArray(sortedItems: self.searchItemsArray!)
     }
     
     internal func sortingByCaloriesButtonTapped() {
         self.dismissView()
-        self.delegate?.sortedArray(sortedMenu: self.menuItemsArray!)
+        self.searchItemsArray?.sort(by: {$0.itemCalories! < $1.itemCalories!})
+        self.delegate?.sortedArray(sortedItems: self.searchItemsArray!)
     }
     
     internal func cancelButtonTapped() {
@@ -73,6 +75,7 @@ class SortingOptionsView: UIView {
             self.removeFromSuperview()
             })
     }
+    
     
     /*
     // Only override draw() if you perform custom drawing.
