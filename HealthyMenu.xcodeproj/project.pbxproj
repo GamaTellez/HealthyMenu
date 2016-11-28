@@ -21,8 +21,8 @@
 		877AD9441DE34ED80090683F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD9431DE34ED80090683F /* SearchViewController.swift */; };
 		877AD9461DE34F9D0090683F /* SearchResultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD9451DE34F9D0090683F /* SearchResultsDataSource.swift */; };
 		877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD9491DE351760090683F /* SearchResultItem.swift */; };
-		877AD94C1DE3C3580090683F /* circleProgessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94B1DE3C3580090683F /* circleProgessView.swift */; };
 		877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */; };
+		877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94F1DE5073D0090683F /* CircledLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +63,8 @@
 		877AD9431DE34ED80090683F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		877AD9451DE34F9D0090683F /* SearchResultsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsDataSource.swift; sourceTree = "<group>"; };
 		877AD9491DE351760090683F /* SearchResultItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultItem.swift; path = ../SearchResultItem.swift; sourceTree = "<group>"; };
-		877AD94B1DE3C3580090683F /* circleProgessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = circleProgessView.swift; sourceTree = "<group>"; };
 		877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		877AD94F1DE5073D0090683F /* CircledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircledLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,6 @@
 			children = (
 				8772CE581D81D82000A7DD7E /* AppDelegate.swift */,
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
-				877AD94B1DE3C3580090683F /* circleProgessView.swift */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
 				87D4DB6F1DB5ADC400000FCE /* HomeView */,
 				87D4DB721DB5AE0500000FCE /* Menus View */,
@@ -151,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
+				877AD94F1DE5073D0090683F /* CircledLabel.swift */,
 			);
 			name = HomeView;
 			sourceTree = "<group>";
@@ -305,12 +305,12 @@
 			files = (
 				877AD9441DE34ED80090683F /* SearchViewController.swift in Sources */,
 				877AD9421DE34EAD0090683F /* ItemResultCell.swift in Sources */,
+				877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */,
 				8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */,
 				8742FD1E1DE00983009B3CD6 /* SortingOptionsView.swift in Sources */,
 				8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */,
 				877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */,
 				877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */,
-				877AD94C1DE3C3580090683F /* circleProgessView.swift in Sources */,
 				877AD9461DE34F9D0090683F /* SearchResultsDataSource.swift in Sources */,
 				8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */,
 				8772CE8C1D81DB0800A7DD7E /* Extensions.swift in Sources */,

@@ -21,7 +21,6 @@ class SortingOptionsView: UIView {
     var delegate: SortingViewDelegate?
     internal var searchItemsArray:[SearchResultItem]?
     
-    
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height / 3))
         self.backgroundColor = UIColor.white
@@ -63,9 +62,11 @@ class SortingOptionsView: UIView {
     }
     
     internal func presentView() {
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 3.0, options: .curveLinear, animations: {
             self.center.y = self.center.y - self.frame.height
+        }, completion: {(finished) in
         })
+
     }
 
     private func dismissView() {

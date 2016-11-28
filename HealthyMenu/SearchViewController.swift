@@ -76,7 +76,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, SortingViewDe
             self.filteringButton.isEnabled = true
             self.searchTableView.isUserInteractionEnabled = true
             self.searchResultsDataSource.updateDataSourceArray(with: sortedItems)
-            self.searchTableView.reloadData()
+            let range = NSMakeRange(0, self.searchTableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            self.searchTableView.reloadSections(sections as IndexSet, with: .left)
         }
     
         /***********************************************************
@@ -96,7 +98,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, SortingViewDe
                 }
                 self.urlSession.performNutrionixSearch(textToSearch: textToSarchFor) { (results) in
                     guard let searchResults = results else {
-                        print("there was an error in the search")
+                        print("there was an error in the search. present alert controller")
                     return
                 }
                 self.searchResults.removeAll()
