@@ -10,31 +10,18 @@ import UIKit
 
 @IBDesignable class CircledLabel: UILabel {
    
-    private let kStartingAngle = -90.0
-    private(set) var proteinGoal = 250.0
-    @IBInspectable var strokeColor:UIColor = UIColor.black
-    @IBInspectable var strokeWidth:CGFloat = 20.0
-    @IBInspectable var completed:Double = 0 {
-        willSet { self.willChangeValue(forKey: "completed") }
-        didSet {
-            if completed < 0.0 { completed = 0.0 }
-            if completed > 360 { completed = 360 }
-            self.didChangeValue(forKey: "completed")
-            setNeedsDisplay()
-        }
-    }
-    
+    private let kStartingAndEndAngle = -90.0
+    private var strokeColor:UIColor = UIColor.black
+    private var strokeWidth:CGFloat = 8.0
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        //self.layer.cornerRadius = self.frame.width / 2
         if self.strokeWidth > 0.0 {
             let radious = max(self.bounds.width, self.bounds.height) / 2.5
             let strokePath = UIBezierPath(arcCenter: CGPoint(x: self.bounds.midX,y: self.bounds.midY),
                                           radius: radious,
-                                          startAngle:CGFloat(degreesToRadians(self.kStartingAngle)),
-                                          //endAngle:CGFloat(degreesToRadians(self.kStartingAngle + self.completed * 360)),
-                endAngle:CGFloat(degreesToRadians(self.kStartingAngle + 360 * (self.completed / self.proteinGoal))),
-                clockwise: true)
+                                          startAngle:CGFloat(degreesToRadians(0)),
+                                          endAngle:CGFloat(degreesToRadians(360)),
+                                          clockwise: true)
             strokePath.lineWidth = self.strokeWidth
             strokeColor.setStroke()
             strokePath.stroke()

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724CA881E05AB2C00D8C721 /* CounterLabel.swift */; };
+		8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */; };
+		8736ACC01DED1DFD00C19CC9 /* AddProteinOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */; };
+		8736ACC21DED26D200C19CC9 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACC11DED26D200C19CC9 /* HelperMethods.swift */; };
+		8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACC71DEF41F300C19CC9 /* AddMealView.swift */; };
 		8742FD1E1DE00983009B3CD6 /* SortingOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */; };
 		8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE581D81D82000A7DD7E /* AppDelegate.swift */; };
 		8772CE5E1D81D82000A7DD7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8772CE5C1D81D82000A7DD7E /* Main.storyboard */; };
@@ -43,6 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8724CA881E05AB2C00D8C721 /* CounterLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterLabel.swift; sourceTree = "<group>"; };
+		8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularProgressLabel.swift; path = ../CircularProgressLabel.swift; sourceTree = "<group>"; };
+		8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProteinOptionsView.swift; sourceTree = "<group>"; };
+		8736ACC11DED26D200C19CC9 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		8736ACC71DEF41F300C19CC9 /* AddMealView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortingOptionsView.swift; path = ../SortingOptionsView.swift; sourceTree = "<group>"; };
 		8772CE551D81D82000A7DD7E /* HealthyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8772CE581D81D82000A7DD7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8736ACC91DEF41FB00C19CC9 /* Add Meal View */ = {
+			isa = PBXGroup;
+			children = (
+				8736ACC71DEF41F300C19CC9 /* AddMealView.swift */,
+				8724CA881E05AB2C00D8C721 /* CounterLabel.swift */,
+			);
+			name = "Add Meal View";
+			sourceTree = "<group>";
+		};
 		8772CE4C1D81D82000A7DD7E = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +137,7 @@
 				8772CE581D81D82000A7DD7E /* AppDelegate.swift */,
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
+				8736ACC11DED26D200C19CC9 /* HelperMethods.swift */,
 				87D4DB6F1DB5ADC400000FCE /* HomeView */,
 				87D4DB721DB5AE0500000FCE /* Menus View */,
 				8772CE621D81D82000A7DD7E /* Assets.xcassets */,
@@ -150,7 +170,10 @@
 			isa = PBXGroup;
 			children = (
 				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
+				8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */,
 				877AD94F1DE5073D0090683F /* CircledLabel.swift */,
+				8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */,
+				8736ACC91DEF41FB00C19CC9 /* Add Meal View */,
 			);
 			name = HomeView;
 			sourceTree = "<group>";
@@ -303,15 +326,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */,
 				877AD9441DE34ED80090683F /* SearchViewController.swift in Sources */,
 				877AD9421DE34EAD0090683F /* ItemResultCell.swift in Sources */,
 				877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */,
 				8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */,
+				8736ACC01DED1DFD00C19CC9 /* AddProteinOptionsView.swift in Sources */,
 				8742FD1E1DE00983009B3CD6 /* SortingOptionsView.swift in Sources */,
 				8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */,
 				877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */,
+				8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */,
 				877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */,
+				8736ACC21DED26D200C19CC9 /* HelperMethods.swift in Sources */,
 				877AD9461DE34F9D0090683F /* SearchResultsDataSource.swift in Sources */,
+				8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */,
 				8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */,
 				8772CE8C1D81DB0800A7DD7E /* Extensions.swift in Sources */,
 			);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oWG-te-O8r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oWG-te-O8r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,50 +23,87 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYz-pc-UU0">
-                                <rect key="frame" x="78" y="572" width="48" height="30"/>
-                                <state key="normal" title="Search"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcI-zZ-WRB">
+                                <rect key="frame" x="162" y="597" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ItN-wN-DWj"/>
+                                    <constraint firstAttribute="height" constant="50" id="fQR-uU-b7j"/>
+                                </constraints>
+                                <state key="normal" title="Add"/>
                                 <connections>
-                                    <segue destination="O3P-IN-2C9" kind="show" id="lzG-hg-6YY"/>
+                                    <action selector="addProteinButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8sl-lH-Dob"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQm-Sf-h4Z" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQm-Sf-h4Z" customClass="CircularProgressLabel" customModule="HealthyMenu" customModuleProvider="target">
                                 <rect key="frame" x="62" y="96" width="250" height="250"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2e-ee-wmU">
-                                <rect key="frame" x="256" y="431" width="30" height="30"/>
+                                <rect key="frame" x="70" y="545" width="30" height="30"/>
                                 <state key="normal" title="+"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipb-wI-4SL">
-                                <rect key="frame" x="126" y="431" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9zY-hv-YVd"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="545" width="30" height="30"/>
                                 <state key="normal" title="-"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca4-Jv-Ltd" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
+                                <rect key="frame" x="122" y="414" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="qmQ-ln-SBy"/>
+                                    <constraint firstAttribute="height" constant="130" id="yQY-zE-mH7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-cJ-rQc">
+                                <rect key="frame" x="135" y="72" width="105" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="NuR-aM-Nxd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqO-u8-t4g">
+                                <rect key="frame" x="137" y="372" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GxC-Db-QNs"/>
+                                    <constraint firstAttribute="width" constant="100" id="YC6-48-Nfm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="126" id="9xn-mg-jgY"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="BvX-vU-nmg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="J2e-ee-wmU" secondAttribute="trailing" constant="73" id="Hos-Hw-W6l"/>
-                            <constraint firstItem="hYz-pc-UU0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="62" id="MWI-ll-ix6"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="46" id="Mhd-9P-b8b"/>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="85" id="QvA-1N-UeV"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RnQ-JP-85W"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hYz-pc-UU0" secondAttribute="bottom" constant="65" id="SPW-kR-qjY"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ipb-wI-4SL" secondAttribute="bottom" constant="206" id="YAa-Xy-Eoj"/>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="baseline" secondItem="J2e-ee-wmU" secondAttribute="baseline" id="gX9-AC-tEl"/>
+                            <constraint firstItem="J2e-ee-wmU" firstAttribute="leading" secondItem="Ipb-wI-4SL" secondAttribute="trailing" constant="24" id="2YF-Pr-EFG"/>
+                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="centerX" secondItem="qcI-zZ-WRB" secondAttribute="centerX" id="D8z-zc-oiu"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="JqO-u8-t4g" secondAttribute="centerX" id="FdU-p7-Hhf"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G6R-rW-zeF"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="46" id="T2u-kc-YHF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ipb-wI-4SL" secondAttribute="bottom" constant="92" id="Yq7-a2-Qm2"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="ZyW-Tk-N8v"/>
+                            <constraint firstItem="JqO-u8-t4g" firstAttribute="centerX" secondItem="Ca4-Jv-Ltd" secondAttribute="centerX" id="l9w-lW-a8k"/>
+                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lfz-q5-jvj"/>
+                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="top" secondItem="JqO-u8-t4g" secondAttribute="bottom" constant="21" id="nCN-wy-YXW"/>
+                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="top" secondItem="Ca4-Jv-Ltd" secondAttribute="bottom" constant="53" id="o2e-yh-Klr"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="kES-cJ-rQc" secondAttribute="bottom" constant="3" id="rJc-zF-oAS"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="tQm-Sf-h4Z" secondAttribute="centerX" id="sZe-iy-6Fw"/>
+                            <constraint firstItem="JqO-u8-t4g" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="26" id="urV-1A-8kc"/>
+                            <constraint firstAttribute="bottom" secondItem="qcI-zZ-WRB" secondAttribute="bottom" constant="20" symbolic="YES" id="zCc-e2-PFj"/>
+                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="baseline" secondItem="J2e-ee-wmU" secondAttribute="baseline" id="zGX-Mv-YLw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dmy-Sf-4jZ"/>
                     <connections>
-                        <outlet property="currentProteinCountLabel" destination="tQm-Sf-h4Z" id="gfc-x2-qjR"/>
+                        <outlet property="addProtein" destination="qcI-zZ-WRB" id="h1m-VQ-4dj"/>
+                        <outlet property="currentCaloriesLabel" destination="Ca4-Jv-Ltd" id="r4u-iC-Ld3"/>
+                        <outlet property="currentProteinCountLabel" destination="tQm-Sf-h4Z" id="Mqo-gS-Ajz"/>
                         <outlet property="decrease" destination="Ipb-wI-4SL" id="jZl-62-Nxo"/>
-                        <outlet property="goalLabel" destination="tQm-Sf-h4Z" id="mn8-bF-lEv"/>
                         <outlet property="increase" destination="J2e-ee-wmU" id="cl4-FE-z8r"/>
                     </connections>
                 </viewController>
@@ -77,7 +114,7 @@
         <!--Title-->
         <scene sceneID="eiq-yu-prW">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="O3P-IN-2C9" customClass="SearchViewController" customModule="HealthyMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchViewController" automaticallyAdjustsScrollViewInsets="NO" id="O3P-IN-2C9" customClass="SearchViewController" customModule="HealthyMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7R-tR-hb1"/>
                         <viewControllerLayoutGuide type="bottom" id="XQt-kE-Txk"/>
@@ -87,7 +124,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ylY-eu-Vbh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="itemResultCell" rowHeight="117" id="hxa-5w-b9m" customClass="ItemResultCell" customModule="HealthyMenu" customModuleProvider="target">
