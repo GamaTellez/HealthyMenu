@@ -8,11 +8,12 @@
 
 import UIKit
 
-protocol AddNewMealViewProtocol {
-    //func newMealCreated(newMeal:Meal)
+protocol NewMealCreatedDelegate {
+     func newMealCreated(mealCreated:Bool)
 }
 
 class AddMealView: UIView , UITextFieldDelegate {
+    public var delegate:NewMealCreatedDelegate?
     private var selectedColor = UIColor.blue
     private var nonSelectedColor = UIColor.white
     private var proteinLabel:CounterLabel!
@@ -207,6 +208,7 @@ class AddMealView: UIView , UITextFieldDelegate {
      * provided
      ******************************************************/
     @objc private func saveNewMeal() {
-        print("save meal")
+        self.delegate?.newMealCreated(mealCreated: true)
+        self.dismiss()
     }
 }

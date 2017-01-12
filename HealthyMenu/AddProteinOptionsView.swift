@@ -10,12 +10,12 @@ import UIKit
 /***********************************************************
  * addNewMealProtocol
  ***********************************************************/
-    protocol AddNewMealDelegate {
+    protocol OptionsToAddMealDelegate {
         func buttonTapped(name:String)
     }
 
 class AddProteinOptionsView: UIView {
-    var delegate: AddNewMealDelegate?
+    var delegate: OptionsToAddMealDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height / 3))

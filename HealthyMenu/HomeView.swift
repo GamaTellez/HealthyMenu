@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class HomeView: UIViewController, AddNewMealDelegate{
+class HomeView: UIViewController, OptionsToAddMealDelegate, NewMealCreatedDelegate{
     @IBOutlet var currentProteinCountLabel: CircularProgressLabel!
     @IBOutlet var decrease: UIButton!
     @IBOutlet var increase: UIButton!
@@ -51,11 +51,19 @@ class HomeView: UIViewController, AddNewMealDelegate{
         }
         if name == "Add Meal Manually" {
             let addMealCustomView = AddMealView(frame: self.view.frame)
+            addMealCustomView.delegate = self
             self.view.addSubview(addMealCustomView)
             addMealCustomView.present()
         }
     }
     
+    /**********************************************************
+     * newMealCreatedDelegate
+     ***********************************************************/
+    func newMealCreated(mealCreated: Bool)
+    {
+        print(mealCreated)
+    }
     func substract() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
             self.currentProteinCountLabel.completed -= 1
