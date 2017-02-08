@@ -11,6 +11,46 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--History View Controller-->
+        <scene sceneID="RBU-bE-3Nl">
+            <objects>
+                <viewController id="uTx-wX-bM2" customClass="HistoryViewController" customModule="HealthyMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pb9-Fq-m2D"/>
+                        <viewControllerLayoutGuide type="bottom" id="gcm-6K-DZc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zbY-NV-gkx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SSr-lE-hLe">
+                                <rect key="frame" x="0.0" y="214" width="375" height="453"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DayCell" id="dR5-Hs-CUo">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR5-Hs-CUo" id="Jac-yn-WJt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BIp-Ff-MJw" id="bhz-wE-5VJ"/>
+                                    <outlet property="delegate" destination="uTx-wX-bM2" id="xPS-8J-H5M"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nzr-ez-sst" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="BIp-Ff-MJw" customClass="HistoryDataSource" customModule="HealthyMenu" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="573.60000000000002" y="-321.58920539730138"/>
+        </scene>
         <!--Home View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -26,8 +66,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcI-zZ-WRB">
                                 <rect key="frame" x="162" y="597" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="ItN-wN-DWj"/>
-                                    <constraint firstAttribute="height" constant="50" id="fQR-uU-b7j"/>
+                                    <constraint firstAttribute="height" constant="50" id="X3l-kj-jeS"/>
+                                    <constraint firstAttribute="width" constant="50" id="ej0-lN-Fgm"/>
                                 </constraints>
                                 <state key="normal" title="Add"/>
                                 <connections>
@@ -51,8 +91,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca4-Jv-Ltd" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
                                 <rect key="frame" x="122" y="414" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="qmQ-ln-SBy"/>
-                                    <constraint firstAttribute="height" constant="130" id="yQY-zE-mH7"/>
+                                    <constraint firstAttribute="width" constant="130" id="GmA-6s-Wo0"/>
+                                    <constraint firstAttribute="height" constant="130" id="Y2T-Yh-GYE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -61,7 +101,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-cJ-rQc">
                                 <rect key="frame" x="135" y="72" width="105" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="NuR-aM-Nxd"/>
+                                    <constraint firstAttribute="height" constant="21" id="DYI-rz-1KO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -70,8 +110,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqO-u8-t4g">
                                 <rect key="frame" x="137" y="372" width="100" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="GxC-Db-QNs"/>
-                                    <constraint firstAttribute="width" constant="100" id="YC6-48-Nfm"/>
+                                    <constraint firstAttribute="width" constant="100" id="BY7-Jn-Sx3"/>
+                                    <constraint firstAttribute="height" constant="21" id="PsE-g0-H70"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -80,31 +120,39 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="J2e-ee-wmU" firstAttribute="leading" secondItem="Ipb-wI-4SL" secondAttribute="trailing" constant="24" id="2YF-Pr-EFG"/>
-                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="centerX" secondItem="qcI-zZ-WRB" secondAttribute="centerX" id="D8z-zc-oiu"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="JqO-u8-t4g" secondAttribute="centerX" id="FdU-p7-Hhf"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="G6R-rW-zeF"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="46" id="T2u-kc-YHF"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ipb-wI-4SL" secondAttribute="bottom" constant="92" id="Yq7-a2-Qm2"/>
-                            <constraint firstItem="kES-cJ-rQc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="ZyW-Tk-N8v"/>
-                            <constraint firstItem="JqO-u8-t4g" firstAttribute="centerX" secondItem="Ca4-Jv-Ltd" secondAttribute="centerX" id="l9w-lW-a8k"/>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lfz-q5-jvj"/>
-                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="top" secondItem="JqO-u8-t4g" secondAttribute="bottom" constant="21" id="nCN-wy-YXW"/>
-                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="top" secondItem="Ca4-Jv-Ltd" secondAttribute="bottom" constant="53" id="o2e-yh-Klr"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="kES-cJ-rQc" secondAttribute="bottom" constant="3" id="rJc-zF-oAS"/>
-                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="tQm-Sf-h4Z" secondAttribute="centerX" id="sZe-iy-6Fw"/>
-                            <constraint firstItem="JqO-u8-t4g" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="26" id="urV-1A-8kc"/>
-                            <constraint firstAttribute="bottom" secondItem="qcI-zZ-WRB" secondAttribute="bottom" constant="20" symbolic="YES" id="zCc-e2-PFj"/>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="baseline" secondItem="J2e-ee-wmU" secondAttribute="baseline" id="zGX-Mv-YLw"/>
+                            <constraint firstItem="JqO-u8-t4g" firstAttribute="centerX" secondItem="Ca4-Jv-Ltd" secondAttribute="centerX" id="1df-LA-9aF"/>
+                            <constraint firstItem="J2e-ee-wmU" firstAttribute="leading" secondItem="Ipb-wI-4SL" secondAttribute="trailing" constant="24" id="BzA-a8-l3E"/>
+                            <constraint firstAttribute="bottom" secondItem="qcI-zZ-WRB" secondAttribute="bottom" constant="20" symbolic="YES" id="ISF-Gs-BGu"/>
+                            <constraint firstItem="JqO-u8-t4g" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="26" id="KEh-cz-jYS"/>
+                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="top" secondItem="Ca4-Jv-Ltd" secondAttribute="bottom" constant="53" id="Tbf-ck-1fG"/>
+                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Wbl-vh-uh8"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="JqO-u8-t4g" secondAttribute="centerX" id="XyR-7K-YGj"/>
+                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="top" secondItem="JqO-u8-t4g" secondAttribute="bottom" constant="21" id="afS-MG-GL4"/>
+                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="baseline" secondItem="J2e-ee-wmU" secondAttribute="baseline" id="gzr-JA-bpG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ipb-wI-4SL" secondAttribute="bottom" constant="92" id="hfp-vV-htz"/>
+                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="centerX" secondItem="qcI-zZ-WRB" secondAttribute="centerX" id="m8T-n8-1Sg"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="tQm-Sf-h4Z" secondAttribute="centerX" id="nbT-Ur-NKu"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="kES-cJ-rQc" secondAttribute="bottom" constant="3" id="owg-5X-zIo"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="pZW-PY-XTJ"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="46" id="piF-gf-isg"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zbV-QL-1vj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dmy-Sf-4jZ"/>
+                    <navigationItem key="navigationItem" id="dmy-Sf-4jZ">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="EDc-71-wgg">
+                            <connections>
+                                <action selector="viewHistoryButtonTapped:" destination="BYZ-38-t0r" id="2a4-C4-JyD"/>
+                                <segue destination="uTx-wX-bM2" kind="presentation" id="cpt-jD-hEV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addProtein" destination="qcI-zZ-WRB" id="h1m-VQ-4dj"/>
                         <outlet property="currentCaloriesLabel" destination="Ca4-Jv-Ltd" id="r4u-iC-Ld3"/>
                         <outlet property="currentProteinCountLabel" destination="tQm-Sf-h4Z" id="Mqo-gS-Ajz"/>
                         <outlet property="decrease" destination="Ipb-wI-4SL" id="jZl-62-Nxo"/>
                         <outlet property="increase" destination="J2e-ee-wmU" id="cl4-FE-z8r"/>
+                        <outlet property="viewHistory" destination="EDc-71-wgg" id="HPO-5o-GD2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 func degreesToRadians (_ value:Double) -> Double {
     return value * Double(M_PI) / 180.0
 }
