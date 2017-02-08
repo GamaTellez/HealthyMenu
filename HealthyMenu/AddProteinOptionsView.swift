@@ -10,25 +10,28 @@ import UIKit
 /***********************************************************
  * addNewMealProtocol
  ***********************************************************/
-    protocol OptionsToAddMealDelegate {
-        func buttonTapped(name:String)
-    }
+//    protocol OptionsToAddMealDelegate {
+//        func buttonTapped(name:String)
+//    }
 
 class AddProteinOptionsView: UIView {
-    var delegate: OptionsToAddMealDelegate?
+    override init(frame:CGRect) {
+        super.init(frame: frame)
+    }
     
-    override init(frame: CGRect) {
-        super.init(frame: CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height / 3))
+    convenience init(frame: CGRect, viewController:UIViewController, searchMealSelector:Selector, enterManuallySelector:Selector) {
+        self.init()
+        self.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height / 3)
         self.backgroundColor = UIColor.white
         let higherToLowerProteinButton = UIButton(frame: CGRect(x: 0 , y: 0, width: frame.width, height: self.frame.height / 3))
         higherToLowerProteinButton.setTitle("Enter Meal Manually", for: .normal)
         higherToLowerProteinButton.backgroundColor = UIColor.black
-        higherToLowerProteinButton.addTarget(self, action: #selector(enterMealManually), for: .touchDown)
+        higherToLowerProteinButton.addTarget(viewController, action: enterManuallySelector, for: .touchDown)
         self.addSubview(higherToLowerProteinButton)
         let lowerToHigherCaloriesButton = UIButton(frame: CGRect(x: 0, y: higherToLowerProteinButton.frame.height, width: frame.width, height: self.frame.height / 3))
         lowerToHigherCaloriesButton.backgroundColor = UIColor.black
         lowerToHigherCaloriesButton.setTitle("Search Meal", for: .normal)
-        lowerToHigherCaloriesButton.addTarget(self, action: #selector(searchMeal), for: .touchDown)
+        lowerToHigherCaloriesButton.addTarget(viewController, action: searchMealSelector, for: .touchDown)
         self.addSubview(lowerToHigherCaloriesButton)
         let cancelButton = UIButton(frame: CGRect(x: 0, y: higherToLowerProteinButton.frame.height + lowerToHigherCaloriesButton.frame.height, width: frame.width, height: self.frame.height / 3))
         cancelButton.setTitle("Cancel", for: .normal)
@@ -36,21 +39,12 @@ class AddProteinOptionsView: UIView {
         cancelButton.addTarget(self, action: #selector(self.cancelButtonTapped), for: .touchDown)
         self.addSubview(cancelButton)
     }
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    internal func enterMealManually() {
-        self.dismissView()
-        self.delegate?.buttonTapped(name: "Add Meal Manually")
-    }
-
-    internal func searchMeal() {
-        self.dismissView()
-        self.delegate?.buttonTapped(name: "Search Meal")
-    }
-    
+        
     internal func cancelButtonTapped() {
         self.dismissView()
     }

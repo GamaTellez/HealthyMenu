@@ -116,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				8736ACC71DEF41F300C19CC9 /* AddMealView.swift */,
-				8724CA881E05AB2C00D8C721 /* CounterLabel.swift */,
 			);
 			name = "Add Meal View";
 			sourceTree = "<group>";
@@ -148,6 +147,7 @@
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
 				8736ACC11DED26D200C19CC9 /* HelperMethods.swift */,
+				8724CA881E05AB2C00D8C721 /* CounterLabel.swift */,
 				872E9D441E2828D3007536D5 /* DayExtesions.swift */,
 				872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */,
 				87D4DB6F1DB5ADC400000FCE /* HomeView */,

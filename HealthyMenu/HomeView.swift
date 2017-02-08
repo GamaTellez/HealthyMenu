@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class HomeView: UIViewController, OptionsToAddMealDelegate, NewMealCreatedDelegate{
+class HomeView: UIViewController, NewMealCreatedDelegate{
     
     @IBOutlet var currentProteinCountLabel: CircularProgressLabel!
     @IBOutlet var decrease: UIButton!
@@ -43,6 +43,9 @@ class HomeView: UIViewController, OptionsToAddMealDelegate, NewMealCreatedDelega
         self.navigationItem.titleView = self.navBarTitleButton
     }
     
+    /*********************************************************
+     * title button tapped
+     **********************************************************/
     @objc private func titleButtontapped() {
         let resetView:ReseyDayView = ReseyDayView(frame: self.view.frame, distanceFromTop: (self.navigationController?.navigationBar.frame.height)! + 20, selector: #selector(self.resetDay), viewController:self)
         resetView.show()
@@ -50,28 +53,25 @@ class HomeView: UIViewController, OptionsToAddMealDelegate, NewMealCreatedDelega
         self.navBarTitleButton.isEnabled = false
     }
     
-    
+    /*********************************************************
+     * add protein button tapped
+     **********************************************************/
     @IBAction func addProteinButtonTapped(_ sender: UIButton) {
-        let addProteinOptionsView = AddProteinOptionsView(frame: self.view.frame)
+        let addProteinOptionsView = AddProteinOptionsView(frame: self.view.frame, viewController: self, searchMealSelector: #selector(self.searchMeal), enterManuallySelector: #selector(self.enterMealManually))
         self.view.addSubview(addProteinOptionsView)
-        addProteinOptionsView.delegate = self
         addProteinOptionsView.presentView()
     }
     
-    /**********************************************************
-    * addMealDelegate method
-    ***********************************************************/
-    func buttonTapped(name: String) {
-        if name == "Search Meal" {
-            let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchViewController")
-            self.navigationController?.pushViewController(searchViewController!, animated: true)
-        }
-        if name == "Add Meal Manually" {
-            let addMealCustomView = AddMealView(frame: self.view.frame)
-            addMealCustomView.delegate = self
-            self.view.addSubview(addMealCustomView)
-            addMealCustomView.present()
-        }
+    @objc private func enterMealManually() {
+        let addMealCustomView = AddMealView(frame: self.view.frame)
+        addMealCustomView.delegate = self
+        self.view.addSubview(addMealCustomView)
+        addMealCustomView.present()
+    }
+    
+    @objc private func searchMeal() {
+        let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchViewController")
+        self.navigationController?.pushViewController(searchViewController!, animated: true)
     }
     
     /**********************************************************
@@ -123,7 +123,6 @@ class HomeView: UIViewController, OptionsToAddMealDelegate, NewMealCreatedDelega
      * resetDay
      ***********************************************************/
     func resetDay() {
-        print("the day is being reseted")
         if (!self.navBarTitleButton.isEnabled) {
             self.navBarTitleButton.isEnabled = true
         }
