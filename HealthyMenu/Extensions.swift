@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import CoreData
 
 extension URLSession {
     func performNutrionixSearch(textToSearch: String, completion:@escaping (_ results:[NSDictionary]?)-> Void) {
@@ -39,11 +40,39 @@ extension URLSession {
     }
 }
 
-extension UIView {
-    class func fromNib<T : UIView>() -> T {
-        return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+extension NSEntityDescription {
+    func createEntityDay() -> NSEntityDescription? {
+        guard let dayEntity = NSEntityDescription.entity(forEntityName: "Day", in: PersistantStorageCoordinator().context) else {
+            return nil
+        }
+        return dayEntity
     }
 }
+
+extension NSManagedObject {
+    func createDay(dayEntity:NSEntityDescription)-> Day {
+        return NSManagedObject(entity: dayEntity, insertInto: PersistantStorageCoordinator().context) as! Day
+    }
+}
+
+
+extension NSFetchRequest {
+    func getCurrentDay() {
+        let daysFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
+        let daysDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        daysFetchRequest.sortDescriptors = [daysDescriptor]
+        do {
+            let days = try PersistantStorageCoordinator().context.execute(daysFetchRequest) as! [Day]
+                print(days)
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+}
+
+
+
+
 
 
 

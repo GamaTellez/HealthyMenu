@@ -14,11 +14,13 @@ class PersistantStorageCoordinator:NSObject {
     static let persistantStorageManager = PersistantStorageCoordinator()
     var context:NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
     
-    func saveToCoreData(meal: Meal) {
+    func save(completion:(_ succes:Bool)-> Void) {
         do {
             try self.context.save()
+            completion(true)
         } catch let error {
             print(error.localizedDescription)
+            completion(false)
             }
         }
     }

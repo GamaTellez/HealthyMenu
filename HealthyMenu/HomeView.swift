@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class HomeView: UIViewController, NewMealCreatedDelegate{
     
@@ -47,10 +48,12 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
      * title button tapped
      **********************************************************/
     @objc private func titleButtontapped() {
-        let resetView:ReseyDayView = ReseyDayView(frame: self.view.frame, distanceFromTop: (self.navigationController?.navigationBar.frame.height)! + 20, selector: #selector(self.resetDay), viewController:self)
+        let resetView:ResetDayView = ResetDayView(frame: self.view.frame, distanceFromTop: (self.navigationController?.navigationBar.frame.height)! + 20, resetDaySelector: #selector(self.resetDay), viewController:self, enableViewButtons:#selector(self.enableViewButtons))
         resetView.show()
         self.view.addSubview(resetView)
         self.navBarTitleButton.isEnabled = false
+        self.addProtein.isEnabled = false
+        self.viewHistory.isEnabled = false
     }
     
     /*********************************************************
@@ -78,8 +81,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
      * newMealCreatedDelegate
      ***********************************************************/
     func newMealCreated(mealCreated: Bool)-> Void {
-        
-    }
+        }
     
     func substract() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
@@ -105,26 +107,31 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
     @IBAction func viewHistoryButtonTapped(_ sender: Any) {
         
     }
-    
-    /**********************************************************
-     * resetDayAlert
-     ***********************************************************/
-//    private func presentResetDayAlertController() -> Void {
-//        let resetDayAlert = UIAlertController(title: "Reset Count", message: "Do you want to reset your protein count? (it will add a new day to your protein goal", preferredStyle: .alert)
-//        resetDayAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-//        resetDayAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action:UIAlertAction) in
-//            self.resetDay()
-//        }))
-//      resetDayAlert.view.backgroundColor = UIColor.clear
-//        self.navigationController?.present(resetDayAlert, animated: true, completion: nil)
-//    }
-    
+        
     /**********************************************************
      * resetDay
      ***********************************************************/
     func resetDay() {
         if (!self.navBarTitleButton.isEnabled) {
             self.navBarTitleButton.isEnabled = true
+        }
+        guard let newDayEntity = NSEntityDescription().createEntityDay() else { return }
+        let newDay = NSManagedObject().createDay(dayEntity: newDayEntity)
+        newDay.date = NSDate()
+        PersistantStorageCoordinator().save() { (success:Bool) in
+            print(success)
+        }
+    }
+    
+    @objc private func enableViewButtons() {
+        if (!self.navBarTitleButton.isEnabled) {
+            self.navBarTitleButton.isEnabled = true
+        }
+        if (!self.addProtein.isEnabled) {
+            self.addProtein.isEnabled = true
+        }
+        if (!self.viewHistory.isEnabled) {
+            self.viewHistory.isEnabled = false
         }
     }
 

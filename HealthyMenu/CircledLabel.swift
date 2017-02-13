@@ -19,12 +19,21 @@ import UIKit
             let radious = max(self.bounds.width, self.bounds.height) / 2.5
             let strokePath = UIBezierPath(arcCenter: CGPoint(x: self.bounds.midX,y: self.bounds.midY),
                                           radius: radious,
-                                          startAngle:CGFloat(degreesToRadians(0)),
-                                          endAngle:CGFloat(degreesToRadians(360)),
+                                          startAngle:CGFloat(self.degreesToRadians(0)),
+                                          endAngle:CGFloat(self.degreesToRadians(360)),
                                           clockwise: true)
             strokePath.lineWidth = self.strokeWidth
             strokeColor.setStroke()
             strokePath.stroke()
         }
     }
+    
+    func degreesToRadians (_ value:Double) -> Double {
+        return value * Double(M_PI) / 180.0
+    }
+    
+    func radiansToDegrees (_ value:Double) -> Double {
+        return value * 180.0 / Double(M_PI)
+    }
+    
 }

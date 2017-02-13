@@ -1,20 +1,20 @@
 //
-//  ReseyDayView.swift
+//  ResetDayView.swift
 //  HealthyMenu
 //
-//  Created by Gamaliel Tellez on 2/2/17.
+//  Created by Gamaliel Tellez on 2/8/17.
 //  Copyright © 2017 Gamaliel Tellez. All rights reserved.
 //
 
 import UIKit
 
-class ReseyDayView: UIView {
-
+class ResetDayView: UIView {
+    
     override init(frame:CGRect) {
         super.init(frame: frame)
     }
     
-    convenience init(frame:CGRect, distanceFromTop:CGFloat, selector:Selector, viewController:UIViewController) {
+    convenience init(frame:CGRect, distanceFromTop:CGFloat, resetDaySelector:Selector, viewController:UIViewController, enableViewButtons:Selector) {
         self.init()
         self.frame =  CGRect(x: 5,
                              y: distanceFromTop + 10,
@@ -24,8 +24,9 @@ class ReseyDayView: UIView {
         self.addSubview(infoLabel)
         let resetButton = self.createResetDayButton(from: infoLabel.frame)
         self.addSubview(resetButton)
-        resetButton.addTarget(viewController, action: selector, for: .touchUpInside)
+        resetButton.addTarget(viewController, action: resetDaySelector, for: .touchUpInside)
         let cancelButton = self.createCancelButton(from: resetButton.frame)
+        cancelButton.addTarget(viewController, action: enableViewButtons, for: .touchUpInside)
         self.addSubview(cancelButton)
         self.backgroundColor = UIColor.gray
     }
@@ -74,7 +75,7 @@ class ReseyDayView: UIView {
     }
     
     @objc private func remove() {
-        UIView.animate(withDuration: 0.25, animations: { 
+        UIView.animate(withDuration: 0.25, animations: {
             self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.alpha = 0
         }) { (finished) in
@@ -83,11 +84,5 @@ class ReseyDayView: UIView {
             }
         }
     }
+
 }
-
-
-
-
-
-
-

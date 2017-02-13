@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		871F33C31E4459DF00C7B27C /* ReseyDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F33C21E4459DF00C7B27C /* ReseyDayView.swift */; };
 		8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724CA881E05AB2C00D8C721 /* CounterLabel.swift */; };
-		872E9D451E2828D3007536D5 /* DayExtesions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E9D441E2828D3007536D5 /* DayExtesions.swift */; };
 		872E9D491E282BBD007536D5 /* PersistantStorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */; };
 		8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */; };
 		8736ACC01DED1DFD00C19CC9 /* AddProteinOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */; };
-		8736ACC21DED26D200C19CC9 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACC11DED26D200C19CC9 /* HelperMethods.swift */; };
 		8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACC71DEF41F300C19CC9 /* AddMealView.swift */; };
 		8742FD1E1DE00983009B3CD6 /* SortingOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */; };
 		8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE581D81D82000A7DD7E /* AppDelegate.swift */; };
@@ -33,6 +30,7 @@
 		877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94F1DE5073D0090683F /* CircledLabel.swift */; };
 		87F46E701E36BE3100230225 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F46E6F1E36BE3100230225 /* HistoryViewController.swift */; };
 		87F46E731E36BE7C00230225 /* HistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F46E721E36BE7C00230225 /* HistoryDataSource.swift */; };
+		87FB48FA1E4C043C0076049F /* ResetDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB48F91E4C043C0076049F /* ResetDayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		871F33C21E4459DF00C7B27C /* ReseyDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReseyDayView.swift; path = ../ReseyDayView.swift; sourceTree = "<group>"; };
 		8724CA881E05AB2C00D8C721 /* CounterLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterLabel.swift; sourceTree = "<group>"; };
-		872E9D441E2828D3007536D5 /* DayExtesions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayExtesions.swift; sourceTree = "<group>"; };
 		872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistantStorageCoordinator.swift; path = ../PersistantStorageCoordinator.swift; sourceTree = "<group>"; };
 		8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularProgressLabel.swift; path = ../CircularProgressLabel.swift; sourceTree = "<group>"; };
 		8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProteinOptionsView.swift; sourceTree = "<group>"; };
-		8736ACC11DED26D200C19CC9 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
 		8736ACC71DEF41F300C19CC9 /* AddMealView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortingOptionsView.swift; path = ../SortingOptionsView.swift; sourceTree = "<group>"; };
 		8772CE551D81D82000A7DD7E /* HealthyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +80,7 @@
 		877AD94F1DE5073D0090683F /* CircledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircledLabel.swift; sourceTree = "<group>"; };
 		87F46E6F1E36BE3100230225 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		87F46E721E36BE7C00230225 /* HistoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDataSource.swift; sourceTree = "<group>"; };
+		87FB48F91E4C043C0076049F /* ResetDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetDayView.swift; path = ../ResetDayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,9 +142,7 @@
 				8772CE581D81D82000A7DD7E /* AppDelegate.swift */,
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
-				8736ACC11DED26D200C19CC9 /* HelperMethods.swift */,
 				8724CA881E05AB2C00D8C721 /* CounterLabel.swift */,
-				872E9D441E2828D3007536D5 /* DayExtesions.swift */,
 				872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */,
 				87D4DB6F1DB5ADC400000FCE /* HomeView */,
 				87D4DB721DB5AE0500000FCE /* Menus View */,
@@ -184,10 +178,10 @@
 				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
 				8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */,
 				877AD94F1DE5073D0090683F /* CircledLabel.swift */,
-				8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */,
-				871F33C21E4459DF00C7B27C /* ReseyDayView.swift */,
-				87F46E711E36BE4100230225 /* GoalsHistory */,
+				87FB48FC1E4D1C850076049F /* ResetDayView */,
+				87FB48FB1E4D1C7B0076049F /* AddProteinOptionsView */,
 				8736ACC91DEF41FB00C19CC9 /* Add Meal View */,
+				87F46E711E36BE4100230225 /* GoalsHistory */,
 			);
 			name = HomeView;
 			sourceTree = "<group>";
@@ -212,6 +206,22 @@
 				87F46E721E36BE7C00230225 /* HistoryDataSource.swift */,
 			);
 			name = GoalsHistory;
+			sourceTree = "<group>";
+		};
+		87FB48FB1E4D1C7B0076049F /* AddProteinOptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */,
+			);
+			name = AddProteinOptionsView;
+			sourceTree = "<group>";
+		};
+		87FB48FC1E4D1C850076049F /* ResetDayView */ = {
+			isa = PBXGroup;
+			children = (
+				87FB48F91E4C043C0076049F /* ResetDayView.swift */,
+			);
+			name = ResetDayView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,14 +371,12 @@
 				877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */,
 				8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */,
 				877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */,
-				8736ACC21DED26D200C19CC9 /* HelperMethods.swift in Sources */,
 				877AD9461DE34F9D0090683F /* SearchResultsDataSource.swift in Sources */,
 				8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */,
-				872E9D451E2828D3007536D5 /* DayExtesions.swift in Sources */,
 				872E9D491E282BBD007536D5 /* PersistantStorageCoordinator.swift in Sources */,
 				87F46E701E36BE3100230225 /* HistoryViewController.swift in Sources */,
+				87FB48FA1E4C043C0076049F /* ResetDayView.swift in Sources */,
 				8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */,
-				871F33C31E4459DF00C7B27C /* ReseyDayView.swift in Sources */,
 				8772CE8C1D81DB0800A7DD7E /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

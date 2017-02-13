@@ -23,6 +23,7 @@ class AddMealView: UIView , UITextFieldDelegate {
     private var slider:UISlider!
     private var saveButton:UIButton!
     private var closeButton:UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 2))
         self.setUpTitleLabel()
@@ -32,7 +33,7 @@ class AddMealView: UIView , UITextFieldDelegate {
         self.setUpSlider()
         self.setUpSaveButton()
         self.setUpCloseButton()
-               self.backgroundColor = UIColor.gray
+        self.backgroundColor = UIColor.gray
         self.layer.cornerRadius = 20
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 2
@@ -120,14 +121,16 @@ class AddMealView: UIView , UITextFieldDelegate {
         UIView.animate(withDuration: 0.4, animations: {
             self.center = self.superview!.center
         }, completion: {(finished:Bool) in
-            
         })
     }
     
-    @objc private func dismiss() {
+    @objc private func dismiss(newMeal:Bool) {
         UIView.animate(withDuration: 0.4, animations: {
             self.center.y -= self.superview!.frame.height
         }, completion: { (finished:Bool) in
+            if (self.delegate != nil) {
+                self.delegate?.newMealCreated(mealCreated: newMeal)
+            }
             self.removeFromSuperview()
         })
     }
@@ -208,7 +211,5 @@ class AddMealView: UIView , UITextFieldDelegate {
      * provided
      ******************************************************/
     @objc private func saveNewMeal() {
-        self.delegate?.newMealCreated(mealCreated: true)
-        self.dismiss()
     }
 }
