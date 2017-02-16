@@ -47,26 +47,71 @@ extension NSEntityDescription {
         }
         return dayEntity
     }
+    
+    func createGoalEntity() -> NSEntityDescription? {
+        guard let goalEntity = NSEntityDescription.entity(forEntityName: "Goal", in: PersistantStorageCoordinator().context) else {
+            return nil
+        }
+        return goalEntity
+    }
+    
+    func createMealEntity() -> NSEntityDescription? {
+        guard let mealEntity = NSEntityDescription.entity(forEntityName: "Meal", in: PersistantStorageCoordinator().context) else {
+            return nil
+        }
+        return mealEntity
+    }
+
 }
 
 extension NSManagedObject {
-    func createDay(dayEntity:NSEntityDescription)-> Day {
-        return NSManagedObject(entity: dayEntity, insertInto: PersistantStorageCoordinator().context) as! Day
+    func createDay()-> Day {
+        return NSEntityDescription.insertNewObject(forEntityName: "Day", into: PersistantStorageCoordinator().context) as! Day
+    }
+    
+    func createGoal()-> Goal {
+        return NSEntityDescription.insertNewObject(forEntityName: "Goal", into: PersistantStorageCoordinator().context) as! Goal
+    }
+    
+    func createMeal()-> Meal {
+         return NSEntityDescription.insertNewObject(forEntityName: "Meal", into: PersistantStorageCoordinator().context) as! Meal
     }
 }
 
 
 extension NSFetchRequest {
-    func getCurrentDay() {
-        let daysFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
-        let daysDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        daysFetchRequest.sortDescriptors = [daysDescriptor]
+    func getCurrentDay()-> Day? {
+        let daysRequest:NSFetchRequest<Day> = Day.fetchRequest()
+        let dayDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        daysRequest.sortDescriptors = [dayDescriptor]
         do {
-            let days = try PersistantStorageCoordinator().context.execute(daysFetchRequest) as! [Day]
-                print(days)
-        } catch  {
+            let days = try PersistantStorageCoordinator().context.fetch(daysRequest)
+            return days[0]
+        } catch {
             print(error.localizedDescription)
+            return nil
         }
+    }
+    
+//    func getCurrentGoal()-> Goal? {
+//        let goalRequest:NSFetchRequest<Goal> = Goal.fetchRequest()
+//        do {
+//            let goals = try PersistantStorageCoordinator().context.fetch(goalRequest)
+//            
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
+}
+
+extension Goal {
+    func getCurrentDay()-> Day? {
+        let daySorter = NSSortDescriptor(key: "date", ascending: false)
+        let sortedDays = self.days?.sortedArray(using: [daySorter]) as? [Day]
+        guard sortedDays != nil else {
+            return nil
+        }
+        return sortedDays?[0]
     }
 }
 

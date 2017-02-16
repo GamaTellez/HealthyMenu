@@ -9,7 +9,7 @@
 import UIKit
 
 protocol NewMealCreatedDelegate {
-     func newMealCreated(mealCreated:Bool)
+    func newMealCreated(protein:Int16, calories:Int16, name:String)
 }
 
 class AddMealView: UIView , UITextFieldDelegate {
@@ -34,9 +34,7 @@ class AddMealView: UIView , UITextFieldDelegate {
         self.setUpSaveButton()
         self.setUpCloseButton()
         self.backgroundColor = UIColor.gray
-        self.layer.cornerRadius = 20
         self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 2
     }
   
     required init?(coder aDecoder: NSCoder) {
@@ -124,13 +122,10 @@ class AddMealView: UIView , UITextFieldDelegate {
         })
     }
     
-    @objc private func dismiss(newMeal:Bool) {
+    @objc private func dismiss() {
         UIView.animate(withDuration: 0.4, animations: {
             self.center.y -= self.superview!.frame.height
         }, completion: { (finished:Bool) in
-            if (self.delegate != nil) {
-                self.delegate?.newMealCreated(mealCreated: newMeal)
-            }
             self.removeFromSuperview()
         })
     }
@@ -211,5 +206,10 @@ class AddMealView: UIView , UITextFieldDelegate {
      * provided
      ******************************************************/
     @objc private func saveNewMeal() {
+        if (self.delegate != nil) {
+            self.delegate?.newMealCreated(protein: Int16(self.proteinLabel.text!)!
+                , calories: Int16(self.caloriesLabel.text!)!, name: self.nameTextField.text!)
+        }
+        self.dismiss()
     }
 }

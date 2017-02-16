@@ -18,9 +18,10 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
     @IBOutlet var currentCaloriesLabel: CircledLabel!
     @IBOutlet var addProtein: UIButton!
     @IBOutlet var viewHistory: UIBarButtonItem!
+    var currentGoal:Goal?
     var timer: Timer!
     var navBarTitleButton:UIButton = UIButton(type: .custom)
-    
+    @IBOutlet var newGoalButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
@@ -65,6 +66,17 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
         addProteinOptionsView.presentView()
     }
     
+    /*********************************************************
+     * new goal button tapped
+     * it brings the view to add a new goal
+     **********************************************************/
+    @IBAction func newGoalButtonTapped(_ sender: UIBarButtonItem) {
+        let newGoalView = AddGoalView(frame: self.view.frame)
+        self.view.addSubview(newGoalView)
+        newGoalView.present()
+        
+    }
+    
     @objc private func enterMealManually() {
         let addMealCustomView = AddMealView(frame: self.view.frame)
         addMealCustomView.delegate = self
@@ -80,8 +92,19 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
     /**********************************************************
      * newMealCreatedDelegate
      ***********************************************************/
-    func newMealCreated(mealCreated: Bool)-> Void {
+    public func newMealCreated(protein:Int16, calories:Int16, name:String)-> Void {
+        let newMeal = NSManagedObject().createMeal()
+        newMeal.calories = calories
+        newMeal.protein = protein
+        newMeal.name = name
+        guard let currentDayForMeal = self.currentGoal?.getCurrentDay() else { return }
+        newMeal.day = currentDayForMeal
+        PersistantStorageCoordinator().save { (success:Bool) in
+            if (!success) {
+                print("failed to save new meal")
+            }
         }
+    }
     
     func substract() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
@@ -115,11 +138,12 @@ class HomeView: UIViewController, NewMealCreatedDelegate{
         if (!self.navBarTitleButton.isEnabled) {
             self.navBarTitleButton.isEnabled = true
         }
-        guard let newDayEntity = NSEntityDescription().createEntityDay() else { return }
-        let newDay = NSManagedObject().createDay(dayEntity: newDayEntity)
+        let newDay = NSManagedObject().createDay()
         newDay.date = NSDate()
         PersistantStorageCoordinator().save() { (success:Bool) in
-            print(success)
+            if (!success) {
+                print("present alert controller")
+            }
         }
     }
     

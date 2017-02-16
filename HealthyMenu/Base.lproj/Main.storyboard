@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oWG-te-O8r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oWG-te-O8r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -145,6 +145,11 @@
                                 <segue destination="uTx-wX-bM2" kind="presentation" id="cpt-jD-hEV"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="nAV-XO-LXL">
+                            <connections>
+                                <action selector="newGoalButtonTapped:" destination="BYZ-38-t0r" id="uAn-3E-0Ew"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addProtein" destination="qcI-zZ-WRB" id="h1m-VQ-4dj"/>
@@ -152,6 +157,7 @@
                         <outlet property="currentProteinCountLabel" destination="tQm-Sf-h4Z" id="Mqo-gS-Ajz"/>
                         <outlet property="decrease" destination="Ipb-wI-4SL" id="jZl-62-Nxo"/>
                         <outlet property="increase" destination="J2e-ee-wmU" id="cl4-FE-z8r"/>
+                        <outlet property="newGoalButton" destination="nAV-XO-LXL" id="uaI-Ng-Aol"/>
                         <outlet property="viewHistory" destination="EDc-71-wgg" id="HPO-5o-GD2"/>
                     </connections>
                 </viewController>

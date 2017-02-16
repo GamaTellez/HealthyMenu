@@ -13,7 +13,7 @@ class ResetDayView: UIView {
     override init(frame:CGRect) {
         super.init(frame: frame)
     }
-    
+
     convenience init(frame:CGRect, distanceFromTop:CGFloat, resetDaySelector:Selector, viewController:UIViewController, enableViewButtons:Selector) {
         self.init()
         self.frame =  CGRect(x: 5,
@@ -23,8 +23,8 @@ class ResetDayView: UIView {
         let infoLabel = self.createInfoLabel(from: self.frame)
         self.addSubview(infoLabel)
         let resetButton = self.createResetDayButton(from: infoLabel.frame)
+         resetButton.addTarget(viewController, action: resetDaySelector, for: .touchUpInside)
         self.addSubview(resetButton)
-        resetButton.addTarget(viewController, action: resetDaySelector, for: .touchUpInside)
         let cancelButton = self.createCancelButton(from: resetButton.frame)
         cancelButton.addTarget(viewController, action: enableViewButtons, for: .touchUpInside)
         self.addSubview(cancelButton)
@@ -51,6 +51,7 @@ class ResetDayView: UIView {
                                                  width: self.frame.width - 20,
                                                  height: self.frame.height / 4))
         resetButton.setTitle("Add New Day", for: .normal)
+        resetButton.addTarget(self, action: #selector(self.remove), for: .touchUpInside)
         return resetButton
     }
     
