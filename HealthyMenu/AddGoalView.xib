@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddGoalView" customModule="HealthyMenu" customModuleProvider="target">
             <connections>
-                <outlet property="cancelButton" destination="voP-jM-HCJ" id="mEg-T4-UT0"/>
-                <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="Lvb-9K-aXs"/>
-                <outlet property="proteinSlider" destination="hsa-Kr-YRL" id="rRI-BZ-3NE"/>
-                <outlet property="saveButton" destination="Nnj-9q-gwn" id="YsB-Y7-6lP"/>
-                <outlet property="titleLabel" destination="EdF-2w-20n" id="DIH-mO-Wec"/>
+                <outlet property="cancelButton" destination="voP-jM-HCJ" id="gQV-pd-mHu"/>
+                <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="Z98-L3-5SH"/>
+                <outlet property="proteinSlider" destination="hsa-Kr-YRL" id="8hk-cE-b7z"/>
+                <outlet property="saveButton" destination="Nnj-9q-gwn" id="AVq-Nd-UP7"/>
+                <outlet property="titleLabel" destination="EdF-2w-20n" id="gw6-T2-Ck3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -47,7 +47,8 @@
                         <constraint firstAttribute="height" constant="30" id="i71-Vo-THw"/>
                     </constraints>
                     <connections>
-                        <action selector="proteinSliderValueChanged:" destination="-1" eventType="valueChanged" id="r9A-HZ-uyT"/>
+                        <action selector="proteinSliderValueChanged:" destination="-1" eventType="valueChanged" id="PpG-Uk-dl9"/>
+                        <action selector="proteinSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="vmx-ig-T2C"/>
                     </connections>
                 </slider>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voP-jM-HCJ">
@@ -57,14 +58,16 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="HAb-Mz-6et"/>
+                        <action selector="cancelButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="6Qu-ev-Eph"/>
+                        <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="zMW-KX-GB1"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnj-9q-gwn">
                     <rect key="frame" x="289" y="191" width="46" height="30"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="saveBurronTapped:" destination="-1" eventType="touchUpInside" id="CTC-3g-aXb"/>
+                        <action selector="saveBurronTapped:" destination="-1" eventType="touchUpInside" id="5TL-rz-ecF"/>
+                        <action selector="saveBurronTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qtz-7v-l03"/>
                     </connections>
                 </button>
             </subviews>
@@ -85,6 +88,13 @@
                 <constraint firstItem="voP-jM-HCJ" firstAttribute="baseline" secondItem="Nnj-9q-gwn" secondAttribute="baseline" id="xki-cl-89x"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelButton" destination="voP-jM-HCJ" id="0n4-Cd-UkY"/>
+                <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="vGE-NC-tqt"/>
+                <outlet property="proteinSlider" destination="hsa-Kr-YRL" id="3Vx-BG-ZH3"/>
+                <outlet property="saveButton" destination="Nnj-9q-gwn" id="Vcs-cT-0e0"/>
+                <outlet property="titleLabel" destination="EdF-2w-20n" id="UET-bV-ney"/>
+            </connections>
             <point key="canvasLocation" x="-181.5" y="-194"/>
         </view>
     </objects>

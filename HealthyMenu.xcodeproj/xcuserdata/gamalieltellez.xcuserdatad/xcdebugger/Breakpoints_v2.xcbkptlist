@@ -67,5 +67,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HealthyMenu/HomeView.swift"
+            timestampString = "509332858.514176"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "newGoalCreated(with:isCurrent:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthyMenu.HomeView.newGoalCreated (with : Swift.Int16, isCurrent : Swift.Bool) -&gt; ()"
+                  moduleName = "HealthyMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gamalieltellez/Documents/code/Swift/HealthyMenu/HealthyMenu/HomeView.swift"
+                  timestampString = "509332858.72995"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "33">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HealthyMenu.HomeView.(newGoalCreated (with : Swift.Int16, isCurrent : Swift.Bool) -&gt; ()).(closure #1)"
+                  moduleName = "HealthyMenu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gamalieltellez/Documents/code/Swift/HealthyMenu/HealthyMenu/HomeView.swift"
+                  timestampString = "509332858.731681"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

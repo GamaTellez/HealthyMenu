@@ -10,6 +10,7 @@ import Foundation
 import MapKit
 import CoreData
 
+
 extension URLSession {
     func performNutrionixSearch(textToSearch: String, completion:@escaping (_ results:[NSDictionary]?)-> Void) {
         let kNutrionixAppId = "f8baaf08"
@@ -39,48 +40,79 @@ extension URLSession {
         menuTask.resume()
     }
 }
-
-extension NSEntityDescription {
-    func createEntityDay() -> NSEntityDescription? {
-        guard let dayEntity = NSEntityDescription.entity(forEntityName: "Day", in: PersistantStorageCoordinator().context) else {
-            return nil
-        }
-        return dayEntity
-    }
-    
-    func createGoalEntity() -> NSEntityDescription? {
-        guard let goalEntity = NSEntityDescription.entity(forEntityName: "Goal", in: PersistantStorageCoordinator().context) else {
-            return nil
-        }
-        return goalEntity
-    }
-    
-    func createMealEntity() -> NSEntityDescription? {
-        guard let mealEntity = NSEntityDescription.entity(forEntityName: "Meal", in: PersistantStorageCoordinator().context) else {
-            return nil
-        }
-        return mealEntity
-    }
-
-}
+//
+//extension NSEntityDescription {
+//    func createEntityDay() -> NSEntityDescription? {
+//        guard let dayEntity = NSEntityDescription.entity(forEntityName: "Day", in: PersistantStorageCoordinator().context) else {
+//            return nil
+//        }
+//        return dayEntity
+//    }
+//    
+//    func createGoalEntity() -> NSEntityDescription? {
+//        guard let goalEntity = NSEntityDescription.entity(forEntityName: "Goal", in: PersistantStorageCoordinator().context) else {
+//            return nil
+//        }
+//        return goalEntity
+//    }
+//    
+//    func createMealEntity() -> NSEntityDescription? {
+//        guard let mealEntity = NSEntityDescription.entity(forEntityName: "Meal", in: PersistantStorageCoordinator().context) else {
+//            return nil
+//        }
+//        return mealEntity
+//    }
+//
+//}
 
 extension NSManagedObject {
-    func createDay()-> Day {
-        return NSEntityDescription.insertNewObject(forEntityName: "Day", into: PersistantStorageCoordinator().context) as! Day
+    static func createDay(date:NSDate, completion:(_ successful:Bool)-> Void) {
+         let newDay = NSEntityDescription.insertNewObject(forEntityName: "Day", into: PersistantStorageCoordinator().context) as! Day
+        newDay.date = date
+        newDay.proteinCount = 0
+        newDay.caloriesCount = 0
+        PersistantStorageCoordinator().save { (success:Bool) in
+            if (success) {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
     
-    func createGoal()-> Goal {
-        return NSEntityDescription.insertNewObject(forEntityName: "Goal", into: PersistantStorageCoordinator().context) as! Goal
+    static func createGoal(proteinGoal:Int16, isCurrentGoal:Bool, completion:(_ successful:Bool)-> Void) {
+        let newGoal = NSEntityDescription.insertNewObject(forEntityName: "Goal", into: PersistantStorageCoordinator().context) as! Goal
+        newGoal.proteinGoal = proteinGoal
+        newGoal.isCurrentGoal = isCurrentGoal
+        let newDayForNewGoal = NSEntityDescription.insertNewObject(forEntityName: "Day", into:PersistantStorageCoordinator().context)
+        newGoal.days?.adding(newDayForNewGoal)
+        PersistantStorageCoordinator().save { (success:Bool) in
+            if (success) {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
     
-    func createMeal()-> Meal {
-         return NSEntityDescription.insertNewObject(forEntityName: "Meal", into: PersistantStorageCoordinator().context) as! Meal
+    static func createMeal(protein:Int16, calories:Int16, name:String, day:Day, completion:(_ successful:Bool)-> Void) {
+         let newMeal = NSEntityDescription.insertNewObject(forEntityName: "Meal", into: PersistantStorageCoordinator().context) as! Meal
+        newMeal.protein = protein
+        newMeal.calories = calories
+        newMeal.name = name
+        PersistantStorageCoordinator().save { (success:Bool) in
+            if (success) {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
 }
 
 
 extension NSFetchRequest {
-    func getCurrentDay()-> Day? {
+    static func getCurrentDay()-> Day? {
         let daysRequest:NSFetchRequest<Day> = Day.fetchRequest()
         let dayDescriptor = NSSortDescriptor(key: "date", ascending: false)
         daysRequest.sortDescriptors = [dayDescriptor]
@@ -93,27 +125,64 @@ extension NSFetchRequest {
         }
     }
     
-//    func getCurrentGoal()-> Goal? {
-//        let goalRequest:NSFetchRequest<Goal> = Goal.fetchRequest()
-//        do {
-//            let goals = try PersistantStorageCoordinator().context.fetch(goalRequest)
-//            
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//    }
+    static func getCurrentGoal()-> Goal? {
+        let goalRequest:NSFetchRequest<Goal> = Goal.fetchRequest()
+        do {
+            let goals = try PersistantStorageCoordinator().context.fetch(goalRequest)
+            for goal in goals {
+                if (goal.isCurrentGoal == true) {
+                    return goal
+                } else {
+                    return nil
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
+        return nil
+    }
 }
 
 extension Goal {
-    func getCurrentDay()-> Day? {
-        let daySorter = NSSortDescriptor(key: "date", ascending: false)
-        let sortedDays = self.days?.sortedArray(using: [daySorter]) as? [Day]
-        guard sortedDays != nil else {
+    func getCurrentyDay()-> Day? {
+        let sortedDaysSet = self.days?.sortedArray(using: [NSSortDescriptor(key:"date", ascending:false)])
+        let sortedDayArray = sortedDaysSet as? [Day]
+        guard let sortedDays = sortedDayArray else {
             return nil
         }
-        return sortedDays?[0]
+        return sortedDays[0]
     }
 }
+
+extension Day {
+    func getProteinTotal() {
+        guard let allMeals = self.meals?.allObjects as? [Meal] else {
+            return
+        }
+        for meal in allMeals {
+            self.proteinCount += meal.protein
+        }
+        PersistantStorageCoordinator().save { (success) in
+            if (success) {
+                    print("protein total calculated")
+            }
+        }
+    }
+}
+
+
+
+extension NSDate {
+    func readableDate()-> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter.string(from: self as Date)
+    }
+}
+
+
+
 
 
 

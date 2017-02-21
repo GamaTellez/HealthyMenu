@@ -24,13 +24,4 @@ class PersistantStorageCoordinator:NSObject {
             }
         }
     }
-//    func saveToCoreData(_ completion:(_ succesful:Bool) -> Void) {
-//        do {
-//            try self.managedContext.save()
-//            completion(true)
-//            // NSNotificationCenter.defaultCenter().postNotificationName(kitemSuccedsfullySaved, object: nil)
-//        } catch let error as NSError {
-//            completion(false)
-//            print(error.localizedDescription)
-//        }
-//    }
+

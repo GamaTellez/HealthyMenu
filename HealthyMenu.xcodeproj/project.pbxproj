@@ -116,10 +116,18 @@
 			isa = PBXGroup;
 			children = (
 				8736ACC71DEF41F300C19CC9 /* AddMealView.swift */,
+				873FC6F71E5BCFA200DCCE6F /* AddGoalView */,
+			);
+			name = "Add Meal View";
+			sourceTree = "<group>";
+		};
+		873FC6F71E5BCFA200DCCE6F /* AddGoalView */ = {
+			isa = PBXGroup;
+			children = (
 				8712DE0F1E5530AD00859F59 /* AddGoalView.swift */,
 				87ABB7851E555AA700024849 /* AddGoalView.xib */,
 			);
-			name = "Add Meal View";
+			name = AddGoalView;
 			sourceTree = "<group>";
 		};
 		8772CE4C1D81D82000A7DD7E = {
