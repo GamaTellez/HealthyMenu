@@ -151,7 +151,11 @@ extension Goal {
         guard let sortedDays = sortedDayArray else {
             return nil
         }
+        if (sortedDays.isEmpty) {
+            return nil
+        } else {
         return sortedDays[0]
+        }
     }
 }
 

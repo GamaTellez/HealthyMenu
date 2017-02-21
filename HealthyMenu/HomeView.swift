@@ -43,7 +43,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         guard let goalToDisplay = self.currentGoal else {
             guard let goalFetched = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else {
                 self.navBarTitleButton.setTitle("Tap To Add Day", for: .normal)
-                self.addProtein.isEnabled = false
                 self.navBarTitleButton.isEnabled = false
                 return
             }
@@ -65,7 +64,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         self.viewHistory.image = UIImage(named: "History")
         self.viewHistory.tintColor = UIColor.black
         self.navBarTitleButton.backgroundColor = UIColor.red
-        self.navBarTitleButton.setTitle("Friday January 12", for: .normal)
         self.navBarTitleButton.sizeToFit()
         self.navBarTitleButton.addTarget(self, action: #selector(self.titleButtontapped), for: UIControlEvents.touchUpInside)
         self.navigationItem.titleView = self.navBarTitleButton
@@ -79,7 +77,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         resetView.show()
         self.view.addSubview(resetView)
         self.navBarTitleButton.isEnabled = false
-        self.addProtein.isEnabled = false
         self.viewHistory.isEnabled = false
     }
     
