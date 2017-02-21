@@ -10,6 +10,11 @@ import UIKit
 
 class ResetDayView: UIView {
     
+    @IBOutlet var cancelButton: UIButton!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var messageLabel: UILabel!
+    @IBOutlet var resetButton: UIButton!
+    
     override init(frame:CGRect) {
         super.init(frame: frame)
     }
@@ -18,51 +23,33 @@ class ResetDayView: UIView {
         self.init()
         self.frame =  CGRect(x: 5,
                              y: distanceFromTop + 10,
-                             width: frame.width - 10,
+                             width: frame.width - 20,
                              height: frame.height / 3)
-        let infoLabel = self.createInfoLabel(from: self.frame)
-        self.addSubview(infoLabel)
-        let resetButton = self.createResetDayButton(from: infoLabel.frame)
-         resetButton.addTarget(viewController, action: resetDaySelector, for: .touchUpInside)
-        self.addSubview(resetButton)
-        let cancelButton = self.createCancelButton(from: resetButton.frame)
-        cancelButton.addTarget(viewController, action: enableViewButtons, for: .touchUpInside)
-        self.addSubview(cancelButton)
-        self.backgroundColor = UIColor.gray
+        self.addSubview(self.instanceFromNib())
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private func createInfoLabel(from frame:CGRect) -> UILabel {
-        let infoLabel = UILabel(frame: CGRect(x: 5,
-                                              y: 10,
-                                              width: frame.width - 10,
-                                              height: frame.height / 3))
-        infoLabel.text = "Are you sure you want to re start the day? doing so will also set your protein count to 0"
-        infoLabel.numberOfLines = 0
-        return infoLabel
+    private func instanceFromNib() -> ResetDayView {
+        return UINib(nibName: "ResetDayView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! ResetDayView
     }
     
-    private func createResetDayButton(from frame:CGRect)-> UIButton {
-        let resetButton = UIButton(frame: CGRect(x: 10,
-                                                 y: frame.origin.y + frame.height + 10,
-                                                 width: self.frame.width - 20,
-                                                 height: self.frame.height / 4))
-        resetButton.setTitle("Add New Day", for: .normal)
-        resetButton.addTarget(self, action: #selector(self.remove), for: .touchUpInside)
-        return resetButton
+    override func awakeFromNib() {
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor.black.cgColor
+        self.setUpButtons()
+        self.setUpLabels()
     }
     
-    private func createCancelButton(from frame:CGRect)-> UIButton {
-        let cancelButton = UIButton(frame: CGRect(x: 10,
-                                                  y: frame.origin.y + frame.height + 10,
-                                                  width: self.frame.width - 20,
-                                                  height: self.frame.height / 4))
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.addTarget(self, action: #selector(remove), for: .touchUpInside)
-        return cancelButton
+    @IBAction func cancelButtonTapped(_ sender: UIButton) {
+        self.remove()
+    }
+    
+    
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        self.remove()
     }
     
     internal func show() {
@@ -86,4 +73,16 @@ class ResetDayView: UIView {
         }
     }
 
+    private func setUpButtons() {
+        self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
+        self.cancelButton.sizeToFit()
+    }
+    
+    private func setUpLabels() {
+        self.titleLabel.text = "New Day?"
+        self.messageLabel.text = "Starting a new day will reset your protein count to 0, do you want to continue"
+        self.messageLabel.numberOfLines = 0
+        self.messageLabel.lineBreakMode = .byWordWrapping
+    }
+    
 }

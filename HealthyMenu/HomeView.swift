@@ -29,11 +29,11 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         self.decrease.addTarget(self, action: #selector(self.substract), for: UIControlEvents.touchDown)
         self.decrease.addTarget(self, action: #selector(self.stop), for: UIControlEvents.touchUpInside)
         self.setUpViews()
-        self.loadInfoInViews()
+       // self.loadInfoInViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.loadInfoInViews()
+        //self.loadInfoInViews()
     }
     
     /*********************************************************
