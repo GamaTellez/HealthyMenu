@@ -12,7 +12,7 @@ import UIKit
     private var timer: Timer!
     private let kStartingAngle = -90.0
     internal var proteinGoal:Double = 0
-    internal var proteinCount:Double?
+    internal var proteinCount:Double = 0
     @IBInspectable var strokeColor:UIColor = UIColor.black
     @IBInspectable var strokeWidth:CGFloat = 20.0
     @IBInspectable var completed:Double = 0 {
@@ -43,14 +43,16 @@ import UIKit
     internal func updateLabel(goal:Double, currentDayCount:Double) {
         self.proteinCount = currentDayCount
         self.proteinGoal = goal
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
-            self.completed += 1
-            self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
-
-            if (self.completed == self.proteinCount) {
-                self.timer.invalidate()
-            }
-        })
+        self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
+        if (self.proteinCount != 0) {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
+                self.completed += 1
+                self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
+                if (self.completed == self.proteinCount) {
+                    self.timer.invalidate()
+                }
+            })
+        }
     }
     
     func degreesToRadians (_ value:Double) -> Double {

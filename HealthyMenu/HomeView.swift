@@ -148,7 +148,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
                 self.viewHistory.isEnabled = true
                 guard let proteinGoal = self.currentGoal?.proteinGoal else { return }
                 guard let currrentCount = self.currentGoal?.getCurrentyDay()?.proteinCount else { return }
-                self.currentProteinCountLabel.updateLabel(goal: Double(proteinGoal), currentDayCount: Double(150))
+                self.currentProteinCountLabel.updateLabel(goal: Double(proteinGoal), currentDayCount: Double(currrentCount))
             } else {
                 print("present alert controller cause it failed to save")
             }

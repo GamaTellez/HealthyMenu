@@ -112,15 +112,13 @@ extension NSFetchRequest {
             for goal in goals {
                 if (goal.isCurrentGoal == true) {
                     return goal
-                } else {
-                    return nil
                 }
             }
+            return nil
         } catch {
             print(error.localizedDescription)
             return nil
         }
-        return nil
     }
 }
 
