@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import CoreData
+
+protocol NewDayDelegate {
+    func newDayAdded(date:NSDate)
+}
 
 class ResetDayView: UIView {
-    
+    var delegate:NewDayDelegate?
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
@@ -19,12 +24,12 @@ class ResetDayView: UIView {
         super.init(frame: frame)
     }
 
-    convenience init(frame:CGRect, distanceFromTop:CGFloat, resetDaySelector:Selector, viewController:UIViewController, enableViewButtons:Selector) {
+    convenience init(frame:CGRect, distanceFromTop:CGFloat) {
         self.init()
         self.frame =  CGRect(x: 5,
                              y: distanceFromTop + 10,
                              width: frame.width - 20,
-                             height: frame.height / 3)
+                              height: frame.height / 3)
         self.addSubview(self.instanceFromNib())
     }
     
@@ -44,12 +49,17 @@ class ResetDayView: UIView {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        self.remove()
+        self.remove(newDayAdded:false)
     }
     
-    
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        self.remove()
+        NSManagedObject.createDay(date: NSDate()) { (completed) in
+            if (completed) {
+                self.remove(newDayAdded: true)
+            } else {
+                self.remove(newDayAdded: false)
+            }
+        }
     }
     
     internal func show() {
@@ -62,13 +72,17 @@ class ResetDayView: UIView {
         }
     }
     
-    @objc private func remove() {
+    @objc private func remove(newDayAdded:Bool) {
         UIView.animate(withDuration: 0.25, animations: {
             self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.alpha = 0
         }) { (finished) in
             if (finished) {
                 self.removeFromSuperview()
+                guard let delegate = self.delegate else {
+                    return
+                }
+                delegate.newDayAdded(date: NSDate())
             }
         }
     }

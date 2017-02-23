@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate {
+class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate, NewDayDelegate {
     @IBOutlet var currentProteinCountLabel: CircularProgressLabel!
     @IBOutlet var decrease: UIButton!
     @IBOutlet var increase: UIButton!
@@ -29,33 +29,43 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         self.decrease.addTarget(self, action: #selector(self.substract), for: UIControlEvents.touchDown)
         self.decrease.addTarget(self, action: #selector(self.stop), for: UIControlEvents.touchUpInside)
         self.setUpViews()
-       // self.loadInfoInViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //self.loadInfoInViews()
+        self.loadInfoInViews()
     }
     
     /*********************************************************
      * setting up the views
      **********************************************************/
     private func loadInfoInViews() {
-        guard let goalToDisplay = self.currentGoal else {
-            guard let goalFetched = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else {
-                self.navBarTitleButton.setTitle("Tap To Add Day", for: .normal)
-                self.navBarTitleButton.isEnabled = false
-                return
-            }
-            self.currentGoal = goalFetched
+        guard let currentFetchGoal = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else {
+            self.enableViewButtons(enabled: false)
+            self.navBarTitleButton.setTitleColor(UIColor.black, for: .normal)
+            print("no goals have been saved")
             return
         }
-        guard let dayStringDate = goalToDisplay.getCurrentyDay()?.date?.readableDate() else {
-            self.navBarTitleButton.setTitle("Tap To Add Date", for: .normal)
+        self.currentGoal = currentFetchGoal
+        guard let stringDateForTitleButton = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else {
             return
         }
-        self.navBarTitleButton.setTitle(dayStringDate, for: .normal)
-        
+        self.navBarTitleButton.setTitle(stringDateForTitleButton, for: .normal)
+        guard let proteinGoal = self.currentGoal?.proteinGoal else {
+            return
+        }
+        guard let currentDayProteinCount = self.currentGoal?.getCurrentyDay()?.proteinCount else {
+            return
+        }
+        self.currentProteinCountLabel.updateLabel(goal: Double(proteinGoal), currentDayCount: Double(currentDayProteinCount))
+        self.enableViewButtons(enabled: true)
     }
+    
+    /************************************************************
+    * enable or disable views depending on the app status
+    **************************************************************/
+    private func enableViewButtons(enabled:Bool) {
+        self.navBarTitleButton.isEnabled = enabled
+        self.addProtein.isEnabled = enabled
+        self.viewHistory.isEnabled = enabled
+    }
+    
     
     /*********************************************************
     * setting up the views
@@ -63,9 +73,9 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     private func setUpViews() {
         self.viewHistory.image = UIImage(named: "History")
         self.viewHistory.tintColor = UIColor.black
-        self.navBarTitleButton.backgroundColor = UIColor.red
         self.navBarTitleButton.sizeToFit()
         self.navBarTitleButton.addTarget(self, action: #selector(self.titleButtontapped), for: UIControlEvents.touchUpInside)
+        self.navBarTitleButton.setTitle("Add a goal =====>", for: .disabled)
         self.navigationItem.titleView = self.navBarTitleButton
     }
     
@@ -73,11 +83,10 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * title button tapped
      **********************************************************/
     @objc private func titleButtontapped() {
-        let resetView:ResetDayView = ResetDayView(frame: self.view.frame, distanceFromTop: (self.navigationController?.navigationBar.frame.height)! + 20, resetDaySelector: #selector(self.resetDay), viewController:self, enableViewButtons:#selector(self.enableViewButtons))
+        let resetView:ResetDayView = ResetDayView(frame: self.view.frame, distanceFromTop: (self.navigationController?.navigationBar.frame.height)! + 20)
+        resetView.delegate = self
         resetView.show()
         self.view.addSubview(resetView)
-        self.navBarTitleButton.isEnabled = false
-        self.viewHistory.isEnabled = false
     }
     
     /*********************************************************
@@ -130,16 +139,43 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * newGoalCreatedDelegate
      ***********************************************************/
     func newGoalCreated(with proteinGoal: Int16, isCurrent: Bool) {
+        if (self.currentGoal != nil) {
+            self.currentGoal?.isCurrentGoal = false
+        }
         NSManagedObject.createGoal(proteinGoal: proteinGoal, isCurrentGoal: isCurrent, completion: { (success:Bool) in
             if (success) {
                 guard let newCurrentGoal = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else { return }
                 self.currentGoal = newCurrentGoal
+                guard let stringDateForTitle = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else { return }
+                self.navBarTitleButton.setTitle(stringDateForTitle, for: .normal)
+                self.navBarTitleButton.isEnabled = true
+                self.addProtein.isEnabled = true
+                self.viewHistory.isEnabled = true
+                guard let proteinGoal = self.currentGoal?.proteinGoal else { return }
+                guard let currrentCount = self.currentGoal?.getCurrentyDay()?.proteinCount else { return }
+                self.currentProteinCountLabel.updateLabel(goal: Double(proteinGoal), currentDayCount: Double(150))
             } else {
                 print("present alert controller cause it failed to save")
             }
         })
-
     }
+    
+    
+    /**********************************************************
+     * newDayDelegate
+     ***********************************************************/
+    func newDayAdded(date: NSDate) {
+        NSManagedObject.createDay(date: date) { (success) in
+            if (success) {
+                guard let newDayDateString = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else { return }
+                self.navBarTitleButton.setTitle(newDayDateString, for: .normal)
+                guard let currentGoal = self.currentGoal?.proteinGoal else { return }
+                guard let currentProteinCount = self.currentGoal?.getCurrentyDay()?.proteinCount else { return }
+                self.currentProteinCountLabel.updateLabel(goal: Double(currentGoal), currentDayCount: Double(currentProteinCount))
+            }
+        }
+    }
+
     func substract() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
             self.currentProteinCountLabel.completed -= 1
@@ -164,35 +200,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     @IBAction func viewHistoryButtonTapped(_ sender: Any) {
         
     }
-        
-    /**********************************************************
-     * resetDay
-     ***********************************************************/
-    @objc func resetDay() {
-        if (!self.navBarTitleButton.isEnabled) {
-            self.navBarTitleButton.isEnabled = true
-        }
-        NSManagedObject.createDay(date: NSDate()) { (success) in
-            if (success) {
-                print("day created")
-            } else {
-                print("failed to create day")
-            }
-        }
-    }
-    
-    @objc private func enableViewButtons() {
-        if (!self.navBarTitleButton.isEnabled) {
-            self.navBarTitleButton.isEnabled = true
-        }
-        if (!self.addProtein.isEnabled) {
-            self.addProtein.isEnabled = true
-        }
-        if (!self.viewHistory.isEnabled) {
-            self.viewHistory.isEnabled = false
-        }
-    }
-
 }
 
 

@@ -24,7 +24,7 @@ class AddGoalView: UIView {
 
 
     override init(frame: CGRect) {
-        super.init(frame:CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 3))
+        super.init(frame:CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 30, height: frame.height / 3))
             self.addSubview(self.instanceFromNib())
     }
     
@@ -42,6 +42,7 @@ class AddGoalView: UIView {
         self.proteinSlider.setValue(0, animated: true)
         self.proteinGoalLabel.text = "0"
         self.saveButton.setTitle("S", for: .normal)
+        self.titleLabel.text = "Add New Goal"
     }
     
     @IBAction func proteinSliderValueChanged(_ sender: UISlider) {
@@ -64,9 +65,7 @@ class AddGoalView: UIView {
         UIView.animate(withDuration: 0.3, animations: {
             self.center = self.superview!.center
         }, completion: {(finished:Bool) in
-            print(self.delegate!)
         })
-        print(self.delegate!)
     }
     
     @objc private func dismiss() {

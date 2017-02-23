@@ -40,30 +40,6 @@ extension URLSession {
         menuTask.resume()
     }
 }
-//
-//extension NSEntityDescription {
-//    func createEntityDay() -> NSEntityDescription? {
-//        guard let dayEntity = NSEntityDescription.entity(forEntityName: "Day", in: PersistantStorageCoordinator().context) else {
-//            return nil
-//        }
-//        return dayEntity
-//    }
-//    
-//    func createGoalEntity() -> NSEntityDescription? {
-//        guard let goalEntity = NSEntityDescription.entity(forEntityName: "Goal", in: PersistantStorageCoordinator().context) else {
-//            return nil
-//        }
-//        return goalEntity
-//    }
-//    
-//    func createMealEntity() -> NSEntityDescription? {
-//        guard let mealEntity = NSEntityDescription.entity(forEntityName: "Meal", in: PersistantStorageCoordinator().context) else {
-//            return nil
-//        }
-//        return mealEntity
-//    }
-//
-//}
 
 extension NSManagedObject {
     static func createDay(date:NSDate, completion:(_ successful:Bool)-> Void) {
@@ -84,7 +60,11 @@ extension NSManagedObject {
         let newGoal = NSEntityDescription.insertNewObject(forEntityName: "Goal", into: PersistantStorageCoordinator().context) as! Goal
         newGoal.proteinGoal = proteinGoal
         newGoal.isCurrentGoal = isCurrentGoal
-        let newDayForNewGoal = NSEntityDescription.insertNewObject(forEntityName: "Day", into:PersistantStorageCoordinator().context)
+        let newDayForNewGoal = NSEntityDescription.insertNewObject(forEntityName: "Day", into:PersistantStorageCoordinator().context) as! Day
+        newDayForNewGoal.date = NSDate()
+        newDayForNewGoal.proteinCount = 0
+        newDayForNewGoal.caloriesCount = 0
+        newDayForNewGoal.goal = newGoal
         newGoal.days?.adding(newDayForNewGoal)
         PersistantStorageCoordinator().save { (success:Bool) in
             if (success) {

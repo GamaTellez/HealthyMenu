@@ -11,7 +11,8 @@ import UIKit
 @IBDesignable class CircularProgressLabel: UILabel {
     
     private let kStartingAngle = -90.0
-    private(set) var proteinGoal = 300.0
+    internal var proteinGoal:Double = 0.0
+    internal var proteinCount:Double?
     @IBInspectable var strokeColor:UIColor = UIColor.black
     @IBInspectable var strokeWidth:CGFloat = 20.0
     @IBInspectable var completed:Double = 0 {
@@ -38,6 +39,16 @@ import UIKit
             strokePath.stroke()
         }
     }
+    
+    internal func updateLabel(goal:Double, currentDayCount:Double) {
+        self.proteinGoal = goal
+        self.proteinCount = currentDayCount
+        self.text = String(format:"%0f / %0f", self.proteinCount!, self.proteinGoal)
+        while (self.completed < self.proteinCount!) {
+            self.completed += 1
+        }
+    }
+    
     func degreesToRadians (_ value:Double) -> Double {
         return value * Double(M_PI) / 180.0
     }
