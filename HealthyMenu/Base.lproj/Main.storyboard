@@ -80,14 +80,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2e-ee-wmU">
-                                <rect key="frame" x="70" y="545" width="30" height="30"/>
-                                <state key="normal" title="+"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ipb-wI-4SL">
-                                <rect key="frame" x="16" y="545" width="30" height="30"/>
-                                <state key="normal" title="-"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca4-Jv-Ltd" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
                                 <rect key="frame" x="122" y="414" width="130" height="130"/>
                                 <constraints>
@@ -121,15 +113,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JqO-u8-t4g" firstAttribute="centerX" secondItem="Ca4-Jv-Ltd" secondAttribute="centerX" id="1df-LA-9aF"/>
-                            <constraint firstItem="J2e-ee-wmU" firstAttribute="leading" secondItem="Ipb-wI-4SL" secondAttribute="trailing" constant="24" id="BzA-a8-l3E"/>
                             <constraint firstAttribute="bottom" secondItem="qcI-zZ-WRB" secondAttribute="bottom" constant="20" symbolic="YES" id="ISF-Gs-BGu"/>
                             <constraint firstItem="JqO-u8-t4g" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="26" id="KEh-cz-jYS"/>
                             <constraint firstItem="qcI-zZ-WRB" firstAttribute="top" secondItem="Ca4-Jv-Ltd" secondAttribute="bottom" constant="53" id="Tbf-ck-1fG"/>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Wbl-vh-uh8"/>
                             <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="JqO-u8-t4g" secondAttribute="centerX" id="XyR-7K-YGj"/>
                             <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="top" secondItem="JqO-u8-t4g" secondAttribute="bottom" constant="21" id="afS-MG-GL4"/>
-                            <constraint firstItem="Ipb-wI-4SL" firstAttribute="baseline" secondItem="J2e-ee-wmU" secondAttribute="baseline" id="gzr-JA-bpG"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ipb-wI-4SL" secondAttribute="bottom" constant="92" id="hfp-vV-htz"/>
                             <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="centerX" secondItem="qcI-zZ-WRB" secondAttribute="centerX" id="m8T-n8-1Sg"/>
                             <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="tQm-Sf-h4Z" secondAttribute="centerX" id="nbT-Ur-NKu"/>
                             <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="kES-cJ-rQc" secondAttribute="bottom" constant="3" id="owg-5X-zIo"/>
@@ -155,8 +143,6 @@
                         <outlet property="addProtein" destination="qcI-zZ-WRB" id="h1m-VQ-4dj"/>
                         <outlet property="currentCaloriesLabel" destination="Ca4-Jv-Ltd" id="r4u-iC-Ld3"/>
                         <outlet property="currentProteinCountLabel" destination="tQm-Sf-h4Z" id="Mqo-gS-Ajz"/>
-                        <outlet property="decrease" destination="Ipb-wI-4SL" id="jZl-62-Nxo"/>
-                        <outlet property="increase" destination="J2e-ee-wmU" id="cl4-FE-z8r"/>
                         <outlet property="newGoalButton" destination="nAV-XO-LXL" id="uaI-Ng-Aol"/>
                         <outlet property="viewHistory" destination="EDc-71-wgg" id="HPO-5o-GD2"/>
                     </connections>

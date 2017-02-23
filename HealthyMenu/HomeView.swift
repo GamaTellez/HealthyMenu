@@ -18,16 +18,11 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     @IBOutlet var addProtein: UIButton!
     @IBOutlet var viewHistory: UIBarButtonItem!
     var currentGoal:Goal?
-    var timer: Timer!
     var navBarTitleButton:UIButton = UIButton(type: .custom)
     @IBOutlet var newGoalButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
-        self.increase.addTarget(self, action: #selector(self.add), for: UIControlEvents.touchDown)
-        self.increase.addTarget(self, action: #selector(self.stop), for: UIControlEvents.touchUpInside)
-        self.decrease.addTarget(self, action: #selector(self.substract), for: UIControlEvents.touchDown)
-        self.decrease.addTarget(self, action: #selector(self.stop), for: UIControlEvents.touchUpInside)
         self.setUpViews()
         self.loadInfoInViews()
     }
@@ -176,23 +171,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         }
     }
 
-    func substract() {
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
-            self.currentProteinCountLabel.completed -= 1
-            self.currentProteinCountLabel.text = String(format:"%.2f", self.currentProteinCountLabel.completed)
-        })
-    }
-    
-    func stop() {
-        self.timer.invalidate()
-    }
-    
-    func add() {
-        self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
-            self.currentProteinCountLabel.completed += 1
-            self.currentProteinCountLabel.text = String(format:"%.2f", self.currentProteinCountLabel.completed)
-        })
-    }
     
     /**********************************************************
      * viewHistoryButtonTapped
