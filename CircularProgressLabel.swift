@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
 @IBDesignable class CircularProgressLabel: UILabel {
+
     private var timer: Timer!
     private let kStartingAngle = -90.0
     internal var proteinGoal:Double = 0
@@ -40,14 +42,29 @@ import UIKit
         }
     }
     
-    internal func updateLabel(goal:Double, currentDayCount:Double) {
-        self.proteinCount = currentDayCount
-        self.proteinGoal = goal
-        self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
+    internal func update() {
+                guard let currentGoal = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else { return }
+                guard let currentCountInDay = currentGoal.getCurrentyDay()?.proteinCount else { return }
+                self.animateLabel(proteinCount: Double(currentCountInDay), proteinGoal: Double(currentGoal.proteinGoal))
+    }
+
+    private func animateLabel(proteinCount:Double, proteinGoal:Double) {
+        self.proteinGoal = proteinGoal
+        self.proteinCount = proteinCount
+        self.text = String(format: "%.0f / %.0f", proteinCount, proteinGoal)
         if (self.proteinCount != 0) {
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
                 self.completed += 1
-                self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
+                self.text = String(format: "%.0f / %.0f", self.completed, proteinGoal)
+                if (self.completed == self.proteinCount) {
+                    self.timer.invalidate()
+                }
+            })
+        }
+        if (self.completed > self.proteinCount) {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { (timer) in
+                self.completed -= 1
+                self.text = String(format: "%.0f / %.0f", self.completed, proteinGoal)
                 if (self.completed == self.proteinCount) {
                     self.timer.invalidate()
                 }

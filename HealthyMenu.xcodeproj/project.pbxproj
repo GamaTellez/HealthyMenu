@@ -121,7 +121,6 @@
 			children = (
 				8736ACC71DEF41F300C19CC9 /* AddMealView.swift */,
 				873FC6FA1E5BEBC700DCCE6F /* AddMealView.xib */,
-				873FC6F71E5BCFA200DCCE6F /* AddGoalView */,
 			);
 			name = "Add Meal View";
 			sourceTree = "<group>";
@@ -199,6 +198,7 @@
 				877AD94F1DE5073D0090683F /* CircledLabel.swift */,
 				87FB48FC1E4D1C850076049F /* ResetDayView */,
 				87FB48FB1E4D1C7B0076049F /* AddProteinOptionsView */,
+				873FC6F71E5BCFA200DCCE6F /* AddGoalView */,
 				8736ACC91DEF41FB00C19CC9 /* Add Meal View */,
 				87F46E711E36BE4100230225 /* GoalsHistory */,
 			);

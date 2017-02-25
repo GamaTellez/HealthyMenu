@@ -24,8 +24,10 @@ class AddGoalView: UIView {
 
 
     override init(frame: CGRect) {
-        super.init(frame:CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 30, height: frame.height / 3))
+        super.init(frame:CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 3))
             self.addSubview(self.instanceFromNib())
+            self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderWidth = 0.5
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,6 +52,11 @@ class AddGoalView: UIView {
     }
     
     @IBAction func saveBurronTapped(_ sender: UIButton) {
+        guard let delegate = self.delegate else {
+            self.dismiss()
+            return
+        }
+        delegate.newGoalCreated(with: Int16(self.proteinSlider.value), isCurrent: true)
         self.dismiss()
     }
   
@@ -73,8 +80,6 @@ class AddGoalView: UIView {
             self.center.y += self.superview!.frame.height
             self.alpha = 0
         }, completion: { (finished:Bool) in
-            guard let delegate = self.delegate else { return }
-            delegate.newGoalCreated(with: Int16(self.proteinSlider.value), isCurrent: true)
             self.removeFromSuperview()
         })
     }

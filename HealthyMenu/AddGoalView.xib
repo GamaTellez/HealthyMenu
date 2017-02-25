@@ -13,48 +13,43 @@
             <connections>
                 <outlet property="cancelButton" destination="voP-jM-HCJ" id="gQV-pd-mHu"/>
                 <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="Z98-L3-5SH"/>
-                <outlet property="proteinSlider" destination="hsa-Kr-YRL" id="8hk-cE-b7z"/>
+                <outlet property="proteinSlider" destination="LD1-vM-CSf" id="VW6-rU-B5W"/>
                 <outlet property="saveButton" destination="Nnj-9q-gwn" id="AVq-Nd-UP7"/>
                 <outlet property="titleLabel" destination="EdF-2w-20n" id="gw6-T2-Ck3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddGoalView" customModule="HealthyMenu" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+            <rect key="frame" x="0.0" y="0.0" width="355" height="210"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdF-2w-20n">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="axg-wV-ERT"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aJ-t0-D0w">
-                    <rect key="frame" x="163" y="46" width="48" height="41"/>
+                    <rect key="frame" x="153" y="51" width="48" height="41"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="48" id="V7G-YP-kA4"/>
+                        <constraint firstAttribute="width" constant="48" id="5W1-uH-awF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hsa-Kr-YRL">
-                    <rect key="frame" x="-2" y="109" width="379" height="31"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="i71-Vo-THw"/>
-                    </constraints>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnj-9q-gwn">
+                    <rect key="frame" x="153" y="180" width="48" height="30"/>
+                    <state key="normal" title="Save"/>
                     <connections>
-                        <action selector="proteinSliderValueChanged:" destination="-1" eventType="valueChanged" id="PpG-Uk-dl9"/>
-                        <action selector="proteinSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="vmx-ig-T2C"/>
+                        <action selector="saveBurronTapped:" destination="-1" eventType="touchUpInside" id="5TL-rz-ecF"/>
+                        <action selector="saveBurronTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qtz-7v-l03"/>
                     </connections>
-                </slider>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voP-jM-HCJ">
-                    <rect key="frame" x="51" y="191" width="46" height="30"/>
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="xPL-Il-KBA"/>
+                        <constraint firstAttribute="width" constant="50" id="RfD-nS-rUq"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
@@ -62,40 +57,41 @@
                         <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="zMW-KX-GB1"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnj-9q-gwn">
-                    <rect key="frame" x="289" y="191" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-vM-CSf">
+                    <rect key="frame" x="14" y="114" width="327" height="31"/>
                     <connections>
-                        <action selector="saveBurronTapped:" destination="-1" eventType="touchUpInside" id="5TL-rz-ecF"/>
-                        <action selector="saveBurronTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qtz-7v-l03"/>
+                        <action selector="proteinSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="Jbn-i4-XXL"/>
+                        <action selector="proteinSliderValueChanged:" destination="-1" eventType="valueChanged" id="n6R-rg-1NW"/>
                     </connections>
-                </button>
+                </slider>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4nJ-0N-QKp"/>
-                <constraint firstItem="hsa-Kr-YRL" firstAttribute="top" secondItem="6aJ-t0-D0w" secondAttribute="bottom" constant="22" id="5XB-4t-Yyu"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="centerX" secondItem="6aJ-t0-D0w" secondAttribute="centerX" id="BYX-62-YlW"/>
-                <constraint firstItem="voP-jM-HCJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="51" id="Q6w-3i-X8G"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="leading" secondItem="hsa-Kr-YRL" secondAttribute="leading" id="S9V-7y-Yym"/>
-                <constraint firstAttribute="bottom" secondItem="voP-jM-HCJ" secondAttribute="bottom" constant="-11" id="ZOu-GQ-fTK"/>
-                <constraint firstItem="6aJ-t0-D0w" firstAttribute="top" secondItem="EdF-2w-20n" secondAttribute="bottom" constant="16" id="dBK-ya-d1o"/>
-                <constraint firstAttribute="trailing" secondItem="Nnj-9q-gwn" secondAttribute="trailing" constant="40" id="hA6-u7-8b1"/>
-                <constraint firstItem="voP-jM-HCJ" firstAttribute="top" secondItem="hsa-Kr-YRL" secondAttribute="bottom" constant="52" id="i8n-7o-iHE"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="trailing" secondItem="hsa-Kr-YRL" secondAttribute="trailing" id="maq-hT-uzX"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pQe-6G-djW"/>
-                <constraint firstAttribute="trailing" secondItem="EdF-2w-20n" secondAttribute="trailing" id="xak-Oh-nNu"/>
-                <constraint firstItem="voP-jM-HCJ" firstAttribute="baseline" secondItem="Nnj-9q-gwn" secondAttribute="baseline" id="xki-cl-89x"/>
+                <constraint firstItem="LD1-vM-CSf" firstAttribute="top" secondItem="voP-jM-HCJ" secondAttribute="bottom" constant="84" id="0Cy-Rl-zeF"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="trailing" secondItem="Nnj-9q-gwn" secondAttribute="trailing" id="254-AX-83G"/>
+                <constraint firstItem="LD1-vM-CSf" firstAttribute="top" secondItem="6aJ-t0-D0w" secondAttribute="bottom" constant="22" id="91B-Ub-p1y"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LJ4-N9-TwJ"/>
+                <constraint firstItem="EdF-2w-20n" firstAttribute="centerX" secondItem="6aJ-t0-D0w" secondAttribute="centerX" id="XqN-MC-cOK"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="leading" secondItem="EdF-2w-20n" secondAttribute="leading" id="Y1E-qz-9hD"/>
+                <constraint firstAttribute="bottom" secondItem="Nnj-9q-gwn" secondAttribute="bottom" id="aWM-Ht-AeC"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="leading" secondItem="Nnj-9q-gwn" secondAttribute="leading" id="e7B-2E-Pjs"/>
+                <constraint firstAttribute="trailing" secondItem="EdF-2w-20n" secondAttribute="trailing" id="got-zx-w1d"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="top" secondItem="EdF-2w-20n" secondAttribute="top" id="lrm-nR-Nlf"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="centerX" secondItem="LD1-vM-CSf" secondAttribute="centerX" id="nlS-a7-SOP"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="top" secondItem="EdF-2w-20n" secondAttribute="bottom" constant="21" id="qr7-Xq-nkm"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tXR-n3-X9L"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="bottom" secondItem="EdF-2w-20n" secondAttribute="bottom" id="vXK-Uy-SWZ"/>
+                <constraint firstItem="LD1-vM-CSf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="w4W-hD-CLq"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="cancelButton" destination="voP-jM-HCJ" id="0n4-Cd-UkY"/>
                 <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="vGE-NC-tqt"/>
-                <outlet property="proteinSlider" destination="hsa-Kr-YRL" id="3Vx-BG-ZH3"/>
+                <outlet property="proteinSlider" destination="LD1-vM-CSf" id="VxB-3x-LOF"/>
                 <outlet property="saveButton" destination="Nnj-9q-gwn" id="Vcs-cT-0e0"/>
                 <outlet property="titleLabel" destination="EdF-2w-20n" id="UET-bV-ney"/>
             </connections>
-            <point key="canvasLocation" x="-181.5" y="-194"/>
+            <point key="canvasLocation" x="-239.5" y="-195"/>
         </view>
     </objects>
 </document>

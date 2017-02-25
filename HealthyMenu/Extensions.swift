@@ -75,11 +75,12 @@ extension NSManagedObject {
         }
     }
     
-    static func createMeal(protein:Int16, calories:Int16, name:String, day:Day, completion:(_ successful:Bool)-> Void) {
+    static func createMeal(protein:Int16, calories:Int16, name:String, day:Day, completion:(_ success:Bool)-> Void) {
          let newMeal = NSEntityDescription.insertNewObject(forEntityName: "Meal", into: PersistantStorageCoordinator().context) as! Meal
         newMeal.protein = protein
         newMeal.calories = calories
         newMeal.name = name
+        newMeal.day = day
         PersistantStorageCoordinator().save { (success:Bool) in
             if (success) {
                 completion(true)
@@ -138,11 +139,14 @@ extension Goal {
 }
 
 extension Day {
-    func getProteinTotal() {
+    func calcProteinTotal() {
         guard let allMeals = self.meals?.allObjects as? [Meal] else {
             return
         }
+        self.proteinCount = 0
         for meal in allMeals {
+            print(String(format: "meal protein: %.02", meal.protein))
+            print(String(format:"Count %.0f", self.proteinCount))
             self.proteinCount += meal.protein
         }
         PersistantStorageCoordinator().save { (success) in
@@ -162,13 +166,3 @@ extension NSDate {
         return dateFormatter.string(from: self as Date)
     }
 }
-
-
-
-
-
-
-
-
-
-

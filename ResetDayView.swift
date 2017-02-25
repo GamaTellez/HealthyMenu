@@ -90,6 +90,7 @@ class ResetDayView: UIView {
     private func setUpButtons() {
         self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
         self.cancelButton.sizeToFit()
+        self.cancelButton.center = self.frame.origin
     }
     
     private func setUpLabels() {

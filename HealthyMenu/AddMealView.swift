@@ -15,7 +15,6 @@ protocol NewMealCreatedDelegate {
 class AddMealView: UIView , UITextFieldDelegate {
     @IBOutlet var titleViewLabel: UILabel!
     @IBOutlet var mealNameTextField: UITextField!
-    
     @IBOutlet var proteinTitleLabel: UILabel!
     @IBOutlet var proteinSlider: UISlider!
     @IBOutlet var proteinCountLabel: UILabel!
@@ -27,7 +26,7 @@ class AddMealView: UIView , UITextFieldDelegate {
     public var delegate:NewMealCreatedDelegate?
     
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 30, height: frame.height / 2))
+        super.init(frame: CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 2))
         self.addSubview(self.instanceFromNib())
     }
     
@@ -36,6 +35,8 @@ class AddMealView: UIView , UITextFieldDelegate {
         self.layer.borderWidth = 0.5
         self.setUpTextField()
         self.setUpCancelButton()
+        self.setUpSaveButton()
+        self.setUpSliders()
     }
 
     private func instanceFromNib() -> AddMealView {
@@ -47,22 +48,28 @@ class AddMealView: UIView , UITextFieldDelegate {
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
-        
+        self.dismiss()
     }
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        
+        guard let theDelegate = self.delegate else {
+            self.dismiss()
+            return
+        }
+        theDelegate.newMealCreated(protein: Int16(self.proteinSlider.value), calories: Int16(self.caloriesSlider.value), name: self.mealNameTextField.text!)
+        self.dismiss()
     }
     
     @IBAction func proteinCounterValueChanged(_ sender: UISlider) {
         self.proteinCountLabel.text = String(format:"%.0f", sender.value)
+        self.enableSaveButton()
     }
     
     @IBAction func caloriesCounterValueChanged(_ sender: UISlider) {
-        self.caloriesCounterLabel.text = String(format:"%.0f")
+        self.caloriesCounterLabel.text = String(format:"%.0f", self.caloriesSlider.value)
+        self.enableSaveButton()
     }
 
-    
     internal func present() {
         UIView.animate(withDuration: 0.3, animations: {
             self.center = self.superview!.center
@@ -78,25 +85,6 @@ class AddMealView: UIView , UITextFieldDelegate {
         })
     }
     
-    /*****************************************************
-     *check if all requirements for meal have been added
-     ******************************************************/
-    private func checkToEnableSaveButton() {
- 
-        }
-    
-    /*****************************************************
-     *it saves the new meal when all information needed is 
-     * provided
-     ******************************************************/
-    @objc private func saveNewMeal() {
-//        if (self.delegate != nil) {
-//            self.delegate?.newMealCreated(protein: Int16(self.proteinLabel.text!)!
-//                , calories: Int16(self.caloriesLabel.text!)!, name: self.nameTextField.text!)
-//        }
-        self.dismiss()
-    }
-    
     private func setUpCancelButton() {
         self.cancelButton.center = self.frame.origin
         self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
@@ -105,17 +93,36 @@ class AddMealView: UIView , UITextFieldDelegate {
         self.cancelButton.tintColor = UIColor.black
     }
     
+    private func setUpSaveButton() {
+        self.saveButton.isEnabled = false
+    }
+    
+    
     private func setUpTextField() {
         self.mealNameTextField.delegate = self
     }
     
     private func setUpSliders() {
-        self.proteinSlider.maximumValue = 400
+        self.proteinSlider.maximumValue = 100
         self.proteinSlider.minimumValue = 0
         self.proteinSlider.setValue(0.0, animated: true)
         self.caloriesSlider.maximumValue = 1000
         self.caloriesSlider.minimumValue = 0
         self.caloriesSlider.setValue(0.0, animated: true)
+    }
+    
+    /*****************************************************
+     * textfield delegates
+     ******************************************************/
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        self.enableSaveButton()
+        return true
+    }
+    private func enableSaveButton() {
+        if (self.mealNameTextField.text != "") {
+            self.saveButton.isEnabled = true
+        }
     }
     
 }
