@@ -47,6 +47,7 @@ extension NSManagedObject {
         newDay.date = date
         newDay.proteinCount = 0
         newDay.caloriesCount = 0
+        newDay.isCurrentDay = true
         PersistantStorageCoordinator().save { (success:Bool) in
             if (success) {
                 completion(true)
@@ -94,12 +95,25 @@ extension NSManagedObject {
 
 extension NSFetchRequest {
     static func getCurrentDay()-> Day? {
+//        let daysRequest:NSFetchRequest<Day> = Day.fetchRequest()
+//        let dayDescriptor = NSSortDescriptor(key: "date", ascending: false)
+//        daysRequest.sortDescriptors = [dayDescriptor]
+//        do {
+//            let days = try PersistantStorageCoordinator().context.fetch(daysRequest)
+//            return days[0]
+//        } catch {
+//            print(error.localizedDescription)
+//            return nil
+//        }
         let daysRequest:NSFetchRequest<Day> = Day.fetchRequest()
-        let dayDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        daysRequest.sortDescriptors = [dayDescriptor]
         do {
             let days = try PersistantStorageCoordinator().context.fetch(daysRequest)
-            return days[0]
+            for day in days {
+                if (day.isCurrentDay) {
+                    return day
+                }
+            }
+            return nil
         } catch {
             print(error.localizedDescription)
             return nil
@@ -125,28 +139,45 @@ extension NSFetchRequest {
 
 extension Goal {
     func getCurrentyDay()-> Day? {
-        let sortedDaysSet = self.days?.sortedArray(using: [NSSortDescriptor(key:"date", ascending:false)])
-        let sortedDayArray = sortedDaysSet as? [Day]
-        guard let sortedDays = sortedDayArray else {
+//        let sortedDaysSet = self.days?.sortedArray(using: [NSSortDescriptor(key:"date", ascending:false)])
+//        let sortedDayArray = sortedDaysSet as? [Day]
+//        guard let sortedDays = sortedDayArray else {
+//            return nil
+//        }
+//        if (sortedDays.isEmpty) {
+//            return nil
+//        } else {
+//        return sortedDays[0]
+//        }
+        let daysRequest:NSFetchRequest<Day> = Day.fetchRequest()
+        do {
+            let days = try PersistantStorageCoordinator().context.fetch(daysRequest)
+            for day in days {
+                if (day.isCurrentDay) {
+                    return day
+                }
+            }
             return nil
-        }
-        if (sortedDays.isEmpty) {
+        } catch {
+            print(error.localizedDescription)
             return nil
-        } else {
-        return sortedDays[0]
         }
     }
 }
 
 extension Day {
-    func calcProteinTotal() {
+    
+    internal func calculateTotals() {
+        self.calcProteinTotal()
+        self.calcCaloriesTotal()
+    }
+    
+   private func calcProteinTotal() {
         guard let allMeals = self.meals?.allObjects as? [Meal] else {
             return
         }
         self.proteinCount = 0
         for meal in allMeals {
-            print(String(format: "meal protein: %.02", meal.protein))
-            print(String(format:"Count %.0f", self.proteinCount))
             self.proteinCount += meal.protein
         }
         PersistantStorageCoordinator().save { (success) in
@@ -155,9 +186,22 @@ extension Day {
             }
         }
     }
+    
+    private func calcCaloriesTotal() {
+        guard let allMeals = self.meals?.allObjects as? [Meal] else {
+            return
+        }
+        self.caloriesCount = 0
+        for meal in allMeals {
+            self.caloriesCount += meal.calories
+        }
+        PersistantStorageCoordinator().save { (success) in
+            if (success) {
+                print("caloies total calculated")
+            }
+        }
+    }
 }
-
-
 
 extension NSDate {
     func readableDate()-> String? {

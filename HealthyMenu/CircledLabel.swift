@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 @IBDesignable class CircledLabel: UILabel {
    
     private let kStartingAndEndAngle = -90.0
     private var strokeColor:UIColor = UIColor.black
     private var strokeWidth:CGFloat = 8.0
+    internal var caloriesToDisplay:Int = 0 {
+            didSet {
+                self.text = String(format: "%d", self.caloriesToDisplay)
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         if self.strokeWidth > 0.0 {
@@ -36,4 +43,10 @@ import UIKit
         return value * 180.0 / Double(M_PI)
     }
     
+    internal func update() {
+        guard let currentCalorieCount = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal()?.getCurrentyDay()?.caloriesCount else {
+            return
+        }
+        self.caloriesToDisplay = Int(currentCalorieCount)
+    }
 }

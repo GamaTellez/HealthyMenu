@@ -12,8 +12,6 @@ import CoreData
 
 class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate, NewDayDelegate {
     @IBOutlet var currentProteinCountLabel: CircularProgressLabel!
-    @IBOutlet var decrease: UIButton!
-    @IBOutlet var increase: UIButton!
     @IBOutlet var currentCaloriesLabel: CircledLabel!
     @IBOutlet var addProtein: UIButton!
     @IBOutlet var viewHistory: UIBarButtonItem!
@@ -43,13 +41,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         }
         self.navBarTitleButton.setTitle(stringDateForTitleButton, for: .normal)
         self.currentProteinCountLabel.update()
-//        guard let proteinGoal = self.currentGoal?.proteinGoal else {
-//            return
-//        }
-//        guard let currentDayProteinCount = self.currentGoal?.getCurrentyDay()?.proteinCount else {
-//            return
-//        }
-//        self.currentProteinCountLabel.updateLabel(goal: Double(proteinGoal), currentDayCount: Double(currentDayProteinCount))
+        self.currentCaloriesLabel.update()
         self.enableViewButtons(enabled: true)
     }
     
@@ -124,8 +116,9 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         guard let dayForMeal = self.currentGoal?.getCurrentyDay() else { return }
        NSManagedObject.createMeal(protein: protein, calories: calories, name: name, day: dayForMeal) { (success) in
         if (success) {
-            self.currentGoal?.getCurrentyDay()?.calcProteinTotal()
+            self.currentGoal?.getCurrentyDay()?.calculateTotals()
             self.currentProteinCountLabel.update()
+            self.currentCaloriesLabel.update()
             }
         }
     }
@@ -144,6 +137,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
                 guard let stringDateForTitle = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else { return }
                 self.navBarTitleButton.setTitle(stringDateForTitle, for: .normal)
                 self.currentProteinCountLabel.update()
+                self.currentCaloriesLabel.update()
                 self.enableViewButtons(enabled: true)
             } else {
                 print("present alert controller cause it failed to save")
@@ -156,11 +150,15 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * newDayDelegate
      ***********************************************************/
     func newDayAdded(date: NSDate) {
+        if (self.currentGoal?.getCurrentyDay()?.isCurrentDay != nil) {
+            self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
+        }
         NSManagedObject.createDay(date: date) { (success) in
             if (success) {
                 guard let newDayDateString = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else { return }
                 self.navBarTitleButton.setTitle(newDayDateString, for: .normal)
                 self.currentProteinCountLabel.update()
+                self.currentCaloriesLabel.update()
             }
         }
     }

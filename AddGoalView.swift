@@ -48,7 +48,7 @@ class AddGoalView: UIView {
     }
     
     @IBAction func proteinSliderValueChanged(_ sender: UISlider) {
-        self.proteinGoalLabel.text = String(format:"%.0f", sender.value)
+        self.proteinGoalLabel.text = String(format:"%d", Int(sender.value))
     }
     
     @IBAction func saveBurronTapped(_ sender: UIButton) {
