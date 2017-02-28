@@ -10,6 +10,7 @@
 		8712DE101E5530AD00859F59 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712DE0F1E5530AD00859F59 /* AddGoalView.swift */; };
 		8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724CA881E05AB2C00D8C721 /* CounterLabel.swift */; };
 		872E9D491E282BBD007536D5 /* PersistantStorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */; };
+		8733C53E1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733C53D1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift */; };
 		8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */; };
 		8736ACC01DED1DFD00C19CC9 /* AddProteinOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */; };
 		8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACC71DEF41F300C19CC9 /* AddMealView.swift */; };
@@ -32,8 +33,8 @@
 		877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */; };
 		877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94F1DE5073D0090683F /* CircledLabel.swift */; };
 		87ABB7861E555AA700024849 /* AddGoalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87ABB7851E555AA700024849 /* AddGoalView.xib */; };
+		87E9B4201E65457C006D3940 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9B41F1E65457C006D3940 /* PieChart.swift */; };
 		87F46E701E36BE3100230225 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F46E6F1E36BE3100230225 /* HistoryViewController.swift */; };
-		87F46E731E36BE7C00230225 /* HistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F46E721E36BE7C00230225 /* HistoryDataSource.swift */; };
 		87FB48FA1E4C043C0076049F /* ResetDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB48F91E4C043C0076049F /* ResetDayView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		8712DE0F1E5530AD00859F59 /* AddGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGoalView.swift; path = ../AddGoalView.swift; sourceTree = "<group>"; };
 		8724CA881E05AB2C00D8C721 /* CounterLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterLabel.swift; sourceTree = "<group>"; };
 		872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistantStorageCoordinator.swift; path = ../PersistantStorageCoordinator.swift; sourceTree = "<group>"; };
+		8733C53D1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalsPickerViewDataSource.swift; path = ../GoalsPickerViewDataSource.swift; sourceTree = "<group>"; };
 		8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularProgressLabel.swift; path = ../CircularProgressLabel.swift; sourceTree = "<group>"; };
 		8736ACBF1DED1DFD00C19CC9 /* AddProteinOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProteinOptionsView.swift; sourceTree = "<group>"; };
 		8736ACC71DEF41F300C19CC9 /* AddMealView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
@@ -86,8 +88,8 @@
 		877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		877AD94F1DE5073D0090683F /* CircledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircledLabel.swift; sourceTree = "<group>"; };
 		87ABB7851E555AA700024849 /* AddGoalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddGoalView.xib; sourceTree = "<group>"; };
+		87E9B41F1E65457C006D3940 /* PieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PieChart.swift; path = ../PieChart.swift; sourceTree = "<group>"; };
 		87F46E6F1E36BE3100230225 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		87F46E721E36BE7C00230225 /* HistoryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryDataSource.swift; sourceTree = "<group>"; };
 		87FB48F91E4C043C0076049F /* ResetDayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResetDayView.swift; path = ../ResetDayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,7 +224,8 @@
 			isa = PBXGroup;
 			children = (
 				87F46E6F1E36BE3100230225 /* HistoryViewController.swift */,
-				87F46E721E36BE7C00230225 /* HistoryDataSource.swift */,
+				8733C53D1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift */,
+				87E9B41F1E65457C006D3940 /* PieChart.swift */,
 			);
 			name = GoalsHistory;
 			sourceTree = "<group>";
@@ -385,12 +388,12 @@
 				8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */,
 				877AD9441DE34ED80090683F /* SearchViewController.swift in Sources */,
 				877AD9421DE34EAD0090683F /* ItemResultCell.swift in Sources */,
+				87E9B4201E65457C006D3940 /* PieChart.swift in Sources */,
 				8712DE101E5530AD00859F59 /* AddGoalView.swift in Sources */,
 				877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */,
 				8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */,
 				8736ACC01DED1DFD00C19CC9 /* AddProteinOptionsView.swift in Sources */,
 				8742FD1E1DE00983009B3CD6 /* SortingOptionsView.swift in Sources */,
-				87F46E731E36BE7C00230225 /* HistoryDataSource.swift in Sources */,
 				8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */,
 				877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */,
 				8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */,
@@ -399,6 +402,7 @@
 				8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */,
 				872E9D491E282BBD007536D5 /* PersistantStorageCoordinator.swift in Sources */,
 				87F46E701E36BE3100230225 /* HistoryViewController.swift in Sources */,
+				8733C53E1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift in Sources */,
 				87FB48FA1E4C043C0076049F /* ResetDayView.swift in Sources */,
 				8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */,
 				8772CE8C1D81DB0800A7DD7E /* Extensions.swift in Sources */,

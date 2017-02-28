@@ -134,7 +134,9 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
             if (success) {
                 guard let newCurrentGoal = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else { return }
                 self.currentGoal = newCurrentGoal
-                guard let stringDateForTitle = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else { return }
+                guard let stringDateForTitle = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else {
+                    return
+                }
                 self.navBarTitleButton.setTitle(stringDateForTitle, for: .normal)
                 self.currentProteinCountLabel.update()
                 self.currentCaloriesLabel.update()

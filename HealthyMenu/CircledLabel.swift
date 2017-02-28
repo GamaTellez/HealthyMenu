@@ -19,7 +19,6 @@ import CoreData
                 self.text = String(format: "%d", self.caloriesToDisplay)
         }
     }
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         if self.strokeWidth > 0.0 {
