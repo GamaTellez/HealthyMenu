@@ -9,15 +9,15 @@
 import UIKit
 import CoreData
 
-class HistoryViewController: UIViewController, UIPickerViewDelegate, PiechartDelegate {
+class HistoryViewController: UIViewController, UIPickerViewDelegate {
     
+    @IBOutlet var circularChart: GoalDaysCircularChart!
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var coverView: UIView!
     @IBOutlet var caloriesAvarageLabel: UILabel!
     @IBOutlet var proteinAvarageLabel: UILabel!
     var allGoals:[Goal]?
     let pickerViewDataSource:GoalsPickerViewDataSource = GoalsPickerViewDataSource()
-    let pieChartForCurrentGoal:Piechart = Piechart()
     @IBOutlet var goalsPickerView: UIPickerView!
     
     override func viewDidLoad() {
@@ -31,6 +31,9 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate, PiechartDel
         for goal in self.allGoals! {
             if goal.isCurrentGoal {
                 self.goalsPickerView.selectRow(index, inComponent: 0, animated: true)
+                self.circularChart.totalOfDays = Double((goal.days?.count)!)
+                self.circularChart.daysGoalWasReached = Double(goal.getDaysGoalWasReached()!)
+                self.circularChart.animateToDay()
                 break
             }
              index += 1
@@ -71,7 +74,16 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate, PiechartDel
         guard let daysGoalWasReached = goalSelected.getDaysGoalWasReached() else {
             return
         }
-        self.setUpPieChartForGoal(totalDays: CGFloat(totalDays), daysReached: CGFloat(daysGoalWasReached))
+        
+        self.circularChart.totalOfDays = Double((totalDays))
+        self.circularChart.daysGoalWasReached = Double(daysGoalWasReached)
+        self.circularChart.daysFilled = 0.0
+        self.circularChart.animateToDay()
+
+        
+      
+        
+        
         guard let avarageProtein = goalSelected.getProteinAvarage() else {
             return
         }
@@ -82,38 +94,6 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate, PiechartDel
         self.caloriesAvarageLabel.text = String(format:"%d", avarageCaloies)
     }
     
-    private func setUpPieChartForGoal(totalDays:CGFloat, daysReached:CGFloat) {
-        var daysSlice = Piechart.Slice()
-        daysSlice.value = totalDays
-        daysSlice.color = UIColor.blue
-        
-        var daysReachedSlice = Piechart.Slice()
-        daysReachedSlice.value = daysReached
-        daysReachedSlice.color = UIColor.green
-        daysReachedSlice.text = "Days With Goal"
-        
-        self.pieChartForCurrentGoal.delegate = self
-        self.pieChartForCurrentGoal.radius.outer = self.view.frame.width / 3.8
-        self.pieChartForCurrentGoal.radius.inner = self.view.frame.width / 5
-        self.pieChartForCurrentGoal.activeSlice = 1
-        self.pieChartForCurrentGoal.title = String(format:"Goal reached %d \n days of %d", Int(daysReached), Int(totalDays))
-        self.pieChartForCurrentGoal.slices = [daysSlice, daysReachedSlice]
-        var views: [String: UIView] = [:]
-        self.pieChartForCurrentGoal.translatesAutoresizingMaskIntoConstraints = false
-        self.coverView.addSubview(self.pieChartForCurrentGoal)
-        views["piechart"] = self.pieChartForCurrentGoal
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[piechart]-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-150-[piechart(==200)]", options: [], metrics: nil, views: views))
-    }
-    
-    
-    func setSubtitle(_ total: CGFloat, slice: Piechart.Slice) -> String {
-        return ""
-    }
-    
-    func setInfo(_ total: CGFloat, slice: Piechart.Slice) -> String {
-        return ""
-    }
     @IBAction func closeButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

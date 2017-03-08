@@ -6,7 +6,7 @@
 target 'HealthyMenu' do
 
 use_frameworks!
-pod 'Charts', '~> 3.0'
+pod 'PNChartSwift',:git => 'https://github.com/kevinzhow/PNChart-Swift.git'
 
 end
 

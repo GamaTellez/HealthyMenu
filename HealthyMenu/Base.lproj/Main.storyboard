@@ -29,7 +29,7 @@
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-8o-PSa">
                                         <rect key="frame" x="0.0" y="22" width="351" height="137"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="137" id="sBJ-pN-pMa"/>
+                                            <constraint firstAttribute="height" constant="137" id="DT2-HW-rl9"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="dataSource" destination="cNj-NA-oTl" id="4gT-8H-6LY"/>
@@ -52,8 +52,17 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kar-fY-ppV" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
                                         <rect key="frame" x="13" y="495" width="110" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="ROI-ZE-Uh6"/>
-                                            <constraint firstAttribute="height" constant="110" id="XP5-VQ-z5U"/>
+                                            <constraint firstAttribute="height" constant="110" id="f5l-ap-n1E"/>
+                                            <constraint firstAttribute="width" constant="110" id="urv-tK-gCF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAe-MS-eEt" customClass="GoalDaysCircularChart" customModule="HealthyMenu" customModuleProvider="target">
+                                        <rect key="frame" x="68" y="167" width="214" height="211"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="211" id="9cF-G4-mhS"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -62,17 +71,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="oUJ-8o-PSa" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="top" constant="22" id="0bK-cg-CUF"/>
-                                    <constraint firstItem="WoZ-2J-Jjh" firstAttribute="leading" secondItem="Kar-fY-ppV" secondAttribute="trailing" constant="91" id="Dfi-Np-03h"/>
-                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" constant="13" id="LMm-td-qty"/>
-                                    <constraint firstAttribute="trailing" secondItem="oUJ-8o-PSa" secondAttribute="trailing" constant="-8" id="fbN-7Q-1ey"/>
-                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="top" id="gl2-Wt-r2p"/>
-                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" id="iQF-GX-JUP"/>
-                                    <constraint firstAttribute="bottom" secondItem="Kar-fY-ppV" secondAttribute="bottom" constant="41" id="ppQ-d7-PoK"/>
-                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="oUJ-8o-PSa" secondAttribute="leading" id="qRK-yn-bun"/>
-                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="baseline" secondItem="WoZ-2J-Jjh" secondAttribute="baseline" id="w9r-8C-6bs"/>
-                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="firstBaseline" secondItem="WoZ-2J-Jjh" secondAttribute="firstBaseline" id="x0F-hH-aAB"/>
-                                    <constraint firstAttribute="trailing" secondItem="WoZ-2J-Jjh" secondAttribute="trailing" constant="19" id="yLf-uw-7Sm"/>
+                                    <constraint firstItem="oUJ-8o-PSa" firstAttribute="centerX" secondItem="MAe-MS-eEt" secondAttribute="centerX" id="1fp-fg-Ukt"/>
+                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="firstBaseline" secondItem="WoZ-2J-Jjh" secondAttribute="firstBaseline" id="2MK-Mz-Kx0"/>
+                                    <constraint firstAttribute="trailing" secondItem="oUJ-8o-PSa" secondAttribute="trailing" constant="-8" id="3xQ-Lo-Eqa"/>
+                                    <constraint firstItem="MAe-MS-eEt" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" constant="68" id="6cc-ZD-rSR"/>
+                                    <constraint firstAttribute="trailing" secondItem="WoZ-2J-Jjh" secondAttribute="trailing" constant="19" id="LrT-lm-B7q"/>
+                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="baseline" secondItem="WoZ-2J-Jjh" secondAttribute="baseline" id="MvR-Ia-oLZ"/>
+                                    <constraint firstItem="WoZ-2J-Jjh" firstAttribute="leading" secondItem="Kar-fY-ppV" secondAttribute="trailing" constant="91" id="SMH-n1-BSz"/>
+                                    <constraint firstItem="MAe-MS-eEt" firstAttribute="top" secondItem="oUJ-8o-PSa" secondAttribute="bottom" constant="8" symbolic="YES" id="SUN-hm-piZ"/>
+                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" constant="13" id="UOD-ex-2Kt"/>
+                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" id="XfA-Sn-blv"/>
+                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="top" id="Xpb-h3-OIj"/>
+                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="oUJ-8o-PSa" secondAttribute="leading" id="fh7-ST-Wo8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kar-fY-ppV" secondAttribute="bottom" constant="41" id="rdL-Zl-iPa"/>
+                                    <constraint firstItem="oUJ-8o-PSa" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="top" constant="22" id="x9x-to-Kj4"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDQ-d3-Kzb">
@@ -96,20 +108,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5bo-vf-drE" firstAttribute="top" secondItem="ZAj-zs-G5I" secondAttribute="bottom" constant="27" id="773-4E-NL1"/>
-                            <constraint firstItem="IDQ-d3-Kzb" firstAttribute="baseline" secondItem="5bo-vf-drE" secondAttribute="baseline" id="7wr-6C-bBz"/>
-                            <constraint firstItem="CsC-f5-ufO" firstAttribute="trailing" secondItem="zbY-NV-gkx" secondAttribute="trailingMargin" id="LbN-hQ-dzJ"/>
-                            <constraint firstItem="CsC-f5-ufO" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leadingMargin" id="Lpd-wE-Gw7"/>
-                            <constraint firstItem="gcm-6K-DZc" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="bottom" constant="10" id="NE6-PX-USY"/>
-                            <constraint firstItem="IDQ-d3-Kzb" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leadingMargin" constant="46" id="TSX-WL-uqF"/>
-                            <constraint firstItem="CsC-f5-ufO" firstAttribute="centerX" secondItem="ZAj-zs-G5I" secondAttribute="centerX" id="UV6-qw-cEB"/>
-                            <constraint firstItem="gcm-6K-DZc" firstAttribute="top" secondItem="IDQ-d3-Kzb" secondAttribute="bottom" constant="182" id="WaT-Mv-cHL"/>
-                            <constraint firstItem="CsC-f5-ufO" firstAttribute="centerY" secondItem="zbY-NV-gkx" secondAttribute="centerY" id="XzD-f9-XXw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5bo-vf-drE" secondAttribute="trailing" constant="43" id="YYp-yv-pD7"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="trailing" secondItem="zbY-NV-gkx" secondAttribute="trailingMargin" id="IDQ-xA-TSR"/>
+                            <constraint firstItem="gcm-6K-DZc" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="bottom" constant="10" id="PZh-TA-5nT"/>
+                            <constraint firstItem="5bo-vf-drE" firstAttribute="top" secondItem="ZAj-zs-G5I" secondAttribute="bottom" constant="27" id="Xfk-mP-Vi3"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="centerX" secondItem="ZAj-zs-G5I" secondAttribute="centerX" id="c9w-eq-oD4"/>
+                            <constraint firstItem="IDQ-d3-Kzb" firstAttribute="baseline" secondItem="5bo-vf-drE" secondAttribute="baseline" id="dNz-rg-XiY"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leadingMargin" id="efm-hA-0ic"/>
+                            <constraint firstItem="IDQ-d3-Kzb" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leadingMargin" constant="46" id="f6f-nV-lWn"/>
+                            <constraint firstItem="gcm-6K-DZc" firstAttribute="top" secondItem="IDQ-d3-Kzb" secondAttribute="bottom" constant="182" id="g8y-iM-pry"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="centerY" secondItem="zbY-NV-gkx" secondAttribute="centerY" id="sH0-0C-U4x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5bo-vf-drE" secondAttribute="trailing" constant="43" id="tyD-Vi-wbc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="caloriesAvarageLabel" destination="WoZ-2J-Jjh" id="6V2-4y-Vdx"/>
+                        <outlet property="circularChart" destination="MAe-MS-eEt" id="wUo-7y-9dW"/>
                         <outlet property="closeButton" destination="PEK-Pr-8B9" id="GU1-Jp-440"/>
                         <outlet property="coverView" destination="CsC-f5-ufO" id="x8V-Vb-aUK"/>
                         <outlet property="goalsPickerView" destination="oUJ-8o-PSa" id="FF7-ke-2Ny"/>
@@ -119,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nzr-ez-sst" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="cNj-NA-oTl" customClass="ItemResultCell" customModule="HealthyMenu" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="549.60000000000002" y="-298.2008995502249"/>
+            <point key="canvasLocation" x="726" y="-651"/>
         </scene>
         <!--Home View-->
         <scene sceneID="tne-QT-ifu">

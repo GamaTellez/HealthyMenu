@@ -16,7 +16,8 @@ import CoreData
     internal var proteinGoal:Double = 0
     internal var proteinCount:Double = 0
     @IBInspectable var strokeColor:UIColor = UIColor.black
-    @IBInspectable var strokeWidth:CGFloat = 20.0
+    @IBInspectable var baseStrokeColor:UIColor = UIColor.gray
+    @IBInspectable var strokeWidth:CGFloat = 30.0
     @IBInspectable var completed:Double = 0 {
         willSet { self.willChangeValue(forKey: "completed") }
         didSet {
@@ -27,8 +28,21 @@ import CoreData
         }
     }
     
+    
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        let radiusForBase = max(self.bounds.width, self.bounds.height) / 2.5
+        let baseStrokePath = UIBezierPath(arcCenter: CGPoint(x:self.bounds.midX, y: self.bounds.midY),
+                                          radius: radiusForBase,
+                                          startAngle: CGFloat(degreesToRadians(self.kStartingAngle)),
+                                          endAngle: CGFloat(degreesToRadians(360)),
+                                          clockwise: true)
+        baseStrokePath.lineWidth = self.strokeWidth
+        self.baseStrokeColor.setStroke()
+        baseStrokePath.stroke()
+                
+        
         if self.strokeWidth > 0.0 {
             let radious = max(self.bounds.width, self.bounds.height) / 2.5
             let strokePath = UIBezierPath(arcCenter: CGPoint(x: self.bounds.midX,y: self.bounds.midY),
@@ -91,8 +105,5 @@ import CoreData
     func radiansToDegrees (_ value:Double) -> Double {
         return value * 180.0 / Double(M_PI)
     }
-    
-    
-    
 }
 
