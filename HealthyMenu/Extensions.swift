@@ -42,12 +42,28 @@ extension URLSession {
 }
 
 extension NSManagedObject {
-    static func createDay(date:NSDate, completion:(_ successful:Bool)-> Void) {
+    
+    static func checkIfGoalAlreadyExist(newProteinGoal:Int16, completion:(_ existentGoal:Goal?)-> Void) {
+        guard let allGoalsStored = NSFetchRequest<NSFetchRequestResult>.getAllGoals() else {
+            completion(nil)
+            return
+        }
+        for storedGoal in allGoalsStored {
+            if (storedGoal.proteinGoal == newProteinGoal) {
+                completion(storedGoal)
+            }
+        }
+        completion(nil)
+    }
+    
+    
+    static func createDay(date:NSDate, goal:Goal, completion:(_ successful:Bool)-> Void) {
          let newDay = NSEntityDescription.insertNewObject(forEntityName: "Day", into: PersistantStorageCoordinator().context) as! Day
         newDay.date = date
         newDay.proteinCount = 0
         newDay.caloriesCount = 0
         newDay.isCurrentDay = true
+        newDay.goal = goal
         PersistantStorageCoordinator().save { (success:Bool) in
             if (success) {
                 completion(true)
@@ -57,7 +73,7 @@ extension NSManagedObject {
         }
     }
     
-    static func createGoal(proteinGoal:Int16, isCurrentGoal:Bool, completion:(_ successful:Bool)-> Void) {
+    static func createGoal(proteinGoal:Int16, isCurrentGoal:Bool, completion:(_ newGoal:Goal?)-> Void) {
         let newGoal = NSEntityDescription.insertNewObject(forEntityName: "Goal", into: PersistantStorageCoordinator().context) as! Goal
         newGoal.proteinGoal = proteinGoal
         newGoal.isCurrentGoal = isCurrentGoal
@@ -70,9 +86,9 @@ extension NSManagedObject {
         newGoal.days?.adding(newDayForNewGoal)
         PersistantStorageCoordinator().save { (success:Bool) in
             if (success) {
-                completion(true)
+                completion(newGoal)
             } else {
-                completion(false)
+                completion(nil)
             }
         }
     }
@@ -139,7 +155,7 @@ extension NSFetchRequest {
 }
 
 extension Goal {
-    func getCurrentyDay()-> Day? {
+    internal func getCurrentyDay()-> Day? {
         let daysRequest:NSFetchRequest<Day> = Day.fetchRequest()
         do {
             let days = try PersistantStorageCoordinator().context.fetch(daysRequest)
@@ -153,6 +169,45 @@ extension Goal {
             print(error.localizedDescription)
             return nil
         }
+    }
+    
+   internal func getDaysGoalWasReached()-> Int? {
+        var count = 0
+        guard let allDays = self.days?.allObjects as? [Day] else {
+                return nil
+        }
+        for day in allDays {
+            if (day.reachedGoal) {
+                count += 1
+            }
+        }
+         return count
+    }
+    
+    internal func setCurrent(isCurrent:Bool) {
+        self.isCurrentGoal = isCurrent
+    }
+    
+    internal func getProteinAvarage()-> Int? {
+        var proteinTotal = 0
+        guard let allDays = self.days?.allObjects as? [Day] else {
+            return nil
+        }
+        for day in allDays {
+            proteinTotal += Int(day.proteinCount)
+        }
+        return proteinTotal / allDays.count
+    }
+    
+    internal func getCaloriesAvarage()-> Int? {
+        var caloriesTotal = 0
+        guard let allDays = self.days?.allObjects as? [Day] else {
+            return nil
+        }
+        for day in allDays {
+            caloriesTotal += Int(day.caloriesCount)
+        }
+        return caloriesTotal / allDays.count
     }
 }
 
@@ -190,6 +245,19 @@ extension Day {
                 print("caloies total calculated")
             }
         }
+    }
+    
+    internal func wasGoalReached(goal:Goal?) {
+        guard let currentProteinGoal = goal?.proteinGoal else { return }
+        if (self.proteinCount >= currentProteinGoal) {
+            self.reachedGoal = true
+        } else {
+            self.reachedGoal = false
+        }
+    }
+    
+    internal func setCurrent(current:Bool) {
+        self.isCurrentDay = current
     }
 }
 

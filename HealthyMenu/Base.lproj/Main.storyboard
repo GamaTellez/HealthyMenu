@@ -23,40 +23,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-8o-PSa">
-                                <rect key="frame" x="0.0" y="28" width="375" height="137"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsC-f5-ufO">
+                                <rect key="frame" x="16" y="11" width="343" height="646"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUJ-8o-PSa">
+                                        <rect key="frame" x="0.0" y="22" width="351" height="137"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="137" id="sBJ-pN-pMa"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="cNj-NA-oTl" id="4gT-8H-6LY"/>
+                                            <outlet property="delegate" destination="uTx-wX-bM2" id="Ufw-lH-8gi"/>
+                                        </connections>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WoZ-2J-Jjh" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
+                                        <rect key="frame" x="214" y="495" width="110" height="110"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEK-Pr-8B9">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="uTx-wX-bM2" eventType="touchUpInside" id="tjC-E5-vBd"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kar-fY-ppV" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
+                                        <rect key="frame" x="13" y="495" width="110" height="110"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="ROI-ZE-Uh6"/>
+                                            <constraint firstAttribute="height" constant="110" id="XP5-VQ-z5U"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="137" id="110-2a-B1J"/>
+                                    <constraint firstItem="oUJ-8o-PSa" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="top" constant="22" id="0bK-cg-CUF"/>
+                                    <constraint firstItem="WoZ-2J-Jjh" firstAttribute="leading" secondItem="Kar-fY-ppV" secondAttribute="trailing" constant="91" id="Dfi-Np-03h"/>
+                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" constant="13" id="LMm-td-qty"/>
+                                    <constraint firstAttribute="trailing" secondItem="oUJ-8o-PSa" secondAttribute="trailing" constant="-8" id="fbN-7Q-1ey"/>
+                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="top" id="gl2-Wt-r2p"/>
+                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="CsC-f5-ufO" secondAttribute="leading" id="iQF-GX-JUP"/>
+                                    <constraint firstAttribute="bottom" secondItem="Kar-fY-ppV" secondAttribute="bottom" constant="41" id="ppQ-d7-PoK"/>
+                                    <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="oUJ-8o-PSa" secondAttribute="leading" id="qRK-yn-bun"/>
+                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="baseline" secondItem="WoZ-2J-Jjh" secondAttribute="baseline" id="w9r-8C-6bs"/>
+                                    <constraint firstItem="Kar-fY-ppV" firstAttribute="firstBaseline" secondItem="WoZ-2J-Jjh" secondAttribute="firstBaseline" id="x0F-hH-aAB"/>
+                                    <constraint firstAttribute="trailing" secondItem="WoZ-2J-Jjh" secondAttribute="trailing" constant="19" id="yLf-uw-7Sm"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="cNj-NA-oTl" id="4gT-8H-6LY"/>
-                                    <outlet property="delegate" destination="uTx-wX-bM2" id="Ufw-lH-8gi"/>
-                                </connections>
-                            </pickerView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzA-W8-FlT">
-                                <rect key="frame" x="0.0" y="173" width="375" height="494"/>
-                            </scrollView>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDQ-d3-Kzb">
+                                <rect key="frame" x="62" y="464" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bo-vf-drE">
+                                <rect key="frame" x="249" y="464" width="67" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avarages Per Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAj-zs-G5I">
+                                <rect key="frame" x="120" y="416" width="135" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jzA-W8-FlT" firstAttribute="bottom" secondItem="gcm-6K-DZc" secondAttribute="top" id="Csu-lT-70N"/>
-                            <constraint firstItem="oUJ-8o-PSa" firstAttribute="trailing" secondItem="jzA-W8-FlT" secondAttribute="trailing" id="QpI-YZ-MXX"/>
-                            <constraint firstItem="jzA-W8-FlT" firstAttribute="top" secondItem="oUJ-8o-PSa" secondAttribute="bottom" constant="8" symbolic="YES" id="VWS-yP-cap"/>
-                            <constraint firstItem="oUJ-8o-PSa" firstAttribute="leading" secondItem="jzA-W8-FlT" secondAttribute="leading" id="Wys-NN-g9X"/>
-                            <constraint firstAttribute="trailing" secondItem="oUJ-8o-PSa" secondAttribute="trailing" id="eJp-fr-5Ie"/>
-                            <constraint firstItem="oUJ-8o-PSa" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leading" id="vmb-GY-XwP"/>
-                            <constraint firstItem="oUJ-8o-PSa" firstAttribute="top" secondItem="pb9-Fq-m2D" secondAttribute="bottom" constant="8" symbolic="YES" id="zt7-5i-Aw8"/>
+                            <constraint firstItem="5bo-vf-drE" firstAttribute="top" secondItem="ZAj-zs-G5I" secondAttribute="bottom" constant="27" id="773-4E-NL1"/>
+                            <constraint firstItem="IDQ-d3-Kzb" firstAttribute="baseline" secondItem="5bo-vf-drE" secondAttribute="baseline" id="7wr-6C-bBz"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="trailing" secondItem="zbY-NV-gkx" secondAttribute="trailingMargin" id="LbN-hQ-dzJ"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leadingMargin" id="Lpd-wE-Gw7"/>
+                            <constraint firstItem="gcm-6K-DZc" firstAttribute="top" secondItem="CsC-f5-ufO" secondAttribute="bottom" constant="10" id="NE6-PX-USY"/>
+                            <constraint firstItem="IDQ-d3-Kzb" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leadingMargin" constant="46" id="TSX-WL-uqF"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="centerX" secondItem="ZAj-zs-G5I" secondAttribute="centerX" id="UV6-qw-cEB"/>
+                            <constraint firstItem="gcm-6K-DZc" firstAttribute="top" secondItem="IDQ-d3-Kzb" secondAttribute="bottom" constant="182" id="WaT-Mv-cHL"/>
+                            <constraint firstItem="CsC-f5-ufO" firstAttribute="centerY" secondItem="zbY-NV-gkx" secondAttribute="centerY" id="XzD-f9-XXw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5bo-vf-drE" secondAttribute="trailing" constant="43" id="YYp-yv-pD7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="caloriesAvarageLabel" destination="WoZ-2J-Jjh" id="6V2-4y-Vdx"/>
+                        <outlet property="closeButton" destination="PEK-Pr-8B9" id="GU1-Jp-440"/>
+                        <outlet property="coverView" destination="CsC-f5-ufO" id="x8V-Vb-aUK"/>
                         <outlet property="goalsPickerView" destination="oUJ-8o-PSa" id="FF7-ke-2Ny"/>
-                        <outlet property="scrollView" destination="jzA-W8-FlT" id="JvO-4x-Kwr"/>
+                        <outlet property="proteinAvarageLabel" destination="Kar-fY-ppV" id="vCW-n2-WeD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nzr-ez-sst" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="cNj-NA-oTl" customClass="ItemResultCell" customModule="HealthyMenu" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="573.60000000000002" y="-321.58920539730138"/>
+            <point key="canvasLocation" x="549.60000000000002" y="-298.2008995502249"/>
         </scene>
         <!--Home View-->
         <scene sceneID="tne-QT-ifu">
@@ -150,13 +213,13 @@
                         <outlet property="addProtein" destination="qcI-zZ-WRB" id="h1m-VQ-4dj"/>
                         <outlet property="currentCaloriesLabel" destination="Ca4-Jv-Ltd" id="r4u-iC-Ld3"/>
                         <outlet property="currentProteinCountLabel" destination="tQm-Sf-h4Z" id="Mqo-gS-Ajz"/>
+                        <outlet property="goalStats" destination="EDc-71-wgg" id="736-Jj-u6a"/>
                         <outlet property="newGoalButton" destination="nAV-XO-LXL" id="uaI-Ng-Aol"/>
-                        <outlet property="viewHistory" destination="EDc-71-wgg" id="HPO-5o-GD2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="580" y="422"/>
+            <point key="canvasLocation" x="601" y="349"/>
         </scene>
         <!--Title-->
         <scene sceneID="eiq-yu-prW">

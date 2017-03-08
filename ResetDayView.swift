@@ -53,13 +53,7 @@ class ResetDayView: UIView {
     }
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
-        NSManagedObject.createDay(date: NSDate()) { (completed) in
-            if (completed) {
-                self.remove(newDayAdded: true)
-            } else {
-                self.remove(newDayAdded: false)
-            }
-        }
+       self.remove(newDayAdded: true)
     }
     
     internal func show() {
@@ -79,10 +73,12 @@ class ResetDayView: UIView {
         }) { (finished) in
             if (finished) {
                 self.removeFromSuperview()
+                if (newDayAdded) {
                 guard let delegate = self.delegate else {
                     return
                 }
                 delegate.newDayAdded(date: NSDate())
+                }
             }
         }
     }

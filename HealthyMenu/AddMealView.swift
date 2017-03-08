@@ -26,7 +26,7 @@ class AddMealView: UIView , UITextFieldDelegate {
     public var delegate:NewMealCreatedDelegate?
     
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 2))
+        super.init(frame: CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 45, height: frame.height / 2))
         self.addSubview(self.instanceFromNib())
     }
     

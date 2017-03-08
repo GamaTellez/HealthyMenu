@@ -40,8 +40,8 @@ open class Piechart: UIControl {
      * private
      */
     fileprivate var titleLabel: UILabel!
-    fileprivate var subtitleLabel: UILabel!
-    fileprivate var infoLabel: UILabel!
+    //fileprivate var subtitleLabel: UILabel!
+    //fileprivate var infoLabel: UILabel!
     fileprivate var total: CGFloat!
     
     
@@ -55,18 +55,6 @@ open class Piechart: UIControl {
     open var title: String = "title" {
         didSet {
             titleLabel.text = title
-        }
-    }
-    
-    open var subtitle: String = "subtitle" {
-        didSet {
-            subtitleLabel.text = subtitle
-        }
-    }
-    
-    open var info: String = "info" {
-        didSet {
-            infoLabel.text = info
         }
     }
     
@@ -92,36 +80,22 @@ open class Piechart: UIControl {
         self.addTarget(self, action: #selector(Piechart.click), for: .touchUpInside)
         
         titleLabel = UILabel()
+        titleLabel.numberOfLines = 2
         titleLabel.text = title
         titleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+        titleLabel.font.withSize(30)
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)
-        
-        subtitleLabel = UILabel()
-        subtitleLabel.text = subtitle
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
-        subtitleLabel.textColor = UIColor.gray
-        subtitleLabel.textAlignment = .center
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(subtitleLabel)
-        
-        infoLabel = UILabel()
-        infoLabel.text = subtitle
-        infoLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption1)
-        infoLabel.textColor = UIColor.gray
-        infoLabel.textAlignment = .center
-        infoLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(infoLabel)
-        
+    
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         self.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
-        self.addConstraint(NSLayoutConstraint(item: infoLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        self.addConstraint(NSLayoutConstraint(item: infoLabel, attribute: .top, relatedBy: .equal, toItem: subtitleLabel, attribute: .bottom, multiplier: 1, constant: 0))
+//        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+//        self.addConstraint(NSLayoutConstraint(item: subtitleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+//        
+//        self.addConstraint(NSLayoutConstraint(item: infoLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+//        self.addConstraint(NSLayoutConstraint(item: infoLabel, attribute: .top, relatedBy: .equal, toItem: subtitleLabel, attribute: .bottom, multiplier: 1, constant: 0))
     }
     
     convenience init() {
@@ -137,7 +111,7 @@ open class Piechart: UIControl {
         var endValue: CGFloat = 0
         var endAngle: CGFloat = 0
         
-        for (index, slice) in slices.enumerated() {
+        for (_, slice) in slices.enumerated() {
             
             startAngle = (startValue * 2 * CGFloat(M_PI)) - CGFloat(M_PI_2)
             endValue = startValue + (slice.value / self.total)
@@ -148,18 +122,12 @@ open class Piechart: UIControl {
             path.addArc(withCenter: center, radius: radius.outer, startAngle: startAngle, endAngle: endAngle, clockwise: true)
             
             var color = UIColor(red: 230/255.0, green: 230/255.0, blue: 230/255.0, alpha: 1)
-            if (index == activeSlice) {
                 color = slice.color
-                subtitle = delegate?.setSubtitle(self.total, slice: slice) ?? "subtitle"
-                info = delegate?.setInfo(self.total, slice: slice) ?? "info"
-            }
             color.setFill()
             path.fill()
-            
             // add white border to slice
             UIColor.white.setStroke()
             path.stroke()
-            
             // increase start value for next slice
             startValue += slice.value / self.total
         }

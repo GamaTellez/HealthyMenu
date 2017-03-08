@@ -58,6 +58,7 @@ import CoreData
         if (self.completed > self.proteinCount) {
             self.timerAnimation(action: "substract")
         }
+        
     }
     
     private func timerAnimation(action:String) {
@@ -65,17 +66,18 @@ import CoreData
             self.timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
                 self.completed += 1
                 self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
-                if (self.completed == self.proteinCount) {
+                if (self.completed == self.proteinCount || self.completed > self.proteinCount) {
                     self.timer.invalidate()
                     self.completed = self.proteinCount
+                    self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
                 }
             })
         }
         if (action == "substract") {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { (timer) in
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { (timer) in
                 self.completed -= 1
                 self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
-                if (self.completed == 0) {
+                if (self.completed == 0 || self.completed < 0) {
                     self.timer.invalidate()
                 }
             })

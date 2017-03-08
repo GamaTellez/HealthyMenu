@@ -11,10 +11,11 @@ import MapKit
 import CoreData
 
 class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate, NewDayDelegate {
+    
     @IBOutlet var currentProteinCountLabel: CircularProgressLabel!
     @IBOutlet var currentCaloriesLabel: CircledLabel!
     @IBOutlet var addProtein: UIButton!
-    @IBOutlet var viewHistory: UIBarButtonItem!
+    @IBOutlet var goalStats: UIBarButtonItem!
     var currentGoal:Goal?
     var navBarTitleButton:UIButton = UIButton(type: .custom)
     @IBOutlet var newGoalButton: UIBarButtonItem!
@@ -51,7 +52,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     private func enableViewButtons(enabled:Bool) {
         self.navBarTitleButton.isEnabled = enabled
         self.addProtein.isEnabled = enabled
-        self.viewHistory.isEnabled = enabled
+        self.goalStats.isEnabled = enabled
     }
     
     
@@ -59,11 +60,12 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     * setting up the views
     **********************************************************/
     private func setUpViews() {
-        self.viewHistory.image = UIImage(named: "History")
-        self.viewHistory.tintColor = UIColor.black
+        self.goalStats.image = UIImage(named: "History")
+        self.goalStats.tintColor = UIColor.black
         self.navBarTitleButton.sizeToFit()
         self.navBarTitleButton.addTarget(self, action: #selector(self.titleButtontapped), for: UIControlEvents.touchUpInside)
         self.navBarTitleButton.setTitle("Add a goal =====>", for: .disabled)
+        self.navBarTitleButton.tintColor = UIColor.black
         self.navigationItem.titleView = self.navBarTitleButton
     }
     
@@ -127,24 +129,40 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * newGoalCreatedDelegate
      ***********************************************************/
     func newGoalCreated(with proteinGoal: Int16, isCurrent: Bool) {
-        if (self.currentGoal != nil) {
-            self.currentGoal?.isCurrentGoal = false
-        }
-        NSManagedObject.createGoal(proteinGoal: proteinGoal, isCurrentGoal: isCurrent, completion: { (success:Bool) in
-            if (success) {
-                guard let newCurrentGoal = NSFetchRequest<NSFetchRequestResult>.getCurrentGoal() else { return }
-                self.currentGoal = newCurrentGoal
-                guard let stringDateForTitle = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else {
-                    return
+        NSManagedObject.checkIfGoalAlreadyExist(newProteinGoal: proteinGoal) { (oldGoal) in
+            if (oldGoal != nil) {
+                if (self.currentGoal != nil) {
+                    self.currentGoal?.setCurrent(isCurrent: false)
+                    self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
                 }
-                self.navBarTitleButton.setTitle(stringDateForTitle, for: .normal)
+                oldGoal?.setCurrent(isCurrent: true)
+                guard let dateString = oldGoal?.getCurrentyDay()?.date?.readableDate() else { return }
+                self.navBarTitleButton.setTitle(dateString, for: .normal)
+                self.currentGoal = oldGoal
                 self.currentProteinCountLabel.update()
                 self.currentCaloriesLabel.update()
                 self.enableViewButtons(enabled: true)
             } else {
-                print("present alert controller cause it failed to save")
+                NSManagedObject.createGoal(proteinGoal: proteinGoal, isCurrentGoal: true, completion: { (goalCreated) in
+                    if (goalCreated != nil) {
+                        if (self.currentGoal != nil) {
+                            self.currentGoal?.setCurrent(isCurrent: false)
+                            self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
+                        }
+                        
+                        goalCreated?.setCurrent(isCurrent: true)
+                        self.currentGoal = goalCreated
+                        guard let dateString = goalCreated?.getCurrentyDay()?.date?.readableDate() else { return }
+                        self.navBarTitleButton.setTitle(dateString, for: .normal)
+                        self.currentProteinCountLabel.update()
+                        self.currentCaloriesLabel.update()
+                        self.enableViewButtons(enabled: true)
+                    } else {
+                        print("couldnt create goal")
+                    }
+                })
             }
-        })
+        }
     }
     
     
@@ -152,10 +170,10 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * newDayDelegate
      ***********************************************************/
     func newDayAdded(date: NSDate) {
-        if (self.currentGoal?.getCurrentyDay()?.isCurrentDay != nil) {
-            self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
-        }
-        NSManagedObject.createDay(date: date) { (success) in
+        guard let currentDayInGoal = self.currentGoal?.getCurrentyDay() else { return }
+        currentDayInGoal.setCurrent(current: false)
+        currentDayInGoal.wasGoalReached(goal: self.currentGoal)
+        NSManagedObject.createDay(date: date, goal:self.currentGoal!) { (success) in
             if (success) {
                 guard let newDayDateString = self.currentGoal?.getCurrentyDay()?.date?.readableDate() else { return }
                 self.navBarTitleButton.setTitle(newDayDateString, for: .normal)
@@ -165,7 +183,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         }
     }
 
-    
     /**********************************************************
      * viewHistoryButtonTapped
      ***********************************************************/
