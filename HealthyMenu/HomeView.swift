@@ -112,8 +112,9 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * the new meal
      ***********************************************************/
     @objc private func searchMeal() {
-        let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchViewController") as! SearchViewController
-        self.navigationController?.pushViewController(searchViewController, animated: true)
+        let searchMealView = MealSearchView(frame: self.view.frame)
+        self.view.addSubview(searchMealView)
+        searchMealView.present()
     }
     
     /**********************************************************

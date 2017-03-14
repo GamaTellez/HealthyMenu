@@ -27,7 +27,7 @@ class AddGoalView: UIView {
         super.init(frame:CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 3))
             self.addSubview(self.instanceFromNib())
             self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 0.5
+            self.layer.borderWidth = 0.5
     }
     
     required init?(coder aDecoder: NSCoder) {

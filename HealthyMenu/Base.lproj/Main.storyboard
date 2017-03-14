@@ -311,12 +311,6 @@
                                                 <constraint firstItem="0X7-lq-uNE" firstAttribute="baseline" secondItem="i4b-J7-2Wr" secondAttribute="baseline" id="xVr-oh-K5z"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="itemBrandLabel" destination="cDn-qd-K7g" id="Bmg-kS-oau"/>
-                                            <outlet property="itemCaloriesLabel" destination="0X7-lq-uNE" id="XEm-Zj-uDf"/>
-                                            <outlet property="itemNameLabel" destination="9c9-xq-zoZ" id="g0c-cO-Zmq"/>
-                                            <outlet property="itemProteinLabel" destination="i4b-J7-2Wr" id="3Bm-te-mdA"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="fillerCell" rowHeight="10" id="o7f-mr-ZQH">
                                         <rect key="frame" x="0.0" y="145" width="375" height="10"/>
@@ -328,10 +322,6 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="ZM1-xD-eKN" id="ZPt-fr-aV9"/>
-                                    <outlet property="delegate" destination="O3P-IN-2C9" id="M7v-7i-Nss"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -344,22 +334,14 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="azU-bp-Lqe">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="iqy-Cv-jga">
-                            <connections>
-                                <action selector="filteringButtonTapped:" destination="O3P-IN-2C9" id="5cd-ug-1LB"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="iqy-Cv-jga"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="filteringButton" destination="iqy-Cv-jga" id="vTG-Lf-gEM"/>
-                        <outlet property="searchTableView" destination="ylY-eu-Vbh" id="BQx-K4-7xA"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lA0-pc-ZBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="ZM1-xD-eKN" customClass="SearchResultsDataSource" customModule="HealthyMenu" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="348.57571214392806"/>
+            <point key="canvasLocation" x="1255" y="349"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WgE-rD-5We">

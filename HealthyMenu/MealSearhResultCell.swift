@@ -1,19 +1,22 @@
 //
-//  ItemResultCell.swift
+//  MealSearhResultCell.swift
 //  HealthyMenu
 //
-//  Created by Gamaliel Tellez on 11/21/16.
-//  Copyright © 2016 Gamaliel Tellez. All rights reserved.
+//  Created by Gamaliel Tellez on 3/13/17.
+//  Copyright © 2017 Gamaliel Tellez. All rights reserved.
 //
 
 import UIKit
 
-class ItemResultCell: UITableViewCell {
+class MealSearhResultCell: UITableViewCell {
 
-    @IBOutlet var itemProteinLabel: UILabel!
-    @IBOutlet var itemCaloriesLabel: UILabel!
-    @IBOutlet var itemBrandLabel: UILabel!
     @IBOutlet var itemNameLabel: UILabel!
+    @IBOutlet var itemBrandNameLabel: UILabel!
+    @IBOutlet var itemCaloriesLabel: UILabel!
+    @IBOutlet var itemProteinLabel: UILabel!
+    
+
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +27,5 @@ class ItemResultCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }
