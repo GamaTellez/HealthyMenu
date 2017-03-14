@@ -8,19 +8,19 @@
 
 import UIKit
 
+
 class SearchViewController: UIViewController, UITableViewDelegate, SortingViewDelegate, UISearchBarDelegate {
-        
+    
         @IBOutlet var filteringButton: UIBarButtonItem!
         @IBOutlet var searchTableView: UITableView!
         lazy var urlSession = URLSession.shared
         var searchResultsDataSource = SearchResultsDataSource()
         lazy var searchResults:[SearchResultItem] = [SearchResultItem]()
+        var itemSelected:SearchResultItem?
         lazy var activityIndicator:ActivityIndicatorView = ActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-    
         override func viewDidLoad() {
             super.viewDidLoad()
             self.initialSetup()
-            
             // Do any additional setup after loading the view.
         }
         
@@ -117,6 +117,24 @@ class SearchViewController: UIViewController, UITableViewDelegate, SortingViewDe
                     }
                 }
         }
+    
+    /**********************************************************
+     * tableViewDelegate methods
+     ***********************************************************/
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+       let newItemSelected = self.searchResults[indexPath.row]
+        self.itemSelected = newItemSelected
+        let mealSelectedAlert = MealSelectedAlertView(frame: self.view.frame, itemSelected:newItemSelected)
+        self.view.addSubview(mealSelectedAlert)
+        mealSelectedAlert.show()
+    }
+    
+    @objc private func saveSearchItem() {
+        
+    }
+    
+    
 }
 
 

@@ -106,9 +106,14 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         addMealCustomView.present()
     }
     
+    
+    /**********************************************************
+     * presents an alert view like with options on how to add 
+     * the new meal
+     ***********************************************************/
     @objc private func searchMeal() {
-        let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchViewController")
-        self.navigationController?.pushViewController(searchViewController!, animated: true)
+        let searchViewController = self.storyboard?.instantiateViewController(withIdentifier: "searchViewController") as! SearchViewController
+        self.navigationController?.pushViewController(searchViewController, animated: true)
     }
     
     /**********************************************************
@@ -183,6 +188,20 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         }
     }
 
+    /**********************************************************
+     * search meal delegate
+     ***********************************************************/
+    func mealFound(protein: Int, calories: Int, name: String) {
+        guard let currentDayInview = self.currentGoal?.getCurrentyDay() else { return }
+        NSManagedObject.createMeal(protein: Int16(protein), calories: Int16(calories), name: name, day: currentDayInview) { (mealCreated) in
+            if (mealCreated) {
+                self.currentGoal?.getCurrentyDay()?.calculateTotals()
+                self.currentProteinCountLabel.update()
+                self.currentCaloriesLabel.update()
+            }
+        }
+    }
+    
     /**********************************************************
      * viewHistoryButtonTapped
      ***********************************************************/

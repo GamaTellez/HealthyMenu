@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class GoalDaysCircularChart: UILabel {
+@IBDesignable class GoalDaysCircularChart: UILabel, CAAnimationDelegate {
     
     private let kStartingAngle = -90.0
     internal var totalOfDays:Double = 0
@@ -17,6 +17,11 @@ import UIKit
     @IBInspectable var baseStrokeWidth:CGFloat = 30
     var daysStrokeColor:UIColor = UIColor.black
     var daysStrokeWidth:CGFloat = 20
+    var labelLineWidth:CGFloat = 1.0
+    var labelLineColor:UIColor = UIColor.blue
+    var daysPath:UIBezierPath?
+    var daysLabel:UILabel = UILabel()
+    
     var daysFilled:Double = 0.0 {
         didSet {
             if self.daysFilled < 0.0  { self.daysFilled = 0.0 }
@@ -46,26 +51,108 @@ import UIKit
     
     private func drawDaysPath() {
         let radiusForDays = max(self.bounds.width, self.bounds.height) / 2.5
-        let daysStrokePath = UIBezierPath(arcCenter: CGPoint(x:self.bounds.midX, y: self.bounds.midY),
+        self.daysPath = UIBezierPath(arcCenter: CGPoint(x:self.bounds.midX, y: self.bounds.midY),
                                           radius: radiusForDays,
                                           startAngle: CGFloat(self.degreesToRadians(self.kStartingAngle)),
                                           endAngle: CGFloat(self.degreesToRadians(self.kStartingAngle + 360 * (self.daysFilled / self.totalOfDays))),
                                           clockwise: true)
-        daysStrokePath.lineWidth = self.daysStrokeWidth
+        self.daysPath?.lineWidth = self.daysStrokeWidth
         self.daysStrokeColor.setStroke()
-        daysStrokePath.stroke()
+        self.daysPath?.stroke()
     }
     
     internal func animateToDay() {
+        self.text = String(format:"%.0f days \n with goal", self.totalOfDays)
+        self.daysFilled = 0
+        self.layer.sublayers = nil
         let timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { (timer) in
             self.daysFilled += 1
-            if self.daysFilled == self.daysGoalWasReached {
-                timer.invalidate()
+            if (self.daysFilled != self.totalOfDays) {
+                if (self.daysFilled == self.daysGoalWasReached) {
+                    timer.invalidate()
+                    self.addDayLabel(referencePoint: (self.daysPath?.currentPoint)!, valueForLabel: Int(self.daysGoalWasReached))
+                }
             }
         }
         timer.fire()
     }
     
+    private func addDayLabel(referencePoint:CGPoint, valueForLabel:Int) {
+        var xInclineLine = referencePoint.x
+        var yInclineLine = referencePoint.y
+        
+        if (xInclineLine > self.center.x) {
+            xInclineLine += 40
+            yInclineLine -= 20
+        } else if (xInclineLine < self.center.x) {
+            xInclineLine -= 40
+            yInclineLine -= 20
+        }
+        
+        let pathForInclineLine = UIBezierPath()
+        pathForInclineLine.move(to: referencePoint)
+        pathForInclineLine.addLine(to: CGPoint(x:xInclineLine, y: yInclineLine))
+        
+        
+        var xHorizontaLine = xInclineLine
+        if (xHorizontaLine < self.center.x) {
+                xHorizontaLine -= 20
+        }
+        if (xHorizontaLine > self.center.x) {
+                xHorizontaLine += 20
+        }
+    
+        let pathForHorizontalLine = UIBezierPath()
+        pathForHorizontalLine.move(to: pathForInclineLine.currentPoint)
+        pathForHorizontalLine.addLine(to: CGPoint(x: xHorizontaLine, y: pathForInclineLine.currentPoint.y ))
+        
+        let inclineLineLayer = CAShapeLayer()
+        inclineLineLayer.frame = self.bounds
+        inclineLineLayer.path = pathForInclineLine.cgPath
+        inclineLineLayer.strokeColor = self.labelLineColor.cgColor
+        inclineLineLayer.lineWidth = self.labelLineWidth
+        inclineLineLayer.lineJoin = kCALineJoinBevel
+        self.layer.addSublayer(inclineLineLayer)
+        
+        let horizontalLineLayer = CAShapeLayer()
+        horizontalLineLayer.frame = self.bounds
+        horizontalLineLayer.path = pathForHorizontalLine.cgPath
+        horizontalLineLayer.strokeColor = self.labelLineColor.cgColor
+        horizontalLineLayer.lineWidth = self.labelLineWidth
+        horizontalLineLayer.lineJoin = kCALineJoinBevel
+        self.layer.addSublayer(horizontalLineLayer)
+        
+        let pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        pathAnimation.delegate = self
+        pathAnimation.duration = 0.2
+        pathAnimation.fromValue = 0.0
+        pathAnimation.toValue = 1.0
+        horizontalLineLayer.add(pathAnimation, forKey: "strokeEnd")
+        inclineLineLayer.add(pathAnimation, forKey: "strokeEnd")
+        
+        var xForLabel = pathForHorizontalLine.currentPoint.x
+        let yForLabel = pathForHorizontalLine.currentPoint.y - 15
+        
+        if (xForLabel > self.center.x) {
+                xForLabel += 10
+        }
+        
+        if (xForLabel < self.center.x) {
+                xForLabel -= 30
+        }
+        
+//        self.daysLabel = UILabel(frame: CGRect(x: pathForInclineLine.currentPoint.x - 45,
+//                                      y: pathForInclineLine.currentPoint.y - 15,
+//                                      width: 30,
+//                                       height: 30))
+        self.daysLabel = UILabel(frame: CGRect(x: xForLabel, y: yForLabel, width: 30, height: 30))
+        daysLabel.text = String(format:"%d", valueForLabel)
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.addSubview(self.daysLabel)
+
+    }
     
     func degreesToRadians (_ value:Double) -> Double {
         return value * Double(M_PI) / 180.0

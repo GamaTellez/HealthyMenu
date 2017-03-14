@@ -107,8 +107,33 @@ extension NSManagedObject {
             }
         }
     }
+    
+    static func createMealFromSearchItem(item:SearchResultItem, completion:(_ saved:Bool)-> Void) {
+            let newMeal = NSEntityDescription.insertNewObject(forEntityName: "Meal", into: PersistantStorageCoordinator().context) as! Meal
+        guard let protein = item.itemProtein else {
+            newMeal.protein = 0
+            return
+        }
+        guard let calories = item.itemCalories else {
+            newMeal.calories = 0
+            return
+        }
+        guard let name = item.itemName else {
+            newMeal.name = "Not Available"
+            return
+        }
+        newMeal.calories = Int16(calories)
+        newMeal.protein = Int16(protein)
+        newMeal.name = name
+        PersistantStorageCoordinator().save { (saved:Bool) in
+            if (saved) {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
 }
-
 
 extension NSFetchRequest {
     static func getCurrentDay()-> Day? {

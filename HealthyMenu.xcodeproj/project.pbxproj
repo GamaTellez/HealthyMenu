@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8712DE101E5530AD00859F59 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8712DE0F1E5530AD00859F59 /* AddGoalView.swift */; };
-		8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724CA881E05AB2C00D8C721 /* CounterLabel.swift */; };
 		872E9D491E282BBD007536D5 /* PersistantStorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */; };
 		8733C53E1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733C53D1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift */; };
 		8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */; };
@@ -17,6 +16,8 @@
 		8737E0241E5BFB2400C53E60 /* ResetDayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8737E0231E5BFB2400C53E60 /* ResetDayView.xib */; };
 		873FC6FB1E5BEBC700DCCE6F /* AddMealView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 873FC6FA1E5BEBC700DCCE6F /* AddMealView.xib */; };
 		8742FD1E1DE00983009B3CD6 /* SortingOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */; };
+		876DF8B51E71B098001A4DAC /* MealSelectedAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876DF8B41E71B098001A4DAC /* MealSelectedAlertView.swift */; };
+		876DF8B71E71B553001A4DAC /* MealSelectedAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 876DF8B61E71B553001A4DAC /* MealSelectedAlertView.xib */; };
 		8772CE591D81D82000A7DD7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE581D81D82000A7DD7E /* AppDelegate.swift */; };
 		8772CE5E1D81D82000A7DD7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8772CE5C1D81D82000A7DD7E /* Main.storyboard */; };
 		8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8772CE5F1D81D82000A7DD7E /* HealthyMenu.xcdatamodeld */; };
@@ -57,7 +58,6 @@
 
 /* Begin PBXFileReference section */
 		8712DE0F1E5530AD00859F59 /* AddGoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddGoalView.swift; path = ../AddGoalView.swift; sourceTree = "<group>"; };
-		8724CA881E05AB2C00D8C721 /* CounterLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterLabel.swift; sourceTree = "<group>"; };
 		872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistantStorageCoordinator.swift; path = ../PersistantStorageCoordinator.swift; sourceTree = "<group>"; };
 		8733C53D1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalsPickerViewDataSource.swift; path = ../GoalsPickerViewDataSource.swift; sourceTree = "<group>"; };
 		8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularProgressLabel.swift; path = ../CircularProgressLabel.swift; sourceTree = "<group>"; };
@@ -66,6 +66,8 @@
 		8737E0231E5BFB2400C53E60 /* ResetDayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResetDayView.xib; sourceTree = "<group>"; };
 		873FC6FA1E5BEBC700DCCE6F /* AddMealView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddMealView.xib; path = ../AddMealView.xib; sourceTree = "<group>"; };
 		8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortingOptionsView.swift; path = ../SortingOptionsView.swift; sourceTree = "<group>"; };
+		876DF8B41E71B098001A4DAC /* MealSelectedAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSelectedAlertView.swift; sourceTree = "<group>"; };
+		876DF8B61E71B553001A4DAC /* MealSelectedAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MealSelectedAlertView.xib; sourceTree = "<group>"; };
 		8772CE551D81D82000A7DD7E /* HealthyMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthyMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8772CE581D81D82000A7DD7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8772CE5D1D81D82000A7DD7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -136,6 +138,15 @@
 			name = AddGoalView;
 			sourceTree = "<group>";
 		};
+		876DF8B81E71B683001A4DAC /* MealSelectedView */ = {
+			isa = PBXGroup;
+			children = (
+				876DF8B41E71B098001A4DAC /* MealSelectedAlertView.swift */,
+				876DF8B61E71B553001A4DAC /* MealSelectedAlertView.xib */,
+			);
+			name = MealSelectedView;
+			sourceTree = "<group>";
+		};
 		8772CE4C1D81D82000A7DD7E = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +173,6 @@
 				8772CE581D81D82000A7DD7E /* AppDelegate.swift */,
 				8772CE5C1D81D82000A7DD7E /* Main.storyboard */,
 				8772CE8B1D81DB0800A7DD7E /* Extensions.swift */,
-				8724CA881E05AB2C00D8C721 /* CounterLabel.swift */,
 				872E9D481E282BBD007536D5 /* PersistantStorageCoordinator.swift */,
 				87D4DB6F1DB5ADC400000FCE /* HomeView */,
 				87D4DB721DB5AE0500000FCE /* Menus View */,
@@ -213,6 +223,7 @@
 				877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */,
 				8742FD1D1DE00983009B3CD6 /* SortingOptionsView.swift */,
 				877AD9431DE34ED80090683F /* SearchViewController.swift */,
+				876DF8B81E71B683001A4DAC /* MealSelectedView */,
 				877AD9451DE34F9D0090683F /* SearchResultsDataSource.swift */,
 				877AD9411DE34EAD0090683F /* ItemResultCell.swift */,
 				877AD9491DE351760090683F /* SearchResultItem.swift */,
@@ -358,6 +369,7 @@
 				873FC6FB1E5BEBC700DCCE6F /* AddMealView.xib in Resources */,
 				8772CE661D81D82000A7DD7E /* LaunchScreen.storyboard in Resources */,
 				8772CE631D81D82000A7DD7E /* Assets.xcassets in Resources */,
+				876DF8B71E71B553001A4DAC /* MealSelectedAlertView.xib in Resources */,
 				8737E0241E5BFB2400C53E60 /* ResetDayView.xib in Resources */,
 				8772CE5E1D81D82000A7DD7E /* Main.storyboard in Resources */,
 				87ABB7861E555AA700024849 /* AddGoalView.xib in Resources */,
@@ -388,6 +400,7 @@
 				8736ACBE1DED0FDC00C19CC9 /* CircularProgressLabel.swift in Sources */,
 				877AD9441DE34ED80090683F /* SearchViewController.swift in Sources */,
 				877AD9421DE34EAD0090683F /* ItemResultCell.swift in Sources */,
+				876DF8B51E71B098001A4DAC /* MealSelectedAlertView.swift in Sources */,
 				8712DE101E5530AD00859F59 /* AddGoalView.swift in Sources */,
 				877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */,
 				8772CE8A1D81D91C00A7DD7E /* HomeView.swift in Sources */,
@@ -398,7 +411,6 @@
 				8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */,
 				877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */,
 				877AD9461DE34F9D0090683F /* SearchResultsDataSource.swift in Sources */,
-				8724CA891E05AB2C00D8C721 /* CounterLabel.swift in Sources */,
 				872E9D491E282BBD007536D5 /* PersistantStorageCoordinator.swift in Sources */,
 				87F46E701E36BE3100230225 /* HistoryViewController.swift in Sources */,
 				8733C53E1E64E2F900B67BA4 /* GoalsPickerViewDataSource.swift in Sources */,
