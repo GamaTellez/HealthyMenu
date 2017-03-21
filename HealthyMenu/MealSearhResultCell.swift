@@ -10,16 +10,19 @@ import UIKit
 
 class MealSearhResultCell: UITableViewCell {
 
-    @IBOutlet var itemNameLabel: UILabel!
-    @IBOutlet var itemBrandNameLabel: UILabel!
-    @IBOutlet var itemCaloriesLabel: UILabel!
-    @IBOutlet var itemProteinLabel: UILabel!
-    
+    @IBOutlet var mealName: UILabel!
+    @IBOutlet var mealBrandName: UILabel!
+    @IBOutlet var mealCalories: UILabel!
+    @IBOutlet var mealProtein: UILabel!
 
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.mealProtein.layer.cornerRadius = self.mealProtein.frame.width / 2
+        self.mealProtein.layer.borderWidth = 1
+        
+        self.mealCalories.layer.cornerRadius = self.mealProtein.frame.width / 2
+        self.mealCalories.layer.borderWidth = 1
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

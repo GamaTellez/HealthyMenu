@@ -11,8 +11,8 @@ import UIKit
 @IBDesignable class GoalDaysCircularChart: UILabel, CAAnimationDelegate {
     
     private let kStartingAngle = -90.0
-    internal var totalOfDays:Double = 0
-    internal var daysGoalWasReached:Double = 0
+    private var totalOfDays:Double = 0
+    private var daysGoalWasReached:Double = 0
     @IBInspectable var baseStrokeColor:UIColor = UIColor.gray
     @IBInspectable var baseStrokeWidth:CGFloat = 30
     var daysStrokeColor:UIColor = UIColor.black
@@ -24,9 +24,13 @@ import UIKit
     
     var daysFilled:Double = 0.0 {
         didSet {
-            if self.daysFilled < 0.0  { self.daysFilled = 0.0 }
-            if self.daysFilled > Double(self.totalOfDays) { self.daysFilled = Double(self.totalOfDays) }
-            setNeedsDisplay()
+//            if self.daysFilled < 0.0  {
+//                self.daysFilled = 0.0
+//            }
+//            if self.daysFilled > Double(self.totalOfDays) {
+//                self.daysFilled = Double(self.totalOfDays)
+//            }
+                self.setNeedsDisplay()
         }
     }
     
@@ -61,20 +65,24 @@ import UIKit
         self.daysPath?.stroke()
     }
     
-    internal func animateToDay() {
-        self.text = String(format:"%.0f days \n with goal", self.totalOfDays)
+    internal func animate(totalDays:Double, totalDaysGoalWasReached:Double) {
         self.daysFilled = 0
+        self.totalOfDays = totalDays
+        self.daysGoalWasReached = totalDaysGoalWasReached
+        self.text = String(format:"%.0f days \n with goal", self.totalOfDays)
         self.layer.sublayers = nil
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { (timer) in
-            self.daysFilled += 1
-            if (self.daysFilled != self.totalOfDays) {
+        if (self.daysGoalWasReached == 0 ) {
+            print("nothing happens, except updating label days")
+        } else {
+            let timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { (timer) in
+                    self.daysFilled += 1
                 if (self.daysFilled == self.daysGoalWasReached) {
                     timer.invalidate()
-                    self.addDayLabel(referencePoint: (self.daysPath?.currentPoint)!, valueForLabel: Int(self.daysGoalWasReached))
+                    //self.addDayLabel(referencePoint: (self.daysPath?.currentPoint)!, valueForLabel:   Int(self.daysFilled))
                 }
-            }
+            })
+            timer.fire()
         }
-        timer.fire()
     }
     
     private func addDayLabel(referencePoint:CGPoint, valueForLabel:Int) {
@@ -141,11 +149,11 @@ import UIKit
                 xForLabel -= 30
         }
         
-//        self.daysLabel = UILabel(frame: CGRect(x: pathForInclineLine.currentPoint.x - 45,
-//                                      y: pathForInclineLine.currentPoint.y - 15,
-//                                      width: 30,
-//                                       height: 30))
-        self.daysLabel = UILabel(frame: CGRect(x: xForLabel, y: yForLabel, width: 30, height: 30))
+        self.daysLabel = UILabel(frame: CGRect(x: xForLabel,
+                                      y: yForLabel,
+                                      width: 30,
+                                       height: 30))
+        self.daysLabel.textAlignment = .center
         daysLabel.text = String(format:"%d", valueForLabel)
     }
     

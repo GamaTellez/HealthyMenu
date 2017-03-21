@@ -13,7 +13,6 @@ protocol NewGoalCreatedDelegate {
     func newGoalCreated(with proteinGoal:Int16, isCurrent:Bool)
 }
 
-
 class AddGoalView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var proteinGoalLabel: UILabel!
@@ -40,11 +39,13 @@ class AddGoalView: UIView {
     }
     private func setUpViews() {
         self.proteinSlider.maximumValue = 400
-        self.proteinSlider.minimumValue = 0
-        self.proteinSlider.setValue(0, animated: true)
-        self.proteinGoalLabel.text = "0"
-        self.saveButton.setTitle("S", for: .normal)
+        self.proteinSlider.minimumValue = 100
+        self.proteinSlider.setValue(self.proteinSlider.minimumValue, animated: true)
+        self.proteinGoalLabel.text = "100"
+        self.saveButton.setImage(UIImage(named:"save"), for: .normal)
+        self.saveButton.sizeToFit()
         self.titleLabel.text = "Add New Goal"
+        
     }
     
     @IBAction func proteinSliderValueChanged(_ sender: UISlider) {

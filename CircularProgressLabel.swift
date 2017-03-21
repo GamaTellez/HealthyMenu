@@ -15,8 +15,8 @@ import CoreData
     private let kStartingAngle = -90.0
     internal var proteinGoal:Double = 0
     internal var proteinCount:Double = 0
-    @IBInspectable var strokeColor:UIColor = UIColor.black
-    @IBInspectable var baseStrokeColor:UIColor = UIColor.gray
+    @IBInspectable var strokeColor:UIColor = UIColor(red: 0.290, green: 0.965, blue: 0.184, alpha: 1.00)
+    @IBInspectable var baseStrokeColor:UIColor = UIColor(red: 0.922, green: 0.922, blue: 0.922, alpha: 1.00)
     @IBInspectable var strokeWidth:CGFloat = 30.0
     @IBInspectable var completed:Double = 0 {
         willSet { self.willChangeValue(forKey: "completed") }
@@ -28,6 +28,11 @@ import CoreData
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
+        self.textColor = UIColor.white
+    }
     
     
     override func draw(_ rect: CGRect) {
@@ -88,7 +93,7 @@ import CoreData
             })
         }
         if (action == "substract") {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { (timer) in
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { (timer) in
                 self.completed -= 1
                 self.text = String(format: "%.0f / %.0f", self.completed, self.proteinGoal)
                 if (self.completed == 0 || self.completed < 0) {

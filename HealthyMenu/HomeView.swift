@@ -10,16 +10,21 @@ import UIKit
 import MapKit
 import CoreData
 
-class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate, NewDayDelegate {
+class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate, NewDayDelegate, mealSearchDelegate {
     
     @IBOutlet var currentProteinCountLabel: CircularProgressLabel!
     @IBOutlet var currentCaloriesLabel: CircledLabel!
     @IBOutlet var addProtein: UIButton!
     @IBOutlet var goalStats: UIBarButtonItem!
+    @IBOutlet var proteinTitleLabel: UILabel!
+    @IBOutlet var caloriesTitleLabel: UILabel!
+    
+    
     var currentGoal:Goal?
+    var backGroundView:GeneralBackView?
     var navBarTitleButton:UIButton = UIButton(type: .custom)
     @IBOutlet var newGoalButton: UIBarButtonItem!
-    
+    var tapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         self.setUpViews()
@@ -60,13 +65,40 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     * setting up the views
     **********************************************************/
     private func setUpViews() {
+        self.navigationController?.addStatusBarView()
+        self.setAppBackGroundColor()
         self.goalStats.image = UIImage(named: "History")
         self.goalStats.tintColor = UIColor.black
         self.navBarTitleButton.sizeToFit()
         self.navBarTitleButton.addTarget(self, action: #selector(self.titleButtontapped), for: UIControlEvents.touchUpInside)
+        self.navBarTitleButton.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         self.navBarTitleButton.setTitle("Add a goal =====>", for: .disabled)
-        self.navBarTitleButton.tintColor = UIColor.black
         self.navigationItem.titleView = self.navBarTitleButton
+        self.tapGestureRecognizer.numberOfTapsRequired = 2
+        self.tapGestureRecognizer.addTarget(self, action: #selector(self.hideShowNavBar))
+        self.proteinTitleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
+        self.proteinTitleLabel.textColor = UIColor.white
+        self.caloriesTitleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
+        self.caloriesTitleLabel.textColor = UIColor.white
+        self.addProtein.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.addProtein.setTitle("Add Meal", for: .normal)
+        self.addProtein.setTitleColor(UIColor.white, for: .normal)
+        self.view.addGestureRecognizer(self.tapGestureRecognizer)
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+
+    
+    /*********************************************************
+     * called when user taps, sets the nav bar property hidden 
+     * as desired
+     **********************************************************/
+    @objc private func hideShowNavBar() {
+        guard let navController = self.navigationController else { return }
+        if (navController.navigationBar.isHidden == true) {
+            navController.setNavigationBarHidden(false, animated: true)
+        } else if (navController.navigationBar.isHidden == false) {
+            navController.setNavigationBarHidden(true, animated: true)
+        }
     }
     
     /*********************************************************
@@ -99,6 +131,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         newGoalView.present()
     }
     
+    
     @objc private func enterMealManually() {
         let addMealCustomView = AddMealView(frame: self.view.frame)
         addMealCustomView.delegate = self
@@ -112,9 +145,9 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * the new meal
      ***********************************************************/
     @objc private func searchMeal() {
-        let searchMealView = MealSearchView(frame: self.view.frame)
-        self.view.addSubview(searchMealView)
-        searchMealView.present()
+        guard let searchMealViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "searchMealController") as? MealSearchViewController else { return }
+        searchMealViewController.delegate = self
+        self.present(searchMealViewController, animated: true, completion: nil)
     }
     
     /**********************************************************
@@ -170,7 +203,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
             }
         }
     }
-    
     
     /**********************************************************
      * newDayDelegate

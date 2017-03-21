@@ -31,11 +31,7 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         for goal in self.allGoals! {
             if goal.isCurrentGoal {
                 self.goalsPickerView.selectRow(index, inComponent: 0, animated: true)
-                //self.circularChart.totalOfDays = Double((goal.days?.count)!)
-                //self.circularChart.daysGoalWasReached = Double(goal.getDaysGoalWasReached()!)
-                self.circularChart.totalOfDays = 50
-                self.circularChart.daysGoalWasReached = 36
-                self.circularChart.animateToDay()
+                self.circularChart.animate(totalDays: Double((goal.days?.count)!), totalDaysGoalWasReached: Double(goal.getDaysGoalWasReached()!))
                 break
             }
              index += 1
@@ -76,11 +72,9 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         guard let daysGoalWasReached = goalSelected.getDaysGoalWasReached() else {
             return
         }
-        self.circularChart.totalOfDays = Double((totalDays))
-        self.circularChart.daysGoalWasReached = Double(daysGoalWasReached)
-//        self.circularChart.totalOfDays = 50
-//        self.circularChart.daysGoalWasReached = 15
-        self.circularChart.animateToDay()
+        print(totalDays)
+        print(daysGoalWasReached)
+        self.circularChart.animate(totalDays: Double((totalDays)), totalDaysGoalWasReached: Double(daysGoalWasReached))
         
         guard let avarageProtein = goalSelected.getProteinAvarage() else {
             return

@@ -12,13 +12,20 @@ import CoreData
 @IBDesignable class CircledLabel: UILabel {
    
     private let kStartingAndEndAngle = -90.0
-    private var strokeColor:UIColor = UIColor.black
+    private var strokeColor:UIColor = UIColor(red: 0.290, green: 0.965, blue: 0.184, alpha: 1.00)
     private var strokeWidth:CGFloat = 8.0
     internal var caloriesToDisplay:Int = 0 {
             didSet {
                 self.text = String(format: "%d", self.caloriesToDisplay)
         }
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
+        self.textColor = UIColor.white
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         if self.strokeWidth > 0.0 {
