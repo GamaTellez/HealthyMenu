@@ -18,10 +18,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     @IBOutlet var goalStats: UIBarButtonItem!
     @IBOutlet var proteinTitleLabel: UILabel!
     @IBOutlet var caloriesTitleLabel: UILabel!
-    
-    
     var currentGoal:Goal?
-    var backGroundView:GeneralBackView?
     var navBarTitleButton:UIButton = UIButton(type: .custom)
     @IBOutlet var newGoalButton: UIBarButtonItem!
     var tapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer()
@@ -105,6 +102,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * title button tapped
      **********************************************************/
     @objc private func titleButtontapped() {
+        self.tapGestureRecognizer.removeTarget(self, action: #selector(self.hideShowNavBar))
         let resetView:ResetDayView = ResetDayView(frame: self.view.frame, distanceFromTop: (self.navigationController?.navigationBar.frame.height)! + 20)
         resetView.delegate = self
         resetView.show()
@@ -128,15 +126,16 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         let newGoalView = AddGoalView(frame: self.view.frame)
         newGoalView.delegate = self
         self.view.addSubview(newGoalView)
-        newGoalView.present()
+        newGoalView.present(to: self.currentProteinCountLabel.center)
     }
     
     
     @objc private func enterMealManually() {
+        self.tapGestureRecognizer.removeTarget(self, action: #selector(self.hideShowNavBar))
         let addMealCustomView = AddMealView(frame: self.view.frame)
         addMealCustomView.delegate = self
         self.view.addSubview(addMealCustomView)
-        addMealCustomView.present()
+        addMealCustomView.present(toPoint: self.currentProteinCountLabel.center)
     }
     
     
@@ -162,6 +161,10 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
             self.currentCaloriesLabel.update()
             }
         }
+        self.tapGestureRecognizer.addTarget(self, action: #selector(self.hideShowNavBar))
+    }
+    func noMealWasCreated() {
+        self.tapGestureRecognizer.addTarget(self, action: #selector(self.hideShowNavBar))
     }
     
     /**********************************************************
@@ -233,6 +236,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
                 self.currentCaloriesLabel.update()
             }
         }
+        self.tapGestureRecognizer.addTarget(self, action: #selector(self.hideShowNavBar))
     }
     
     /**********************************************************

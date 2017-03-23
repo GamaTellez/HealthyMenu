@@ -24,6 +24,7 @@ import CoreData
         super.awakeFromNib()
         self.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
         self.textColor = UIColor.white
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func draw(_ rect: CGRect) {

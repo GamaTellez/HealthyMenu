@@ -29,7 +29,6 @@
 		877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD9491DE351760090683F /* SearchResultItem.swift */; };
 		877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */; };
 		877AD9501DE5073D0090683F /* CircledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877AD94F1DE5073D0090683F /* CircledLabel.swift */; };
-		878F743F1E7F5B5F00363A3B /* GeneralBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F743E1E7F5B5F00363A3B /* GeneralBackView.swift */; };
 		878F74411E809E1A00363A3B /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878F74401E809E1A00363A3B /* AppearanceManager.swift */; };
 		879B3C211E78C2230070C14B /* MealSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879B3C201E78C2230070C14B /* MealSearchViewController.swift */; };
 		879B3C251E7ACC5F0070C14B /* GoalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879B3C241E7ACC5F0070C14B /* GoalExtensions.swift */; };
@@ -88,7 +87,6 @@
 		877AD9491DE351760090683F /* SearchResultItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultItem.swift; path = ../SearchResultItem.swift; sourceTree = "<group>"; };
 		877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		877AD94F1DE5073D0090683F /* CircledLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircledLabel.swift; sourceTree = "<group>"; };
-		878F743E1E7F5B5F00363A3B /* GeneralBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralBackView.swift; sourceTree = "<group>"; };
 		878F74401E809E1A00363A3B /* AppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 		879B3C201E78C2230070C14B /* MealSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSearchViewController.swift; sourceTree = "<group>"; };
 		879B3C241E7ACC5F0070C14B /* GoalExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalExtensions.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 		87D4DB6F1DB5ADC400000FCE /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				878F743E1E7F5B5F00363A3B /* GeneralBackView.swift */,
 				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
 				8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */,
 				877AD94F1DE5073D0090683F /* CircledLabel.swift */,
@@ -415,7 +412,6 @@
 				8736ACC01DED1DFD00C19CC9 /* AddProteinOptionsView.swift in Sources */,
 				8772CE611D81D82000A7DD7E /* HealthyMenu.xcdatamodeld in Sources */,
 				879B3C211E78C2230070C14B /* MealSearchViewController.swift in Sources */,
-				878F743F1E7F5B5F00363A3B /* GeneralBackView.swift in Sources */,
 				877AD94A1DE351760090683F /* SearchResultItem.swift in Sources */,
 				8736ACC81DEF41F300C19CC9 /* AddMealView.swift in Sources */,
 				877AD94E1DE3CAF50090683F /* ActivityIndicatorView.swift in Sources */,

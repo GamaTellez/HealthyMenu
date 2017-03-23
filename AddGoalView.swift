@@ -25,8 +25,6 @@ class AddGoalView: UIView {
     override init(frame: CGRect) {
         super.init(frame:CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 20, height: frame.height / 3))
             self.addSubview(self.instanceFromNib())
-            self.layer.borderColor = UIColor.black.cgColor
-            self.layer.borderWidth = 0.5
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,12 +38,19 @@ class AddGoalView: UIView {
     private func setUpViews() {
         self.proteinSlider.maximumValue = 400
         self.proteinSlider.minimumValue = 100
+        self.proteinSlider.tintColor = UIColor(red: 0.310, green: 0.808, blue: 0.851, alpha: 1.00)
         self.proteinSlider.setValue(self.proteinSlider.minimumValue, animated: true)
         self.proteinGoalLabel.text = "100"
-        self.saveButton.setImage(UIImage(named:"save"), for: .normal)
-        self.saveButton.sizeToFit()
+        self.proteinGoalLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 50)
+        self.proteinGoalLabel.textColor = UIColor.white
+        self.titleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         self.titleLabel.text = "Add New Goal"
-        
+        self.titleLabel.textColor = UIColor.white
+        self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
+        self.cancelButton.sizeToFit()
+        self.alpha = 0.9
+        self.layer.cornerRadius = 10
+        self.backgroundColor = UIColor.black
     }
     
     @IBAction func proteinSliderValueChanged(_ sender: UISlider) {
@@ -69,9 +74,9 @@ class AddGoalView: UIView {
         return UINib(nibName: "AddGoalView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! AddGoalView
     }
 
-    internal func present() {
+    internal func present(to point:CGPoint) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.center = self.superview!.center
+            self.center = point
         }, completion: {(finished:Bool) in
         })
     }

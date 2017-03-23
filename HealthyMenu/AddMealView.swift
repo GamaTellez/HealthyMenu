@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewMealCreatedDelegate {
     func newMealCreated(protein:Int16, calories:Int16, name:String)
+    func noMealWasCreated() 
 }
 
 class AddMealView: UIView , UITextFieldDelegate {
@@ -31,14 +32,47 @@ class AddMealView: UIView , UITextFieldDelegate {
     }
     
     override func awakeFromNib() {
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 0.5
-        self.setUpTextField()
-        self.setUpCancelButton()
-        self.setUpSaveButton()
-        self.setUpSliders()
+        self.setUpAppearance()
     }
 
+    private func setUpAppearance() {
+        self.layer.cornerRadius = 10
+        self.backgroundColor = UIColor.black
+        self.alpha = 0.8
+        self.proteinCountLabel.layer.cornerRadius = 40
+        self.proteinCountLabel.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 25)
+        self.proteinCountLabel.textColor = UIColor(red: 0.251, green: 0.251, blue: 0.251, alpha: 1.00)
+        self.proteinCountLabel.backgroundColor = UIColor(red: 0.890, green: 0.890, blue: 0.890, alpha: 1.00)
+        self.proteinCountLabel.alpha = 0.9
+        self.caloriesCounterLabel.layer.cornerRadius = 40
+        self.caloriesCounterLabel.alpha = 0.9
+        self.caloriesCounterLabel.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 25)
+        self.caloriesCounterLabel.textColor = UIColor(red: 0.251, green: 0.251, blue: 0.251, alpha: 1.00)
+        self.caloriesCounterLabel.backgroundColor = UIColor(red: 0.890, green: 0.890, blue: 0.890, alpha: 1.00)
+        self.proteinTitleLabel.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 15)
+        self.proteinTitleLabel.backgroundColor = UIColor.clear
+        self.proteinTitleLabel.textColor = UIColor.white
+        self.caloriesTitleLabel.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 15)
+        self.caloriesTitleLabel.backgroundColor = UIColor.clear
+        self.caloriesTitleLabel.textColor = UIColor.white
+        self.proteinSlider.maximumValue = 100
+        self.proteinSlider.minimumValue = 0
+        self.proteinSlider.setValue(0.0, animated: true)
+        self.proteinSlider.tintColor = UIColor(red: 0.424, green: 0.682, blue: 0.702, alpha: 1.00)
+        self.caloriesSlider.maximumValue = 1000
+        self.caloriesSlider.minimumValue = 0
+        self.caloriesSlider.setValue(0.0, animated: true)
+        self.caloriesSlider.tintColor = UIColor(red: 0.424, green: 0.682, blue: 0.702, alpha: 1.00)
+        self.titleViewLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.titleViewLabel.textColor = UIColor.white
+        self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
+        self.cancelButton.sizeToFit()
+        self.saveButton.isEnabled = false
+        self.mealNameTextField.delegate = self
+        self.mealNameTextField.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+ 
+    }
+    
     private func instanceFromNib() -> AddMealView {
         return UINib(nibName: "AddMealView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! AddMealView
     }
@@ -70,9 +104,9 @@ class AddMealView: UIView , UITextFieldDelegate {
         self.enableSaveButton()
     }
 
-    internal func present() {
+    internal func present(toPoint:CGPoint) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.center = self.superview!.center
+            self.center = toPoint
         }, completion: {(finished:Bool) in
         })
     }
@@ -81,34 +115,11 @@ class AddMealView: UIView , UITextFieldDelegate {
         UIView.animate(withDuration: 0.3, animations: {
             self.center.y -= self.superview!.frame.height
         }, completion: { (finished:Bool) in
+            if (self.delegate != nil) {
+                self.delegate?.noMealWasCreated()
+            }
             self.removeFromSuperview()
         })
-    }
-    
-    private func setUpCancelButton() {
-        self.cancelButton.center = self.frame.origin
-        self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
-        self.cancelButton.sizeToFit()
-        self.cancelButton.backgroundColor = UIColor.clear
-        self.cancelButton.tintColor = UIColor.black
-    }
-    
-    private func setUpSaveButton() {
-        self.saveButton.isEnabled = false
-    }
-    
-    
-    private func setUpTextField() {
-        self.mealNameTextField.delegate = self
-    }
-    
-    private func setUpSliders() {
-        self.proteinSlider.maximumValue = 100
-        self.proteinSlider.minimumValue = 0
-        self.proteinSlider.setValue(0.0, animated: true)
-        self.caloriesSlider.maximumValue = 1000
-        self.caloriesSlider.minimumValue = 0
-        self.caloriesSlider.setValue(0.0, animated: true)
     }
     
     /*****************************************************

@@ -26,9 +26,9 @@ class ResetDayView: UIView {
 
     convenience init(frame:CGRect, distanceFromTop:CGFloat) {
         self.init()
-        self.frame =  CGRect(x: 5,
-                             y: distanceFromTop + 10,
-                             width: frame.width - 20,
+        self.frame =  CGRect(x: frame.origin.x,
+                             y: distanceFromTop,
+                             width: frame.width,
                               height: frame.height / 3)
         self.addSubview(self.instanceFromNib())
     }
@@ -42,10 +42,11 @@ class ResetDayView: UIView {
     }
     
     override func awakeFromNib() {
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.black.cgColor
         self.setUpButtons()
         self.setUpLabels()
+        self.layer.cornerRadius = 10
+        self.backgroundColor = UIColor.black
+        self.alpha = 0.9
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
@@ -86,12 +87,16 @@ class ResetDayView: UIView {
     private func setUpButtons() {
         self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
         self.cancelButton.sizeToFit()
-        self.cancelButton.center = self.frame.origin
     }
     
     private func setUpLabels() {
         self.titleLabel.text = "New Day?"
-        self.messageLabel.text = "Starting a new day will reset your protein count to 0, do you want to continue"
+        self.titleLabel.textColor = UIColor.white
+        self.titleLabel.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 25)
+        self.messageLabel.text = "Starting a new day will reset your protein count to 0, do you want to continue?"
+        self.messageLabel.textColor = UIColor.white
+        self.messageLabel.font = UIFont(name:"HelveticaNeue-CondensedBold", size: 15)
+        self.messageLabel.backgroundColor = UIColor.clear
         self.messageLabel.numberOfLines = 0
         self.messageLabel.lineBreakMode = .byWordWrapping
     }
