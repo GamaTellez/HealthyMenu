@@ -142,15 +142,6 @@
 			name = AddGoalView;
 			sourceTree = "<group>";
 		};
-		877012BE1E77801E002FF9E3 /* FillerCell */ = {
-			isa = PBXGroup;
-			children = (
-				877012B51E777A2D002FF9E3 /* MealSearhResultCell.swift */,
-				877012B91E778008002FF9E3 /* FillerCell.swift */,
-			);
-			name = FillerCell;
-			sourceTree = "<group>";
-		};
 		8772CE4C1D81D82000A7DD7E = {
 			isa = PBXGroup;
 			children = (
@@ -217,8 +208,8 @@
 				8772CE891D81D91C00A7DD7E /* HomeView.swift */,
 				8736ACBD1DED0FDC00C19CC9 /* CircularProgressLabel.swift */,
 				877AD94F1DE5073D0090683F /* CircledLabel.swift */,
-				87FB48FC1E4D1C850076049F /* ResetDayView */,
 				87FB48FB1E4D1C7B0076049F /* AddProteinOptionsView */,
+				87FB48FC1E4D1C850076049F /* ResetDayView */,
 				873FC6F71E5BCFA200DCCE6F /* AddGoalView */,
 				8736ACC91DEF41FB00C19CC9 /* Add Meal View */,
 				87F46E711E36BE4100230225 /* GoalsHistory */,
@@ -232,7 +223,8 @@
 				879B3C201E78C2230070C14B /* MealSearchViewController.swift */,
 				877AD9491DE351760090683F /* SearchResultItem.swift */,
 				877AD94D1DE3CAF50090683F /* ActivityIndicatorView.swift */,
-				877012BE1E77801E002FF9E3 /* FillerCell */,
+				877012B51E777A2D002FF9E3 /* MealSearhResultCell.swift */,
+				877012B91E778008002FF9E3 /* FillerCell.swift */,
 			);
 			name = "Menus View";
 			sourceTree = "<group>";

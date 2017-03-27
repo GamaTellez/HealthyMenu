@@ -23,6 +23,12 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadInfoInViews()
+        self.setUpViews()
+    }
+    
+    private func setUpViews() {
+        self.view.backgroundColor = UIColor(red: 0.200, green: 0.200, blue: 0.200, alpha: 1.00)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

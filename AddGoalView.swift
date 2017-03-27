@@ -48,6 +48,7 @@ class AddGoalView: UIView {
         self.titleLabel.textColor = UIColor.white
         self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
         self.cancelButton.sizeToFit()
+        self.saveButton.setImage(UIImage(named:"saveIcon"), for: .normal)
         self.alpha = 0.9
         self.layer.cornerRadius = 10
         self.backgroundColor = UIColor.black
@@ -57,7 +58,8 @@ class AddGoalView: UIView {
         self.proteinGoalLabel.text = String(format:"%d", Int(sender.value))
     }
     
-    @IBAction func saveBurronTapped(_ sender: UIButton) {
+
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
         guard let delegate = self.delegate else {
             self.dismiss()
             return

@@ -64,7 +64,8 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     private func setUpViews() {
         self.navigationController?.addStatusBarView()
         self.setAppBackGroundColor()
-        self.goalStats.image = UIImage(named: "History")
+        self.goalStats.image = UIImage(named: "chart")
+        self.newGoalButton.image = UIImage(named:"goalIcon")
         self.goalStats.tintColor = UIColor.black
         self.navBarTitleButton.sizeToFit()
         self.navBarTitleButton.addTarget(self, action: #selector(self.titleButtontapped), for: UIControlEvents.touchUpInside)
@@ -113,6 +114,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * add protein button tapped
      **********************************************************/
     @IBAction func addProteinButtonTapped(_ sender: UIButton) {
+        self.tapGestureRecognizer.removeTarget(self, action: #selector(self.hideShowNavBar))
         let addProteinOptionsView = AddProteinOptionsView(frame: self.view.frame, viewController: self, searchMealSelector: #selector(self.searchMeal), enterManuallySelector: #selector(self.enterMealManually))
         self.view.addSubview(addProteinOptionsView)
         addProteinOptionsView.presentView()

@@ -24,18 +24,22 @@ class AddProteinOptionsView: UIView {
         self.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: frame.height / 3)
         self.backgroundColor = UIColor.white
         let enterManuallyButton = UIButton(frame: CGRect(x: 0 , y: 0, width: frame.width, height: self.frame.height / 3))
+        enterManuallyButton.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         enterManuallyButton.setTitle("Enter Meal Manually", for: .normal)
         enterManuallyButton.backgroundColor = UIColor.black
         enterManuallyButton.addTarget(viewController, action: enterManuallySelector, for: .touchUpInside)
         enterManuallyButton.addTarget(self, action: #selector(self.dismissView), for: .touchUpInside)
         self.addSubview(enterManuallyButton)
         let searchMealButton = UIButton(frame: CGRect(x: 0, y: enterManuallyButton.frame.height, width: frame.width, height: self.frame.height / 3))
+        searchMealButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         searchMealButton.backgroundColor = UIColor.black
         searchMealButton.setTitle("Search Meal", for: .normal)
         searchMealButton.addTarget(viewController, action: searchMealSelector, for: .touchUpInside)
         searchMealButton.addTarget(self, action: #selector(self.dismissView), for: .touchUpInside)
         self.addSubview(searchMealButton)
         let cancelButton = UIButton(frame: CGRect(x: 0, y: enterManuallyButton.frame.height + searchMealButton.frame.height, width: frame.width, height: self.frame.height / 3))
+        cancelButton.titleLabel?.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 25)
+
         cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.backgroundColor = UIColor.black
         cancelButton.addTarget(self, action: #selector(self.cancelButtonTapped), for: .touchUpInside)

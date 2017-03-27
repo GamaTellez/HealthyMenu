@@ -14,12 +14,11 @@ protocol mealSearchDelegate {
     func mealFound(protein:Int, calories:Int, name:String)
 }
 
-
 class MealSearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+    @IBOutlet var nutrionixImage: UIImageView!
     @IBOutlet var mealSearchBar: UISearchBar!
     @IBOutlet var cancelButton: UIButton!
-    @IBOutlet var backGroundView: UIView!
     @IBOutlet var sorterSegmentController: UISegmentedControl!
     @IBOutlet var tableViewSearchResults: UITableView!
     var delegate:mealSearchDelegate?
@@ -36,22 +35,24 @@ class MealSearchViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupViews()
-        self.view.backgroundColor = UIColor.black
     }
 
     private func setupViews() {
         self.tableViewSearchResults.delegate = self
         self.tableViewSearchResults.dataSource = self
-        self.backGroundView.layer.cornerRadius = 10
-        self.backGroundView.layer.borderWidth = 1
+        self.mealSearchBar.barTintColor = UIColor.clear
+        self.mealSearchBar.backgroundColor = UIColor.clear
+        self.mealSearchBar.searchBarStyle = .minimal
+        self.mealSearchBar.tintColor = UIColor.white
+        guard let textView = self.mealSearchBar.value(forKey: "searchField") as? UITextField else { return }
+        textView.textColor = UIColor.white
+        textView.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.nutrionixImage.image = UIImage(named:"nutrionixLogo")
         self.cancelButton.setImage(UIImage(named:"closeIcon"), for: .normal)
-        self.cancelButton.tintColor = UIColor.white
-        self.mealSearchBar.barTintColor = UIColor.white
-        self.mealSearchBar.tintColor = UIColor.black
-        self.mealSearchBar.searchBarStyle = .prominent
+        self.cancelButton.clipsToBounds = true
+        self.view.backgroundColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 1.00)
     }
-    
-  
+
     /**********************************************************
      * SEARCH BAR DELEGATE METHODS
      ***********************************************************/
@@ -132,7 +133,7 @@ class MealSearchViewController: UIViewController, UITableViewDataSource, UITable
             return 10
         }
         else {
-            return 174
+            return 104
         }
     }
     
@@ -168,12 +169,12 @@ class MealSearchViewController: UIViewController, UITableViewDataSource, UITable
             cell.mealCalories.text = "Not found"
             return
         }
-        cell.mealCalories.text = String(format:"%d", mealCalories)
+        cell.mealCalories.text = String(format:"Calories: %d", mealCalories)
         guard let mealProtein = searchItem.itemProtein else {
             cell.mealProtein.text = "Not found"
             return
         }
-        cell.mealProtein.text = String(format:"%d", mealProtein)
+        cell.mealProtein.text = String(format:"Protein: %d", mealProtein)
     }
 
 }

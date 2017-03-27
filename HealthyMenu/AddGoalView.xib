@@ -14,7 +14,7 @@
                 <outlet property="cancelButton" destination="voP-jM-HCJ" id="gQV-pd-mHu"/>
                 <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="Z98-L3-5SH"/>
                 <outlet property="proteinSlider" destination="LD1-vM-CSf" id="VW6-rU-B5W"/>
-                <outlet property="saveButton" destination="Nnj-9q-gwn" id="AVq-Nd-UP7"/>
+                <outlet property="saveButton" destination="q8C-Za-yTa" id="MH2-3L-ePC"/>
                 <outlet property="titleLabel" destination="EdF-2w-20n" id="gw6-T2-Ck3"/>
             </connections>
         </placeholder>
@@ -26,7 +26,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Goal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdF-2w-20n">
                     <rect key="frame" x="82" y="17" width="192" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="D4a-O2-6H2"/>
+                        <constraint firstAttribute="height" constant="30" id="8QC-yV-KGC"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -35,7 +35,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aJ-t0-D0w">
                     <rect key="frame" x="137" y="69" width="80" height="80"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="80" id="Ilt-ir-CDy"/>
+                        <constraint firstAttribute="width" constant="80" id="gfH-mo-91Q"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -44,59 +44,59 @@
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LD1-vM-CSf">
                     <rect key="frame" x="14" y="161" width="327" height="31"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Ivd-o9-GH9"/>
+                        <constraint firstAttribute="height" constant="30" id="D7x-QL-HRx"/>
                     </constraints>
                     <connections>
                         <action selector="proteinSliderValueChanged:" destination="iN0-l3-epB" eventType="valueChanged" id="Jbn-i4-XXL"/>
                         <action selector="proteinSliderValueChanged:" destination="-1" eventType="valueChanged" id="n6R-rg-1NW"/>
                     </connections>
                 </slider>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nnj-9q-gwn">
-                    <rect key="frame" x="152" y="201" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="Ba3-Ys-9zN"/>
-                        <constraint firstAttribute="height" constant="50" id="jot-Ix-w7Y"/>
-                    </constraints>
-                    <state key="normal" title="Save"/>
-                    <connections>
-                        <action selector="saveBurronTapped:" destination="-1" eventType="touchUpInside" id="5TL-rz-ecF"/>
-                        <action selector="saveBurronTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Qtz-7v-l03"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voP-jM-HCJ">
                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="a0G-SF-Q1e"/>
+                        <constraint firstAttribute="height" constant="50" id="J08-Gf-eAm"/>
+                        <constraint firstAttribute="width" constant="50" id="l1K-bj-cfF"/>
                     </constraints>
                     <connections>
                         <action selector="cancelButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="6Qu-ev-Eph"/>
                         <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="zMW-KX-GB1"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8C-Za-yTa">
+                    <rect key="frame" x="305" y="0.0" width="50" height="50"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" button="YES" notEnabled="YES"/>
+                    </accessibility>
+                    <connections>
+                        <action selector="saveButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="CBf-oK-YrP"/>
+                        <action selector="saveButtonTapped:" destination="-1" eventType="touchUpInside" id="eH5-cP-Xa9"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="LD1-vM-CSf" firstAttribute="centerX" secondItem="Nnj-9q-gwn" secondAttribute="centerX" id="7iy-vd-oCj"/>
-                <constraint firstItem="Nnj-9q-gwn" firstAttribute="top" secondItem="LD1-vM-CSf" secondAttribute="bottom" constant="10" id="Brq-cp-abe"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="DAE-Va-mCf"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="centerX" secondItem="LD1-vM-CSf" secondAttribute="centerX" id="Eds-ck-8az"/>
-                <constraint firstItem="voP-jM-HCJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="T1p-kG-6Ra"/>
-                <constraint firstItem="6aJ-t0-D0w" firstAttribute="top" secondItem="EdF-2w-20n" secondAttribute="bottom" constant="22" id="i34-bi-f2A"/>
-                <constraint firstItem="voP-jM-HCJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="m6l-Ya-mBU"/>
-                <constraint firstAttribute="trailing" secondItem="EdF-2w-20n" secondAttribute="trailing" constant="81" id="pOt-uf-HhT"/>
-                <constraint firstItem="LD1-vM-CSf" firstAttribute="top" secondItem="6aJ-t0-D0w" secondAttribute="bottom" constant="12" id="pgM-6f-Ig0"/>
-                <constraint firstItem="LD1-vM-CSf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="uQp-RY-Nrq"/>
-                <constraint firstItem="6aJ-t0-D0w" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="xYp-qV-d4P"/>
-                <constraint firstAttribute="bottom" secondItem="Nnj-9q-gwn" secondAttribute="bottom" constant="26" id="y2j-BD-y8o"/>
-                <constraint firstItem="EdF-2w-20n" firstAttribute="leading" secondItem="voP-jM-HCJ" secondAttribute="trailing" constant="32" id="y6B-CJ-UrT"/>
-                <constraint firstItem="6aJ-t0-D0w" firstAttribute="centerX" secondItem="LD1-vM-CSf" secondAttribute="centerX" id="zqZ-xe-48Y"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0cu-4J-bjM"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="top" secondItem="EdF-2w-20n" secondAttribute="bottom" constant="22" id="0i4-jX-53l"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="centerX" secondItem="LD1-vM-CSf" secondAttribute="centerX" id="6PD-pD-L15"/>
+                <constraint firstItem="EdF-2w-20n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="8j0-Qo-jfW"/>
+                <constraint firstItem="q8C-Za-yTa" firstAttribute="leading" secondItem="EdF-2w-20n" secondAttribute="trailing" constant="31" id="APb-8J-A9p"/>
+                <constraint firstItem="LD1-vM-CSf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Dg3-xY-PpN"/>
+                <constraint firstItem="LD1-vM-CSf" firstAttribute="top" secondItem="6aJ-t0-D0w" secondAttribute="bottom" constant="12" id="GHj-bh-Apo"/>
+                <constraint firstItem="6aJ-t0-D0w" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PHH-qe-OhO"/>
+                <constraint firstAttribute="bottom" secondItem="LD1-vM-CSf" secondAttribute="bottom" constant="86" id="VOb-Yy-diT"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bH7-kK-Xha"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="top" secondItem="q8C-Za-yTa" secondAttribute="top" id="c8X-JY-H9b"/>
+                <constraint firstItem="EdF-2w-20n" firstAttribute="centerX" secondItem="LD1-vM-CSf" secondAttribute="centerX" id="hZm-TG-GZZ"/>
+                <constraint firstItem="EdF-2w-20n" firstAttribute="leading" secondItem="voP-jM-HCJ" secondAttribute="trailing" constant="32" id="oR7-DX-7J9"/>
+                <constraint firstAttribute="trailing" secondItem="q8C-Za-yTa" secondAttribute="trailing" id="pNc-Jq-2M2"/>
+                <constraint firstItem="voP-jM-HCJ" firstAttribute="bottom" secondItem="q8C-Za-yTa" secondAttribute="bottom" id="u7u-KN-F7U"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="cancelButton" destination="voP-jM-HCJ" id="0n4-Cd-UkY"/>
                 <outlet property="proteinGoalLabel" destination="6aJ-t0-D0w" id="vGE-NC-tqt"/>
                 <outlet property="proteinSlider" destination="LD1-vM-CSf" id="VxB-3x-LOF"/>
-                <outlet property="saveButton" destination="Nnj-9q-gwn" id="Vcs-cT-0e0"/>
+                <outlet property="saveButton" destination="q8C-Za-yTa" id="QQp-Sb-z3l"/>
                 <outlet property="titleLabel" destination="EdF-2w-20n" id="UET-bV-ney"/>
             </connections>
             <point key="canvasLocation" x="-239.5" y="-161.5"/>
