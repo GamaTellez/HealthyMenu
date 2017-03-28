@@ -35,8 +35,8 @@ import UIKit
     }
     
     override func awakeFromNib() {
-        self.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
-        self.textColor = UIColor.white
+        self.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.textColor = UIColor.gray
     }
     
     
@@ -75,7 +75,7 @@ import UIKit
         self.daysFilled = 0
         self.totalOfDays = totalDays
         self.daysGoalWasReached = totalDaysGoalWasReached
-        self.text = String(format:"%.0f days \n with goal", self.totalOfDays)
+       // self.text = String(format:"%.0f days \n with goal", self.totalOfDays)
         self.layer.sublayers = nil
         if (self.daysGoalWasReached == 0 ) {
             print("nothing happens, except updating label days")

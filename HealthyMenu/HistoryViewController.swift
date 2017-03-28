@@ -51,8 +51,12 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         self.goalsPickerView.backgroundColor = UIColor(red: 0.494, green: 0.494, blue: 0.494, alpha: 1.00)
         self.goalsTitleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         self.goalsTitleLabel.textColor = UIColor.white
-        self.goalReachedTag.backgroundColor = UIColor(red: 0.325, green: 0.957, blue: 0.259, alpha: 1.00)
-        self.totalDaysTag.backgroundColor = UIColor.gray
+        self.goalReachedTag.backgroundColor = UIColor.clear
+        self.goalReachedTag.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.goalReachedTag.textColor = UIColor(red: 0.325, green: 0.957, blue: 0.259, alpha: 1.00)
+        self.totalDaysTag.backgroundColor = UIColor.clear
+        self.totalDaysTag.textColor = UIColor.gray
+        self.totalDaysTag.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         self.goalReachedTitleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
         self.goalReachedTitleLabel.numberOfLines = 2
         self.goalReachedTitleLabel.textColor = UIColor.white
@@ -109,6 +113,8 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         }
         print(totalDays)
         print(daysGoalWasReached)
+        self.goalReachedTag.text = String(format:"%d", daysGoalWasReached)
+        self.totalDaysTag.text = String(format:"%d", daysGoalWasReached)
         self.circularChart.animate(totalDays: Double((totalDays)), totalDaysGoalWasReached: Double(daysGoalWasReached))
         
         guard let avarageProtein = goalSelected.getProteinAvarage() else {
@@ -118,7 +124,7 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         guard let avarageCaloies = goalSelected.getCaloriesAvarage() else {
             return
         }
-        self.caloriesAvarageLabel.text = String(format:"%d g.", avarageCaloies)
+        self.caloriesAvarageLabel.text = String(format:"%d", avarageCaloies)
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
