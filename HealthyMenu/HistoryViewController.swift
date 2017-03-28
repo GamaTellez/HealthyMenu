@@ -11,14 +11,22 @@ import CoreData
 
 class HistoryViewController: UIViewController, UIPickerViewDelegate {
     
+    @IBOutlet var goalsTitleLabel: UILabel!
     @IBOutlet var circularChart: GoalDaysCircularChart!
     @IBOutlet var closeButton: UIButton!
-    @IBOutlet var coverView: UIView!
     @IBOutlet var caloriesAvarageLabel: UILabel!
     @IBOutlet var proteinAvarageLabel: UILabel!
     var allGoals:[Goal]?
     let pickerViewDataSource:GoalsPickerViewDataSource = GoalsPickerViewDataSource()
     @IBOutlet var goalsPickerView: UIPickerView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var proteinTitleLabel: UILabel!
+    @IBOutlet var caloriesTitleLabel: UILabel!
+    @IBOutlet var goalReachedTag: UILabel!
+    @IBOutlet var totalDaysTag: UILabel!
+    @IBOutlet var goalReachedTitleLabel: UILabel!
+    @IBOutlet var totalDaysTitleLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +36,28 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
     
     private func setUpViews() {
         self.view.backgroundColor = UIColor(red: 0.200, green: 0.200, blue: 0.200, alpha: 1.00)
-        
+        self.proteinAvarageLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.proteinAvarageLabel.textColor = UIColor.white
+        self.caloriesAvarageLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.caloriesAvarageLabel.textColor = UIColor.white
+        self.titleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.titleLabel.textColor = UIColor.white
+        self.closeButton.setImage(UIImage(named: "closeIcon"), for: UIControlState.normal)
+        self.closeButton.clipsToBounds = true
+        self.proteinTitleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.proteinTitleLabel.textColor = UIColor.white
+        self.caloriesTitleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.caloriesTitleLabel.textColor = UIColor.white
+        self.goalsPickerView.backgroundColor = UIColor(red: 0.494, green: 0.494, blue: 0.494, alpha: 1.00)
+        self.goalsTitleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
+        self.goalsTitleLabel.textColor = UIColor.white
+        self.goalReachedTag.backgroundColor = UIColor(red: 0.325, green: 0.957, blue: 0.259, alpha: 1.00)
+        self.totalDaysTag.backgroundColor = UIColor.gray
+        self.goalReachedTitleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.goalReachedTitleLabel.numberOfLines = 2
+        self.goalReachedTitleLabel.textColor = UIColor.white
+        self.totalDaysTitleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.totalDaysTitleLabel.textColor = UIColor.white
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,11 +114,11 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         guard let avarageProtein = goalSelected.getProteinAvarage() else {
             return
         }
-        self.proteinAvarageLabel.text = String(format:"%d", avarageProtein)
+        self.proteinAvarageLabel.text = String(format:"%d g.", avarageProtein)
         guard let avarageCaloies = goalSelected.getCaloriesAvarage() else {
             return
         }
-        self.caloriesAvarageLabel.text = String(format:"%d", avarageCaloies)
+        self.caloriesAvarageLabel.text = String(format:"%d g.", avarageCaloies)
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {

@@ -43,11 +43,11 @@ import CoreData
     }
     
     func degreesToRadians (_ value:Double) -> Double {
-        return value * Double(M_PI) / 180.0
+        return value * Double.pi / 180.0
     }
     
     func radiansToDegrees (_ value:Double) -> Double {
-        return value * 180.0 / Double(M_PI)
+        return value * 180.0 / Double.pi
     }
     
     internal func update() {

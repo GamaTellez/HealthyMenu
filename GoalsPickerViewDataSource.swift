@@ -21,6 +21,6 @@ class GoalsPickerViewDataSource: NSObject, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return allGoals.count
+        return self.allGoals.count
     }
 }

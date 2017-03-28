@@ -15,8 +15,8 @@ import UIKit
     private var daysGoalWasReached:Double = 0
     @IBInspectable var baseStrokeColor:UIColor = UIColor.gray
     @IBInspectable var baseStrokeWidth:CGFloat = 30
-    var daysStrokeColor:UIColor = UIColor.black
-    var daysStrokeWidth:CGFloat = 20
+    var daysStrokeColor:UIColor = UIColor(red: 0.325, green: 0.957, blue: 0.259, alpha: 1.00)
+    var daysStrokeWidth:CGFloat = 25
     var labelLineWidth:CGFloat = 1.0
     var labelLineColor:UIColor = UIColor.blue
     var daysPath:UIBezierPath?
@@ -163,11 +163,11 @@ import UIKit
     }
     
     func degreesToRadians (_ value:Double) -> Double {
-        return value * Double(M_PI) / 180.0
+        return value * Double.pi / 180.0
     }
     
     func radiansToDegrees (_ value:Double) -> Double {
-        return value * 180.0 / Double(M_PI)
+        return value * 180.0 / Double.pi
     }
 
 }
