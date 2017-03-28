@@ -34,6 +34,12 @@ import UIKit
         }
     }
     
+    override func awakeFromNib() {
+        self.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.textColor = UIColor.white
+    }
+    
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.drawBasePath()
