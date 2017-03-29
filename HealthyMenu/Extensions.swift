@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 import CoreData
-
+import Gecco
 
 extension URLSession {
     func performNutrionixSearch(textToSearch: String, completion:@escaping (_ results:[NSDictionary]?)-> Void) {
@@ -51,10 +51,10 @@ extension NSDate {
 
 extension UINavigationController {
     func addStatusBarView() {
-            let statusBarView = UIView(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: 22))
-            statusBarView.backgroundColor = UIColor(red: 0.200, green: 0.200, blue: 0.200, alpha: 1.00)
-            self.navigationBar.addSubview(statusBarView)
-            UIApplication.shared.statusBarStyle = .lightContent
+        let statusBarView = UIView(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: 22))
+        statusBarView.backgroundColor = UIColor(red: 0.200, green: 0.200, blue: 0.200, alpha: 1.00)
+        self.navigationBar.addSubview(statusBarView)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 }
 
@@ -71,6 +71,23 @@ extension UIButton {
         self.setAttributedTitle(attributedString, for: buttonState)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

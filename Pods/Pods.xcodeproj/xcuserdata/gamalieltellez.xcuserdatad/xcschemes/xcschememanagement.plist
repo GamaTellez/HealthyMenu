@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Gecco.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HealthyMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HealthyMenuTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HealthyMenuUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>044D24CD957C7BD215506693AF4433A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8ECA696DD084F2A35C3143E05DE287A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92DEBB961CB87877095F25D814FDDB37</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E1F28892AE2D94BB2B1F680AB00BA123</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

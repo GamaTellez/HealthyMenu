@@ -96,10 +96,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Reached" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRJ-ah-35x">
-                                <rect key="frame" x="229" y="229" width="129" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days Goal Was Reached" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRJ-ah-35x">
+                                <rect key="frame" x="229" y="205" width="129" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="t61-r7-oT7"/>
+                                    <constraint firstAttribute="height" constant="44" id="t61-r7-oT7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -155,7 +155,7 @@
                             <constraint firstItem="gWa-f2-R36" firstAttribute="top" secondItem="pb9-Fq-m2D" secondAttribute="bottom" constant="2" id="Fdc-Vq-Ewr"/>
                             <constraint firstItem="oUJ-8o-PSa" firstAttribute="top" secondItem="PEK-Pr-8B9" secondAttribute="bottom" constant="2" id="GLO-Ha-rKX"/>
                             <constraint firstItem="Xyj-WU-O4a" firstAttribute="leading" secondItem="MAe-MS-eEt" secondAttribute="trailing" constant="43" id="IGV-BC-VAm"/>
-                            <constraint firstItem="uRJ-ah-35x" firstAttribute="top" secondItem="aL3-IT-tkO" secondAttribute="bottom" constant="96" id="IrL-xN-dbo"/>
+                            <constraint firstItem="uRJ-ah-35x" firstAttribute="top" secondItem="aL3-IT-tkO" secondAttribute="bottom" constant="72" id="IrL-xN-dbo"/>
                             <constraint firstItem="8cr-0y-A2Y" firstAttribute="top" secondItem="Xyj-WU-O4a" secondAttribute="bottom" constant="26" id="Na6-fr-hY0"/>
                             <constraint firstItem="uRJ-ah-35x" firstAttribute="leading" secondItem="8cr-0y-A2Y" secondAttribute="leading" id="NmP-Rf-uXg"/>
                             <constraint firstItem="IDQ-d3-Kzb" firstAttribute="top" secondItem="Kar-fY-ppV" secondAttribute="bottom" constant="24" id="O6m-Mo-Z9X"/>
@@ -175,7 +175,7 @@
                             <constraint firstItem="PEK-Pr-8B9" firstAttribute="leading" secondItem="zbY-NV-gkx" secondAttribute="leading" id="cg0-Eg-3ci"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gWa-f2-R36" secondAttribute="trailing" constant="72" id="eaU-GH-6ym"/>
                             <constraint firstItem="Kar-fY-ppV" firstAttribute="top" secondItem="ZAj-zs-G5I" secondAttribute="bottom" constant="9" id="fjV-Tm-jIo"/>
-                            <constraint firstItem="uRJ-ah-35x" firstAttribute="top" secondItem="oUJ-8o-PSa" secondAttribute="bottom" constant="43" id="fsn-mX-94G"/>
+                            <constraint firstItem="uRJ-ah-35x" firstAttribute="top" secondItem="oUJ-8o-PSa" secondAttribute="bottom" constant="19" id="fsn-mX-94G"/>
                             <constraint firstItem="gWa-f2-R36" firstAttribute="leading" secondItem="PEK-Pr-8B9" secondAttribute="trailing" constant="37" id="gxu-aP-QQu"/>
                             <constraint firstItem="oUJ-8o-PSa" firstAttribute="leading" secondItem="MAe-MS-eEt" secondAttribute="leading" id="pdm-1c-0hy"/>
                             <constraint firstItem="aL3-IT-tkO" firstAttribute="leading" secondItem="5bo-vf-drE" secondAttribute="leading" id="qKA-Do-rlh"/>

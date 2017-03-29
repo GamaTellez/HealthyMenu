@@ -58,6 +58,7 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         self.totalDaysTag.textColor = UIColor.gray
         self.totalDaysTag.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
         self.goalReachedTitleLabel.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
+        self.goalReachedTitleLabel.lineBreakMode = .byWordWrapping
         self.goalReachedTitleLabel.numberOfLines = 2
         self.goalReachedTitleLabel.textColor = UIColor.white
         self.totalDaysTitleLabel.font =  UIFont(name: "HelveticaNeue-CondensedBold", size: 15)
@@ -70,7 +71,14 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
         for goal in self.allGoals! {
             if goal.isCurrentGoal {
                 self.goalsPickerView.selectRow(index, inComponent: 0, animated: true)
-                self.circularChart.animate(totalDays: Double((goal.days?.count)!), totalDaysGoalWasReached: Double(goal.getDaysGoalWasReached()!))
+                let daysTotal = Double((goal.days?.count)!)
+                let daysGoalWasReached = Double(goal.getDaysGoalWasReached()!)
+//                self.circularChart.animate(totalDays: Double((goal.days?.count)!), totalDaysGoalWasReached: Double(goal.getDaysGoalWasReached()!))
+                self.circularChart.animate(totalDays: daysTotal, totalDaysGoalWasReached: daysGoalWasReached)
+                self.totalDaysTag.text = String(format:"%.0f", daysTotal)
+                self.goalReachedTag.text = String(format:"%.0f", daysGoalWasReached)
+                self.caloriesAvarageLabel.text = String(format:"%d", goal.getCaloriesAvarage()!)
+                self.proteinAvarageLabel.text = String(format:"")
                 break
             }
              index += 1

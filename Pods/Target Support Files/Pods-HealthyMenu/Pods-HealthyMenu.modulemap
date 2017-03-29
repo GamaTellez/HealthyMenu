@@ -1,0 +1,6 @@
+framework module Pods_HealthyMenu {
+  umbrella header "Pods-HealthyMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreData
+import Gecco
 
 class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate, NewDayDelegate, mealSearchDelegate {
     
@@ -26,6 +27,8 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     override func viewDidLoad() {
         self.setUpViews()
         self.loadInfoInViews()
+        let walkThroughController = AppWalkThrouhController()
+        self.present(walkThroughController, animated: true, completion: nil)
     }
     
     /*********************************************************
@@ -66,11 +69,12 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         self.setAppBackGroundColor()
         self.goalStats.image = UIImage(named: "chart")
         self.newGoalButton.image = UIImage(named:"goalIcon")
-        self.goalStats.tintColor = UIColor.black
+       // self.goalStats.tintColor = UIColor.black
         self.navBarTitleButton.sizeToFit()
         self.navBarTitleButton.addTarget(self, action: #selector(self.titleButtontapped), for: UIControlEvents.touchUpInside)
         self.navBarTitleButton.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 20)
-        self.navBarTitleButton.setTitle("Add a goal =====>", for: .disabled)
+        self.navBarTitleButton.setTitle("Current Day", for: .disabled)
+        self.navBarTitleButton.setTitleColor(UIColor.white, for: .disabled)
         self.navigationItem.titleView = self.navBarTitleButton
         self.tapGestureRecognizer.numberOfTapsRequired = 2
         self.tapGestureRecognizer.addTarget(self, action: #selector(self.hideShowNavBar))
