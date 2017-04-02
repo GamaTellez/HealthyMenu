@@ -55,7 +55,7 @@ class AddGoalView: UIView {
     }
     
     @IBAction func proteinSliderValueChanged(_ sender: UISlider) {
-        self.proteinGoalLabel.text = String(format:"%d", Int(sender.value))
+        self.proteinGoalLabel.text = String(format:"%d g.", Int(sender.value))
     }
     
 

@@ -19,16 +19,35 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
     @IBOutlet var goalStats: UIBarButtonItem!
     @IBOutlet var proteinTitleLabel: UILabel!
     @IBOutlet var caloriesTitleLabel: UILabel!
+    @IBOutlet var settingsBarButtonItem: UIBarButtonItem!
+    lazy var defaults = UserDefaults()
+    @IBOutlet var newGoalButton: UIBarButtonItem!
     var currentGoal:Goal?
     var navBarTitleButton:UIButton = UIButton(type: .custom)
-    @IBOutlet var newGoalButton: UIBarButtonItem!
     var tapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer()
+    let kFirstLaunch = "firstLaunch"
     
     override func viewDidLoad() {
         self.setUpViews()
         self.loadInfoInViews()
-        let walkThroughController = AppWalkThrouhController()
-        self.present(walkThroughController, animated: true, completion: nil)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.isFirstLaunch()
+    }
+    /********************************************************
+     * firstLaunch
+     *********************************************************/
+    private func isFirstLaunch() {
+        guard let _ = self.defaults.value(forKey: self.kFirstLaunch) else {
+            let firstLaunchAlert = UIAlertController(title: "Thank you for downloading \"Protein journal\"", message: "We would you like to see this mini walk through", preferredStyle: .alert)
+            firstLaunchAlert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (action) in
+                self.defaults.set(false, forKey: self.kFirstLaunch)
+                let walkThroughController = AppWalkThrouhController()
+                self.present(walkThroughController, animated: true, completion: nil)
+            }))
+            self.present(firstLaunchAlert, animated: true, completion: nil)
+            return
+        }
     }
     
     /*********************************************************
@@ -87,6 +106,8 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
         self.addProtein.setTitleColor(UIColor.white, for: .normal)
         self.view.addGestureRecognizer(self.tapGestureRecognizer)
         self.navigationController?.navigationBar.isTranslucent = false
+        self.settingsBarButtonItem.image = UIImage(named:"settings")
+        
     }
 
     
@@ -178,7 +199,7 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      ***********************************************************/
     func newGoalCreated(with proteinGoal: Int16, isCurrent: Bool) {
         NSManagedObject.checkIfGoalAlreadyExist(newProteinGoal: proteinGoal) { (oldGoal) in
-            if (oldGoal != nil) {
+            if ((oldGoal) != nil) {
                 if (self.currentGoal != nil) {
                     self.currentGoal?.setCurrent(isCurrent: false)
                     self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
@@ -197,7 +218,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
                             self.currentGoal?.setCurrent(isCurrent: false)
                             self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
                         }
-                        
                         goalCreated?.setCurrent(isCurrent: true)
                         self.currentGoal = goalCreated
                         guard let dateString = goalCreated?.getCurrentyDay()?.date?.readableDate() else { return }
@@ -243,13 +263,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
             }
         }
         self.tapGestureRecognizer.addTarget(self, action: #selector(self.hideShowNavBar))
-    }
-    
-    /**********************************************************
-     * viewHistoryButtonTapped
-     ***********************************************************/
-    @IBAction func viewHistoryButtonTapped(_ sender: Any) {
-        
     }
 }
 

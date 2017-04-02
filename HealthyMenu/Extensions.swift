@@ -56,6 +56,10 @@ extension UINavigationController {
         self.navigationBar.addSubview(statusBarView)
         UIApplication.shared.statusBarStyle = .lightContent
     }
+    
+    func getRootViewController()-> UIViewController {
+            return self.viewControllers.first!
+        }
 }
 
 extension UIViewController {

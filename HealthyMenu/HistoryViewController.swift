@@ -73,12 +73,11 @@ class HistoryViewController: UIViewController, UIPickerViewDelegate {
                 self.goalsPickerView.selectRow(index, inComponent: 0, animated: true)
                 let daysTotal = Double((goal.days?.count)!)
                 let daysGoalWasReached = Double(goal.getDaysGoalWasReached()!)
-//                self.circularChart.animate(totalDays: Double((goal.days?.count)!), totalDaysGoalWasReached: Double(goal.getDaysGoalWasReached()!))
                 self.circularChart.animate(totalDays: daysTotal, totalDaysGoalWasReached: daysGoalWasReached)
                 self.totalDaysTag.text = String(format:"%.0f", daysTotal)
                 self.goalReachedTag.text = String(format:"%.0f", daysGoalWasReached)
                 self.caloriesAvarageLabel.text = String(format:"%d", goal.getCaloriesAvarage()!)
-                self.proteinAvarageLabel.text = String(format:"")
+                self.proteinAvarageLabel.text = String(format:"%d", goal.getProteinAvarage()!)
                 break
             }
              index += 1
