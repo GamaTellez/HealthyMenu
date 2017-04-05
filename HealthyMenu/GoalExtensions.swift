@@ -41,6 +41,7 @@ extension Goal {
     
     internal func setCurrent(isCurrent:Bool) {
         self.isCurrentGoal = isCurrent
+        self.saveChenges()
     }
     
     internal func getProteinAvarage()-> Int? {
@@ -63,5 +64,9 @@ extension Goal {
             caloriesTotal += Int(day.caloriesCount)
         }
         return caloriesTotal / allDays.count
+    }
+    private func saveChenges() {
+        PersistantStorageCoordinator().save { (saved) in
+        }
     }
 }

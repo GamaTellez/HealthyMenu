@@ -27,7 +27,7 @@ class AddMealView: UIView , UITextFieldDelegate {
     public var delegate:NewMealCreatedDelegate?
     
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: frame.origin.x + 10, y: frame.height, width: frame.width - 45, height: frame.height / 2))
+        super.init(frame: CGRect(x: 0, y: frame.height, width: frame.width - 28, height: frame.height / 2))
         self.addSubview(self.instanceFromNib())
     }
     
@@ -106,7 +106,7 @@ class AddMealView: UIView , UITextFieldDelegate {
 
     internal func present(toPoint:CGPoint) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.center = toPoint
+            self.center = CGPoint(x: toPoint.x, y: toPoint.y + 20)
         }, completion: {(finished:Bool) in
         })
     }

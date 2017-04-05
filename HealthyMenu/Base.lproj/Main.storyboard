@@ -380,8 +380,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca4-Jv-Ltd" customClass="CircledLabel" customModule="HealthyMenu" customModuleProvider="target">
                                 <rect key="frame" x="123" y="420" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="CQv-6G-dMj"/>
-                                    <constraint firstAttribute="width" constant="130" id="sOI-VS-csQ"/>
+                                    <constraint firstAttribute="width" constant="130" id="f0t-vF-psK"/>
+                                    <constraint firstAttribute="height" constant="130" id="jXQ-QC-MYR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -390,7 +390,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Protein Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-cJ-rQc">
                                 <rect key="frame" x="135" y="79" width="105" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="pfd-BN-hYN"/>
+                                    <constraint firstAttribute="height" constant="21" id="MZI-hk-dFe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -399,8 +399,8 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqO-u8-t4g">
                                 <rect key="frame" x="138" y="391" width="100" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="0mP-1r-fns"/>
-                                    <constraint firstAttribute="height" constant="21" id="atW-6J-AmO"/>
+                                    <constraint firstAttribute="height" constant="21" id="6Br-lw-YRE"/>
+                                    <constraint firstAttribute="width" constant="100" id="ITe-my-oQ6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -409,7 +409,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcI-zZ-WRB">
                                 <rect key="frame" x="114" y="597" width="147" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="2n6-SQ-OT1"/>
+                                    <constraint firstAttribute="height" constant="50" id="YkM-xb-Z9x"/>
                                 </constraints>
                                 <connections>
                                     <action selector="addProteinButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8sl-lH-Dob"/>
@@ -424,19 +424,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="JqO-u8-t4g" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="9" id="42t-ka-qy2"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="JqO-u8-t4g" secondAttribute="centerX" id="4LW-cs-sTP"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="kES-cJ-rQc" secondAttribute="bottom" constant="12" id="6FX-T3-AeZ"/>
-                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="top" secondItem="Ca4-Jv-Ltd" secondAttribute="bottom" constant="47" id="6fJ-6P-Bkd"/>
-                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6xr-cN-2S3"/>
-                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="centerX" secondItem="qcI-zZ-WRB" secondAttribute="centerX" id="EG3-EV-elB"/>
-                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="27" id="Mxr-bA-yBm"/>
-                            <constraint firstItem="JqO-u8-t4g" firstAttribute="centerX" secondItem="Ca4-Jv-Ltd" secondAttribute="centerX" id="dxC-lg-BJE"/>
-                            <constraint firstAttribute="bottom" secondItem="qcI-zZ-WRB" secondAttribute="bottom" constant="20" symbolic="YES" id="lba-jl-hJd"/>
-                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="tQm-Sf-h4Z" secondAttribute="centerX" id="ogt-4H-sMT"/>
-                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="top" secondItem="JqO-u8-t4g" secondAttribute="bottom" constant="8" symbolic="YES" id="pO8-Dc-hVS"/>
-                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="98" id="qeQ-Ik-gPi"/>
-                            <constraint firstItem="kES-cJ-rQc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="wYd-zd-uoM"/>
+                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="top" secondItem="Ca4-Jv-Ltd" secondAttribute="bottom" constant="47" id="0dt-hu-OjD"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="27" id="6i8-2w-nuE"/>
+                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="centerX" secondItem="qcI-zZ-WRB" secondAttribute="centerX" id="Lss-DN-Gh8"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="centerX" secondItem="JqO-u8-t4g" secondAttribute="centerX" id="Mz2-rA-pBW"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="RlY-T2-p67"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="tQm-Sf-h4Z" secondAttribute="centerX" id="VYo-ml-cla"/>
+                            <constraint firstItem="JqO-u8-t4g" firstAttribute="top" secondItem="tQm-Sf-h4Z" secondAttribute="bottom" constant="9" id="ZfE-xU-h39"/>
+                            <constraint firstItem="qcI-zZ-WRB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="98" id="eA7-zJ-zyU"/>
+                            <constraint firstAttribute="bottom" secondItem="qcI-zZ-WRB" secondAttribute="bottom" constant="20" symbolic="YES" id="f92-4f-SQM"/>
+                            <constraint firstItem="tQm-Sf-h4Z" firstAttribute="top" secondItem="kES-cJ-rQc" secondAttribute="bottom" constant="12" id="hFp-Md-SuU"/>
+                            <constraint firstItem="Ca4-Jv-Ltd" firstAttribute="top" secondItem="JqO-u8-t4g" secondAttribute="bottom" constant="8" symbolic="YES" id="iwC-NF-FP2"/>
+                            <constraint firstItem="JqO-u8-t4g" firstAttribute="centerX" secondItem="Ca4-Jv-Ltd" secondAttribute="centerX" id="jtB-hk-xCQ"/>
+                            <constraint firstItem="kES-cJ-rQc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="luj-3I-h6U"/>
                         </constraints>
                     </view>
                     <toolbarItems/>

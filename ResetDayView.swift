@@ -26,10 +26,11 @@ class ResetDayView: UIView {
 
     convenience init(frame:CGRect, distanceFromTop:CGFloat) {
         self.init()
-        self.frame =  CGRect(x: frame.origin.x,
+        self.frame =  CGRect(x: frame.origin.x + 12,
                              y: distanceFromTop,
                              width: frame.width,
                               height: frame.height / 3)
+        
         self.addSubview(self.instanceFromNib())
     }
     

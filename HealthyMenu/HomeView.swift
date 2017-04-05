@@ -198,20 +198,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
      * newGoalCreatedDelegate
      ***********************************************************/
     func newGoalCreated(with proteinGoal: Int16, isCurrent: Bool) {
-        NSManagedObject.checkIfGoalAlreadyExist(newProteinGoal: proteinGoal) { (oldGoal) in
-            if ((oldGoal) != nil) {
-                if (self.currentGoal != nil) {
-                    self.currentGoal?.setCurrent(isCurrent: false)
-                    self.currentGoal?.getCurrentyDay()?.isCurrentDay = false
-                }
-                oldGoal?.setCurrent(isCurrent: true)
-                guard let dateString = oldGoal?.getCurrentyDay()?.date?.readableDate() else { return }
-                self.navBarTitleButton.setTitle(dateString, for: .normal)
-                self.currentGoal = oldGoal
-                self.currentProteinCountLabel.update()
-                self.currentCaloriesLabel.update()
-                self.enableViewButtons(enabled: true)
-            } else {
                 NSManagedObject.createGoal(proteinGoal: proteinGoal, isCurrentGoal: true, completion: { (goalCreated) in
                     if (goalCreated != nil) {
                         if (self.currentGoal != nil) {
@@ -229,8 +215,6 @@ class HomeView: UIViewController, NewMealCreatedDelegate, NewGoalCreatedDelegate
                         print("couldnt create goal")
                     }
                 })
-            }
-        }
     }
     
     /**********************************************************

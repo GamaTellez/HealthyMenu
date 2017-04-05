@@ -23,11 +23,7 @@ extension Day {
         for meal in allMeals {
             self.proteinCount += meal.protein
         }
-        PersistantStorageCoordinator().save { (success) in
-            if (success) {
-                print("protein total calculated")
-            }
-        }
+        self.saveChanges()
     }
     
     private func calcCaloriesTotal() {
@@ -38,11 +34,7 @@ extension Day {
         for meal in allMeals {
             self.caloriesCount += meal.calories
         }
-        PersistantStorageCoordinator().save { (success) in
-            if (success) {
-                print("caloies total calculated")
-            }
-        }
+        self.saveChanges()
     }
     
     internal func wasGoalReached(goal:Goal?) {
@@ -52,9 +44,16 @@ extension Day {
         } else {
             self.reachedGoal = false
         }
+        self.saveChanges()
     }
     
     internal func setCurrent(current:Bool) {
         self.isCurrentDay = current
+        saveChanges()
+    }
+
+    internal func saveChanges() {
+        PersistantStorageCoordinator().save { (saved) in
+        }
     }
 }
